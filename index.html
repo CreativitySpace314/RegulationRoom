@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>The Regulation Room</title>
-  <meta name="description" content="Interactive practice for DSPs and behavioral health staff: scenarios, diagnosis-informed supports, rational detachment, and de-escalation." />
+  <meta name="description" content="Interactive scenario practice for DSPs and behavioral health staff." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
@@ -18,7 +18,6 @@
     </a>
     <nav class="nav">
       <a href="#scenarios">Scenarios</a>
-      <a href="#diagnoses">Diagnoses</a>
       <a href="#rope">Rational Detachment</a>
       <a href="#challenge">Challenge Mode</a>
     </nav>
@@ -29,56 +28,64 @@
       <div class="hero-copy">
         <p class="eyebrow">PRACTICE THE MOMENT BEFORE IT BECOMES AN INCIDENT.</p>
         <h1>Don’t memorize a script.<br><span>Learn to read the moment.</span></h1>
-        <p class="hero-text">Scenario-based practice for DSPs, RCF teams, IRSH staff, and community mental health workers. Choose the situation. Add the person’s diagnosis or support profile. Then practice your response and watch the interaction change.</p>
+        <p class="hero-text">Practice realistic interactions with people who have different diagnoses, communication styles, symptoms, and support needs. Your response changes what happens next.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#scenarios">Start a scenario</a>
+          <a class="btn btn-primary" href="#scenarios">Choose a scenario</a>
           <a class="btn btn-ghost" href="#rope">Try the tug-of-war</a>
         </div>
       </div>
       <div class="hero-card">
         <div class="status-row"><span class="dot green"></span><span>LIVE PRACTICE</span></div>
-        <p class="mini-label">RIGHT NOW</p>
+        <p class="mini-label">THE MOMENT</p>
         <h2>Jordan is pacing and yelling.</h2>
         <blockquote>“You people never listen to me!”</blockquote>
         <div class="meter-wrap">
-          <div class="meter-label"><span>Distress</span><span>68%</span></div>
+          <div class="meter-label"><span>Distress</span><span>Rising</span></div>
           <div class="meter"><span style="width:68%"></span></div>
         </div>
-        <p class="tiny">Before you respond: what are you actually noticing?</p>
+        <p class="tiny">What you say next changes the interaction.</p>
       </div>
     </section>
 
     <section id="scenarios" class="section-shell section-block">
       <div class="section-heading">
-        <p class="eyebrow">STEP 1 · CHOOSE THE MOMENT</p>
-        <h2>What situation keeps getting hard?</h2>
-        <p>Pick the behavior first. The diagnosis and support profile come next.</p>
+        <p class="eyebrow">CHOOSE YOUR PRACTICE</p>
+        <h2>Diagnosis + real-life scenario.</h2>
+        <p>Diagnosis gives you context, not the answer. Read the person, the behavior, the environment, and the moment.</p>
       </div>
-      <div class="scenario-grid">
-        <button class="scenario-card" data-scenario="meds"><span class="icon">💊</span><strong>Medication Refusal</strong><small>“I’m not taking that.”</small></button>
-        <button class="scenario-card" data-scenario="paranoia"><span class="icon">🧠</span><strong>Paranoia / Psychosis</strong><small>“You put something in my food.”</small></button>
-        <button class="scenario-card" data-scenario="verbal"><span class="icon">🔥</span><strong>Verbal Escalation</strong><small>Yelling, swearing, arguing</small></button>
-        <button class="scenario-card" data-scenario="leaving"><span class="icon">🚪</span><strong>Leaving / Elopement</strong><small>“I’m leaving right now.”</small></button>
-        <button class="scenario-card" data-scenario="shutdown"><span class="icon">🤐</span><strong>Shutdown / Refusal</strong><small>Silence, avoidance, “no”</small></button>
-        <button class="scenario-card" data-scenario="peer"><span class="icon">👥</span><strong>Peer Conflict</strong><small>Two people. One heated room.</small></button>
-        <button class="scenario-card" data-scenario="selfharm"><span class="icon">⚠️</span><strong>Self-Harm Statements</strong><small>Support + safety judgment</small></button>
-        <button class="scenario-card" data-scenario="routine"><span class="icon">🔁</span><strong>Routine Change</strong><small>Repeated questions, distress, rigidity</small></button>
-      </div>
-    </section>
-
-    <section id="diagnoses" class="section-shell section-block tinted">
-      <div class="section-heading">
-        <p class="eyebrow">STEP 2 · ADD CONTEXT</p>
-        <h2>Same behavior. Different need.</h2>
-        <p>Diagnosis never tells you everything. It can change what you consider, how much language you use, and what might be underneath the behavior.</p>
-      </div>
-      <div class="profile-grid">
-        <article class="profile-card"><span>ID</span><h3>Intellectual Disability</h3><p>Processing time, concrete language, routine, comprehension, communication needs.</p></article>
-        <article class="profile-card"><span>SCZ</span><h3>Schizophrenia / Psychosis</h3><p>Fear, suspiciousness, internal stimuli, altered perception, need for calm reality-based support.</p></article>
-        <article class="profile-card"><span>BPD</span><h3>Borderline Personality Disorder</h3><p>Intense emotion, perceived rejection, consistency, validation, boundaries without power struggles.</p></article>
-        <article class="profile-card"><span>SMI</span><h3>SMI / Multiple Diagnoses</h3><p>Look at current presentation, baseline, triggers, symptoms, coping skills, and environment.</p></article>
-        <article class="profile-card"><span>ASD</span><h3>Autism + Sensory Needs</h3><p>Transitions, noise, too much language, predictability, space, and sensory load.</p></article>
-        <article class="profile-card"><span>TRM</span><h3>Trauma History</h3><p>Control, blocked exits, touch, raised voices, shame, threat perception, and safety cues.</p></article>
+      <div class="scenario-grid diagnosis-scenarios">
+        <button class="scenario-card" data-scenario="schizophrenia">
+          <span class="scenario-tag">SCHIZOPHRENIA</span><span class="icon">🧠</span>
+          <strong>“You poisoned my food.”</strong><small>The person is suspicious of dinner and refuses to eat.</small>
+        </button>
+        <button class="scenario-card" data-scenario="bpd">
+          <span class="scenario-tag">BPD</span><span class="icon">💥</span>
+          <strong>“I knew you’d leave too.”</strong><small>You said you would come back. An emergency delayed you.</small>
+        </button>
+        <button class="scenario-card" data-scenario="id">
+          <span class="scenario-tag">INTELLECTUAL DISABILITY</span><span class="icon">🔁</span>
+          <strong>The routine suddenly changed.</strong><small>The person keeps asking the same question and is getting louder.</small>
+        </button>
+        <button class="scenario-card" data-scenario="autism">
+          <span class="scenario-tag">AUTISM + ID</span><span class="icon">🌪️</span>
+          <strong>The room is too much.</strong><small>Noise, people, and a transition are stacking up fast.</small>
+        </button>
+        <button class="scenario-card" data-scenario="trauma">
+          <span class="scenario-tag">TRAUMA HISTORY</span><span class="icon">🚪</span>
+          <strong>“Get out of my way.”</strong><small>A staff member is standing between the person and the doorway.</small>
+        </button>
+        <button class="scenario-card" data-scenario="smi">
+          <span class="scenario-tag">SMI</span><span class="icon">💊</span>
+          <strong>“I’m not taking it.”</strong><small>Medication time becomes an argument about control.</small>
+        </button>
+        <button class="scenario-card" data-scenario="psychosis">
+          <span class="scenario-tag">PSYCHOSIS</span><span class="icon">👁️</span>
+          <strong>“They’re watching me.”</strong><small>The person is scanning the room and responding to something you cannot see.</small>
+        </button>
+        <button class="scenario-card" data-scenario="dual">
+          <span class="scenario-tag">DUAL DIAGNOSIS</span><span class="icon">🧩</span>
+          <strong>“NO. Stop asking me!”</strong><small>Processing difficulty, frustration, and mental-health symptoms collide.</small>
+        </button>
       </div>
     </section>
 
@@ -86,14 +93,14 @@
       <div class="section-heading">
         <p class="eyebrow">RATIONAL DETACHMENT</p>
         <h2>The Tug-of-War</h2>
-        <p>This is not about winning. It’s about noticing when you grab the rope.</p>
+        <p>The rope changes as the interaction changes. Your goal is not to win. Your goal is to stay on your side of the rope.</p>
       </div>
 
       <div class="rope-lab">
         <div class="rope-top">
-          <div class="side staff-side"><span class="side-label">YOUR SIDE</span><h3>Stay grounded.</h3><p>Calm voice. Fewer words. Open posture. Respectful space.</p></div>
-          <div class="center-copy"><span>THE CENTER MARK</span><strong>Your thinking brain</strong><small>Don’t get pulled past it.</small></div>
-          <div class="side person-side"><span class="side-label">THEIR DISTRESS</span><h3>Alarm mode.</h3><p>Yelling, pacing, refusal, fear, testing, pushing, shutting down.</p></div>
+          <div class="side staff-side"><span class="side-label">YOUR SIDE</span><h3>Thinking brain online.</h3><p>Grounded. Objective. Deliberate.</p></div>
+          <div class="center-copy"><span>THE CENTER MARK</span><strong>Notice your grip.</strong><small>Are you responding or reacting?</small></div>
+          <div class="side person-side"><span class="side-label">THEIR DISTRESS</span><h3>Alarm mode.</h3><p>Their distress can pull on yours.</p></div>
         </div>
 
         <div class="rope-track" aria-label="Rational detachment tug of war meter">
@@ -103,36 +110,41 @@
         </div>
         <div class="rope-labels"><span>GROUNDED + OBJECTIVE</span><span>REACTING + PULLED IN</span></div>
 
-        <div class="practice-box">
-          <div class="scenario-copy">
-            <span class="mini-label">SCENARIO</span>
-            <h3 id="ropePrompt">Jordan throws a plastic cup onto the floor.</h3>
+        <div class="conversation-stage">
+          <div class="conversation-person">
+            <span class="mini-label">JORDAN</span>
+            <p class="stage-direction" id="stageDirection">Jordan throws a plastic cup onto the floor and keeps pacing.</p>
             <blockquote id="ropeQuote">“You people never listen to me!”</blockquote>
-            <p id="ropeFeedback">What do you do next?</p>
           </div>
-          <div class="choice-stack" id="choiceStack">
-            <button class="choice" data-shift="18" data-feedback="You grabbed the rope. Correcting and matching intensity adds force to an already tense interaction.">“Stop yelling. I already answered you.”</button>
-            <button class="choice" data-shift="-10" data-feedback="You loosened your grip. You acknowledged the emotion without giving up the boundary.">“You’re frustrated and you want an answer. I can talk with you when we both have some space.”</button>
-            <button class="choice" data-shift="8" data-feedback="You added some pull. Repeating the explanation may be technically correct, but more words can add pressure when someone is already activated.">Explain the entire situation again.</button>
+          <div class="interaction-status" id="interactionStatus">
+            <span class="status-pill">ROUND 1</span>
+            <strong>What do you say?</strong>
           </div>
         </div>
 
+        <div class="choice-stack wide-choices" id="choiceStack"></div>
+
+        <div class="inline-coaching" id="inlineCoaching" hidden>
+          <span class="mini-label">NOTICE YOUR SIDE</span>
+          <p id="coachingText"></p>
+        </div>
+
         <div class="grounding-tools">
+          <span class="tool-label">Need to reset your side?</span>
           <button class="tool-chip" data-reset="-8">↓ Lower your voice</button>
           <button class="tool-chip" data-reset="-8">↔ Give more space</button>
           <button class="tool-chip" data-reset="-6">✂ Use fewer words</button>
-          <button class="tool-chip" data-reset="-10">⏸ Pause before responding</button>
-          <button class="tool-chip" data-reset="-6">👤 Change staff if needed</button>
+          <button class="tool-chip" data-reset="-10">⏸ Pause</button>
         </div>
-        <p class="rope-rule"><strong>LET GO OF THE ROPE ≠ LET GO OF THE BOUNDARY.</strong> Change the approach, not necessarily the limit.</p>
+        <p class="rope-rule"><strong>LET GO OF THE ROPE ≠ LET GO OF THE BOUNDARY.</strong> You can stop pulling without abandoning safety, limits, or expectations.</p>
       </div>
     </section>
 
     <section id="challenge" class="section-shell section-block challenge">
       <div class="section-heading">
         <p class="eyebrow">CHALLENGE MODE</p>
-        <h2>No diagnosis shown.</h2>
-        <p>Read what is actually happening before deciding what it means.</p>
+        <h2>Now take the diagnosis away.</h2>
+        <p>Because on a real shift, the most important skill is still reading the person in front of you.</p>
       </div>
       <div class="challenge-card">
         <div>
@@ -141,20 +153,19 @@
           <p>Sam says: “They know I’m here.”</p>
         </div>
         <div class="notice-grid">
-          <button>What do I know?</button>
+          <button>What do I actually know?</button>
           <button>What am I assuming?</button>
-          <button>What requires action?</button>
+          <button>What needs action right now?</button>
         </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <p><strong>The Regulation Room</strong> · Original practice content for staff skill-building.</p>
+    <p><strong>The Regulation Room</strong> · Original scenario practice for staff skill-building.</p>
     <p class="tiny">Educational practice only. Follow your organization’s approved policies, individual plans, clinical direction, and certified crisis-prevention training.</p>
   </footer>
 
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="script.js"></script>
 </body>
 </html>
