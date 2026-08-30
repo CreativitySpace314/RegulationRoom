@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Patrick+Hand&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css?v=15">
-<link rel="stylesheet" href="schizophrenia.css?v=1">
+<link rel="stylesheet" href="schizophrenia.css?v=2">
 </head>
 <body>
 <header class="topbar"><a class="brand" href="index.html"><span>THE</span><strong>REGULATION ROOM</strong></a><nav><a href="index.html">Home</a><a href="index.html#rooms">Practice Rooms</a><a href="learning.html">Know the Why</a><a href="suicide.html">Suicide Prevention</a></nav></header>
@@ -36,8 +36,46 @@
 <aside class="side-rail" id="sideRail"></aside>
 </div>
 </section>
+<section class="audio-lab" id="audioLab">
+<div class="audio-head">
+<p class="stage-kicker">OPTIONAL · AUDIO EXPERIENCE</p>
+<h2>Try carrying one instruction while other input keeps arriving.</h2>
+<p>This is a short attention-load exercise. It is <strong>not</strong> a hallucination simulation and it does not recreate what schizophrenia “sounds like.” The goal is simply to notice how much energy filtering competing input can take.</p>
+</div>
+<div class="audio-card">
+<div class="audio-instructions">
+<h3>Before you start</h3>
+<div class="audio-steps">
+<div><span>1</span><b>Use headphones</b><small>Keep the volume comfortable, never loud.</small></div>
+<div><span>2</span><b>Read the main instruction once</b><small>Then try to hold onto it while neutral background phrases play.</small></div>
+<div><span>3</span><b>Stay with it for 2 minutes</b><small>You can stop at any time. There is nothing to “pass.”</small></div>
+</div>
+</div>
+<div class="memory-card">
+<span class="memory-label">YOUR MAIN INSTRUCTION</span>
+<strong id="memoryInstruction">Blue folder → front desk → sign out.</strong>
+<button id="hideInstruction" class="small-action">hide instruction</button>
+</div>
+<div class="timer-wrap">
+<div class="timer" id="audioTimer" aria-live="polite">2:00</div>
+<div class="audio-controls">
+<button id="startAudio" class="audio-primary">▶ start 2 minutes</button>
+<button id="stopAudio" disabled>■ stop</button>
+</div>
+<p class="audio-status" id="audioStatus">Audio is off.</p>
+</div>
+<div class="after-audio" id="afterAudio" hidden>
+<h3>What do you remember?</h3>
+<p>Without scrolling back up, say the instruction out loud or type it below. Then reveal it and compare.</p>
+<input id="recallInput" type="text" placeholder="What was the instruction?" autocomplete="off">
+<div class="recall-actions"><button id="revealInstruction">reveal instruction</button><button id="resetAudio">try again</button></div>
+<div class="recallReveal" id="recallReveal" hidden><b>Original instruction:</b> Blue folder → front desk → sign out.</div>
+<div class="audio-debrief">If holding onto three ordinary pieces of information became annoying or effortful, that is the point: <strong>filtering itself takes energy.</strong> In real life, internal experiences, fear, poor sleep, medication effects, cognition and environmental input can overlap in ways this exercise cannot reproduce.</div>
+</div>
+</div>
+</section>
 </main>
 <footer>The Regulation Room · Interactive skill practice for people who support people.</footer>
-<script src="schizophrenia.js?v=1"></script>
+<script src="schizophrenia.js?v=2"></script>
 </body>
 </html>
