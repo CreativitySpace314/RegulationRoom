@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Patrick+Hand&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css?v=15">
-<link rel="stylesheet" href="schizophrenia.css?v=3">
+<link rel="stylesheet" href="schizophrenia.css?v=4">
 </head>
 <body>
 <header class="topbar"><a class="brand" href="index.html"><span>THE</span><strong>REGULATION ROOM</strong></a><nav><a href="index.html">Home</a><a href="index.html#rooms">Practice Rooms</a><a href="learning.html">Know the Why</a><a href="suicide.html">Suicide Prevention</a></nav></header>
@@ -36,57 +36,47 @@
 <aside class="side-rail" id="sideRail"></aside>
 </div>
 </section>
-<section class="audio-lab" id="audioLab">
-<div class="audio-head">
-<p class="stage-kicker">OPTIONAL · 2-MINUTE AUDITORY-VOICE EXERCISE</p>
-<h2>Try doing ordinary things while the sound does not politely stop.</h2>
-<p>This is a <strong>stylized, dramatized example</strong> of distressing auditory-voice input. It is not a faithful recreation of schizophrenia or of any one person’s hallucinations. Auditory hallucinations can be neutral, comforting, critical, frightening, commanding or something else entirely.</p>
-<div class="experience-note"><b>Skip this exercise</b> if simulated voices may be distressing or personally destabilizing for you. Keep the volume comfortable and stop at any time.</div>
+<section class="audio-lab empathy-lab" id="audioLab">
+<div class="audio-head empathy-head">
+<p class="stage-kicker">OPTIONAL · EMPATHY EXPERIENCE</p>
+<h2><span>Empathy &gt; Sympathy.</span> Put on your ears. Listen to understand, not respond.</h2>
+<p>You are about to move through a very ordinary morning while a stylized layer of voices continues underneath it. Some moments will be quieter. Some will press closer. Your job is not to solve the voices. Your job is to keep doing everyday things while noticing what that costs.</p>
+<div class="experience-note"><b>Before you start:</b> This is a dramatized educational exercise, not a recreation of every person’s experience and not a diagnostic tool. Auditory hallucinations vary widely and may be neutral, comforting, critical, frightening, commanding or something else entirely. Skip this activity if simulated voices may be distressing or personally destabilizing. Keep the volume comfortable and stop anytime.</div>
 </div>
-<div class="audio-card">
-<div class="audio-instructions">
-<h3>Set yourself up</h3>
-<div class="audio-steps">
-<div><span>1</span><b>Headphones recommended</b><small>Keep the volume comfortable. Stop anytime.</small></div>
-<div><span>2</span><b>Remember one pretend instruction</b><small>You will need it again when the timer ends.</small></div>
-<div><span>3</span><b>Keep working while it continues</b><small>The exercise uses a constant murmur bed with recurring critical voice fragments.</small></div>
+<div class="empathy-card">
+<div class="morning-track" id="morningTrack" aria-label="Morning routine progress">
+<span class="active">wake up</span><span>get ready</span><span>meds + breakfast</span><span>make a list</span><span>door / phone</span><span>leave</span>
 </div>
+<div class="scene-panel" id="scenePanel" aria-live="polite">
+<div class="scene-count" id="sceneCount">01 / 06</div>
+<p class="scene-place" id="scenePlace">BEDROOM · 7:12 AM</p>
+<h3 id="sceneTitle">You just woke up.</h3>
+<p class="scene-copy" id="sceneCopy">Nothing dramatic. Your phone buzzed. You need to get dressed and start the day.</p>
+<div class="scene-task" id="sceneTask"></div>
+<div class="scene-actions"><button id="sceneNext" class="audio-primary">start the morning →</button><button id="stopAudio" disabled>■ stop voices</button></div>
+<p class="audio-status" id="audioStatus">Headphones recommended. Audio is off.</p>
 </div>
-<div class="memory-card">
-<span class="memory-label">PRETEND INSTRUCTION · REMEMBER THIS</span>
-<strong id="memoryInstruction">Take your morning medication after breakfast.</strong>
-<small>This is part of the exercise, not medical advice.</small>
-<button id="hideInstruction" class="small-action">hide instruction</button>
-</div>
-<div class="timer-wrap">
-<div class="timer" id="audioTimer" aria-live="polite">2:00</div>
-<div class="audio-controls">
-<button id="startAudio" class="audio-primary">▶ start exercise</button>
-<button id="stopAudio" disabled>■ stop</button>
-</div>
-<p class="audio-status" id="audioStatus">Audio is off. Your answers stay on this page only.</p>
-</div>
-<div class="doing-box" id="doingBox">
-<div class="doing-head"><span>WHILE IT PLAYS</span><b>Do these ordinary things.</b></div>
-<label>Your name<input id="taskName" type="text" autocomplete="name" placeholder="type your name"></label>
-<label>Favorite color<input id="taskColor" type="text" placeholder="favorite color"></label>
-<label>Favorite food<input id="taskFood" type="text" placeholder="favorite food"></label>
-<label>Write a 3-item grocery list<textarea id="taskGroceries" rows="3" placeholder="1.&#10;2.&#10;3."></textarea></label>
-<div class="task-nudge" id="taskNudge">Nothing here is hard on purpose. The point is what happens when your attention is repeatedly pulled away while you are still expected to keep going.</div>
-</div>
+<div class="voice-meter" aria-hidden="true"><span>whisper</span><div class="meter-track"><i id="voiceMeter"></i></div><span>closer</span></div>
+<div class="timer-mini"><span>experience time</span><strong id="audioTimer">0:00</strong></div>
 <div class="after-audio" id="afterAudio" hidden>
-<h3>Okay. What stuck?</h3>
-<p>Before looking back up, what was the pretend medication instruction?</p>
-<input id="recallInput" type="text" placeholder="Type what you remember" autocomplete="off">
-<div class="recall-actions"><button id="revealInstruction">reveal instruction</button><button id="resetAudio">try again</button></div>
-<div class="recallReveal" id="recallReveal" hidden><b>Original pretend instruction:</b> Take your morning medication after breakfast.</div>
-<div class="audio-debrief"><b>That was all ordinary stuff.</b> Your name. A color. A food. Three groceries. One simple instruction. If any of it became harder, slower, irritating, easy to lose, or suddenly took more effort, that is the lesson. The tasks did not become more complicated. <strong>Your attention had more to filter and carry.</strong><br><br>This still cannot reproduce psychosis or schizophrenia. It only offers one controlled, stylized way to notice how persistent auditory input can compete with everyday functioning.</div>
+<p class="stage-kicker">AFTER THE NOISE</p>
+<h3>Nothing you just did was complicated.</h3>
+<div class="reflection-grid">
+<button data-reflect="focus">I lost track of a task</button>
+<button data-reflect="irritated">I got irritated</button>
+<button data-reflect="rushed">I rushed just to finish</button>
+<button data-reflect="voices">I started listening to the voices</button>
+<button data-reflect="fine">I completed it pretty easily</button>
+</div>
+<div class="reflection-result" id="reflectionResult">Tap what you noticed.</div>
+<div class="audio-debrief"><b>This is the empathy piece.</b> The shirt, breakfast, medication reminder, grocery list, phone and door were ordinary. The extra work was filtering, deciding what deserved attention, remembering what you were doing, managing emotion and continuing anyway.<br><br><strong>So when someone seems distracted, slow, suspicious, irritated, stuck, or unable to start:</strong> curiosity is more useful than judgment. Fewer words, one step, time, transparency and a regulated support person may reduce what their brain has to carry.<br><br>This exercise is intentionally limited. It cannot tell you what psychosis “feels like,” and completing it easily does not mean a real person should be able to “just ignore” hallucinations.</div>
+<button id="resetAudio" class="small-action">↻ walk through it again</button>
 </div>
 </div>
 </section>
 </main>
 <footer>The Regulation Room · Interactive skill practice for people who support people.</footer>
 <script src="schizophrenia.js?v=3"></script>
-<script src="schizophrenia-audio.js?v=2"></script>
+<script src="schizophrenia-audio.js?v=3"></script>
 </body>
 </html>
