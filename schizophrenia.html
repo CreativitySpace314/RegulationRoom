@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Patrick+Hand&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css?v=15">
 <link rel="stylesheet" href="schizophrenia.css?v=4">
+<link rel="stylesheet" href="schizophrenia-polish.css?v=1">
 </head>
 <body>
 <header class="topbar"><a class="brand" href="index.html"><span>THE</span><strong>REGULATION ROOM</strong></a><nav><a href="index.html">Home</a><a href="index.html#rooms">Practice Rooms</a><a href="learning.html">Know the Why</a><a href="suicide.html">Suicide Prevention</a></nav></header>
@@ -19,16 +20,11 @@
 <h1>Schizophrenia <em>Spectrum</em></h1>
 <p>Schizophrenia is more than psychosis. Perception, meaning, thinking, motivation, expression, sleep, medication experiences and daily functioning can all shift. This page is built to explore one piece at a time instead of turning a person into a checklist.</p>
 <div class="hero-note">A diagnosis is context, not identity. Notice the person first.</div>
-<div class="relation">
-<strong>Related ≠ the same thing.</strong>
-<div class="relation-row"><span class="relation-chip">Schizophrenia</span><span>↘</span><span class="relation-chip hot">PSYCHOSIS</span><span>↗</span><span class="relation-chip">Schizoaffective disorder</span></div>
-<small>Psychosis can occur in schizophrenia and schizoaffective disorder, and it can also occur in other clinical situations. Psychosis is a symptom experience, not another word for schizophrenia.</small>
-</div>
 </section>
 <section class="experience">
 <div class="experience-head">
 <h2>Explore the spectrum one layer at a time.</h2>
-<p>Tap a topic. Try the interaction. Move on when you are ready. On a phone, this behaves more like a deck than a giant training page.</p>
+<p>Tap a topic. Try the interaction. Move on when you are ready.</p>
 </div>
 <div class="topic-strip" id="topicStrip" aria-label="Schizophrenia learning topics"></div>
 <div class="learning-shell">
@@ -39,13 +35,17 @@
 <section class="audio-lab empathy-lab" id="audioLab">
 <div class="audio-head empathy-head">
 <p class="stage-kicker">OPTIONAL · EMPATHY EXPERIENCE</p>
-<h2><span>Empathy &gt; Sympathy.</span> Put on your ears. Listen to understand, not respond.</h2>
-<p>You are about to move through a very ordinary morning while recorded whisper layers continue underneath it. Some moments will be quieter. Some will press closer. Your job is not to solve the voices. Your job is to keep doing everyday things while noticing what that costs.</p>
-<div class="experience-note"><b>Before you start:</b> This is a dramatized educational exercise, not a recreation of every person’s experience and not a diagnostic tool. Auditory hallucinations vary widely and may be neutral, comforting, critical, frightening, commanding or something else entirely. Skip this activity if simulated voices may be distressing or personally destabilizing. Keep the volume comfortable and stop anytime.</div>
+<h2><span>Empathy &gt; Sympathy.</span> Put on your headphones. Listen to understand, not respond.</h2>
+<p>Move through an ordinary morning while recorded voices continue underneath it. Some moments will be quieter. Some will press closer. Keep doing the everyday things while noticing what that asks of your attention.</p>
+<div class="experience-note"><b>Before you start:</b> This is one dramatized empathy exercise. Voice-hearing experiences vary widely from person to person and may be neutral, comforting, critical, frightening, commanding, or something else entirely. If simulated voices could be distressing for you, skip this activity. You control the volume and can mute or stop the voices at any time.</div>
 </div>
 <div class="empathy-card">
 <div class="morning-track" id="morningTrack" aria-label="Morning routine progress">
 <span class="active">wake up</span><span>get ready</span><span>meds + breakfast</span><span>make a list</span><span>door / phone</span><span>leave</span>
+</div>
+<div class="audio-tools" aria-label="Voice audio controls">
+<button type="button" id="muteVoices" class="voice-mute">🔊 voices on</button>
+<label class="voice-volume" for="voiceVolume"><span>voice volume</span><input id="voiceVolume" type="range" min="0" max="100" value="90" step="1"><output id="voiceVolumeValue" for="voiceVolume">90%</output></label>
 </div>
 <div class="scene-panel" id="scenePanel" aria-live="polite">
 <div class="scene-count" id="sceneCount">01 / 06</div>
@@ -54,7 +54,7 @@
 <p class="scene-copy" id="sceneCopy">Nothing dramatic. Your phone buzzed. You need to get dressed and start the day.</p>
 <div class="scene-task" id="sceneTask"></div>
 <div class="scene-actions"><button id="sceneNext" class="audio-primary">start the morning →</button><button id="stopAudio" disabled>■ stop voices</button></div>
-<p class="audio-status" id="audioStatus">Headphones recommended. Audio is off.</p>
+<p class="audio-status" id="audioStatus">Headphones recommended. Set the voice volume where you want it, then start.</p>
 </div>
 <div class="voice-meter" aria-hidden="true"><span>whisper</span><div class="meter-track"><i id="voiceMeter"></i></div><span>closer</span></div>
 <div class="timer-mini"><span>experience time</span><strong id="audioTimer">0:00</strong></div>
@@ -76,7 +76,7 @@
 </section>
 </main>
 <footer>The Regulation Room · Interactive skill practice for people who support people.</footer>
-<script src="schizophrenia.js?v=3"></script>
-<script src="schizophrenia-audio.js?v=5"></script>
+<script src="schizophrenia.js?v=4"></script>
+<script src="schizophrenia-audio.js?v=6"></script>
 </body>
 </html>
