@@ -1,0 +1,42 @@
+(()=>{
+const $=s=>document.querySelector(s);
+const medScenario={label:'MED ROOM · REFUSAL PRACTICE',title:'Medication Refusal: support without turning it into a fight.',person:'TAYLOR',note:'Practice the conversation, not one agency’s procedure. The person can refuse, staff can offer useful information, and medication-specific questions belong with an approved clinical or pharmacy resource.',moments:[
+{phase:'NOTICE',stage:'It is medication time. Taylor pushes the medication cup back toward staff.',quote:'“I said I’m not taking it. Stop asking me.”',options:[
+['“You have to take them. Your doctor prescribed them.”',12,'A prescription explains why the medication is being offered; it does not make arguing or coercion useful.',['Taylor pulls farther away from the medication area.','“Then YOU take them.”'],'tense'],
+['“Okay. You’re saying no right now. Can I ask what’s making you not want it?”',-9,'You acknowledged the refusal and opened the door to information instead of immediately escalating the power struggle.',['Taylor pauses.','“It makes me feel weird.”'],'guarded'],
+['“Fine. I’m marking you as a refusal.”',9,'Documentation is important, but using it as the first response can sound punitive and misses the chance to understand the concern.',['Taylor folds their arms.','“Good. Do whatever you want.”'],'tense'],
+['“You’re going to miss your medication window.”',6,'Timing may matter, but leading with urgency can turn the clock into pressure before you understand the concern.',['Taylor looks at the clock and back at you.','“I don’t care.”'],'guarded']]},
+{phase:'THE PULL',stage:'Taylor tells you the medication has been making them feel dizzy and tired.',quote:'“I hate how I feel after I take it.”',options:[
+['“Those are probably normal side effects. Just take it.”',13,'Do not guess about side effects or dismiss a medication concern. Observe, document, and use the appropriate clinical or pharmacy resource.',['Taylor pushes the cup farther away.','“You don’t even believe me.”'],'angry'],
+['“Thanks for telling me. I can’t tell you whether the medication is causing that, but we can make sure the concern gets to the right person.”',-11,'You stayed within role while taking the concern seriously.',['Taylor looks less defensive.','“I’ve been trying to tell people.”'],'guarded'],
+['“I don’t know why you have to take it, but your doctor prescribed it.”',7,'It is better not to invent a reason, but this still centers authority instead of the person’s concern. Medication questions can be routed to an approved resource.',['Taylor sighs.','“That doesn’t answer anything.”'],'tense'],
+['Give a long explanation from memory about what the medication does.',10,'Medication education should be accurate and within role. Guessing or overexplaining from memory can create misinformation and more pressure.',['Taylor interrupts.','“Can you stop?”'],'tense']]},
+{phase:'RISK',stage:'Time is passing and Taylor still has not taken the medication. You feel pressure to get the med pass finished.',quote:'“Are you going to keep standing there until I take it?”',options:[
+['“Yes. You need to take it before the window closes.”',14,'The medication window should not become leverage. Follow the applicable medication process without turning timing into coercion.',['Taylor stands up and moves away.','“Then I’m leaving the room.”'],'angry'],
+['“No. I’m not going to stand over you. I can give you some space and check back while it can still be offered.”',-10,'You reduced interpersonal pressure while keeping the medication task in view.',['Taylor stays seated.','“Okay. Just give me a minute.”'],'softening'],
+['“If you don’t take it now, I have to mark refusal.”',12,'Accurate documentation is not a consequence to threaten. Record what actually happens after the interaction and follow the applicable process.',['Taylor shakes their head.','“You keep saying that like I’m in trouble.”'],'tense'],
+['“Would it help to look at the approved medication information or have your question passed to the appropriate nurse, prescriber, pharmacist, or other clinical resource?”',-8,'You offered information and support without pretending to have an answer you do not have.',['Taylor looks back at the cup.','“Maybe. I want to know why I’m so tired.”'],'guarded']]},
+{phase:'THE DROP',stage:'After some space, Taylor is calmer but still unsure.',quote:'“What happens if I still say no?”',options:[
+['“Then you’re noncompliant.”',14,'A judgment label adds shame and tells us very little about what actually happened.',['Taylor’s expression closes.','“Whatever.”'],'tense'],
+['“You can tell me no. My job is to make sure you have the information and support I can provide, then accurately document what happened and follow the appropriate process.”',-12,'Clear, neutral information keeps documentation and follow-up from becoming a threat.',['Taylor nods slowly.','“Okay. I just don’t want people mad at me.”'],'softening'],
+['“Nothing happens. It doesn’t matter.”',8,'Refusal should not be punished, but it can still require accurate documentation and appropriate follow-up.',['Taylor looks confused.','“So why do staff keep asking?”'],'guarded'],
+['“I’ll tell your doctor you refused.”',7,'Follow-up may be appropriate, but phrasing it as something being done to the person can sound punitive.',['Taylor looks away.','“There it is.”'],'guarded']]},
+{phase:'REPAIR',stage:'Taylor decides they still do not want the medication right now.',quote:'“No. I’m still not taking it.”',options:[
+['“Okay. I hear your decision. I’ll document what actually happened and make sure your dizziness and tiredness concern is communicated through the appropriate process.”',-13,'You separated the person’s decision from the important follow-up around symptoms and documentation.',['Taylor relaxes their shoulders.','“Thank you for actually listening.”'],'softening'],
+['“Last chance.”',13,'A final-chance frame turns the interaction back into a contest.',['Taylor turns away.','“I already answered you.”'],'tense'],
+['Mark the medication as taken so the med pass can be completed.',18,'Documentation must match what actually occurred. Never document a medication as administered when it was not.',['Taylor notices you at the computer.','“I didn’t take that.”'],'angry'],
+['Keep returning every few minutes asking the exact same question.',10,'Repeated offers can become pressure. Follow the applicable timing/refusal process and pay attention to what repeated prompting is doing to the interaction.',['Taylor becomes irritated again.','“How many times do I have to say NO?”'],'angry']]},
+{phase:'NEXT SHIFT',stage:'On the next shift, Taylor sees you near the medication area.',quote:'“Are you going to give me a hard time about meds again?”',options:[
+['“No hard time. Yesterday you told us you were feeling dizzy and tired. We can start there and make sure your questions get to the right resource.”',-12,'You carried useful information forward without carrying the power struggle forward.',['Taylor sits down.','“Okay. I can talk about it.”'],'softening'],
+['“Only if you refuse again.”',14,'This makes support feel conditional and primes the next interaction for another fight.',['Taylor immediately backs away.','“Then forget it.”'],'tense'],
+['“Yesterday is over. We’re not talking about it.”',5,'A fresh shift matters, but continuity matters too when the person raised a health concern.',['Taylor frowns.','“But I still feel dizzy.”'],'guarded'],
+['“Your doctor prescribed it, so hopefully today you’ll cooperate.”',12,'Authority plus judgment does not address the unresolved concern.',['Taylor crosses their arms.','“Here we go again.”'],'tense']]}
+]};
+function launchMed(){step=0;rope=50;customScenario=medScenario;renderArc(medScenario);location.hash='#rope';}
+function wire(){document.querySelectorAll('[data-scenario="customMeds"]').forEach(b=>{b.onclick=e=>{e.preventDefault();launchMed()}});document.querySelectorAll('[data-dx="meds"]').forEach(()=>{});}
+const oldBuild=window.buildScenario;
+if(oldBuild){window.buildScenario=function(){return oldBuild.apply(this,arguments)}}
+document.addEventListener('click',e=>{const b=e.target.closest('#dxScenarios button');if(b&&b.dataset.scenario==='customMeds'){e.preventDefault();e.stopImmediatePropagation();launchMed()}},true);
+document.addEventListener('DOMContentLoaded',wire);if(document.readyState!=='loading')wire();
+window.medPracticeScenario=medScenario;
+})();
