@@ -9,18 +9,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="overrides.css" />
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="#home" aria-label="The Regulation Room home">
-      <span class="brand-kicker">THE</span>
-      <span class="brand-main">REGULATION ROOM</span>
-    </a>
-    <nav class="nav">
-      <a href="#scenarios">Scenarios</a>
-      <a href="#rope">Rational Detachment</a>
-      <a href="#challenge">Challenge Mode</a>
-    </nav>
+    <a class="brand" href="#home" aria-label="The Regulation Room home"><span class="brand-kicker">THE</span><span class="brand-main">REGULATION ROOM</span></a>
+    <nav class="nav"><a href="#scenarios">Scenarios</a><a href="#rope">Rational Detachment</a><a href="#challenge">Challenge Mode</a></nav>
   </header>
 
   <main>
@@ -29,143 +23,58 @@
         <p class="eyebrow">PRACTICE THE MOMENT BEFORE IT BECOMES AN INCIDENT.</p>
         <h1>Don’t memorize a script.<br><span>Learn to read the moment.</span></h1>
         <p class="hero-text">Practice realistic interactions with people who have different diagnoses, communication styles, symptoms, and support needs. Your response changes what happens next.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#scenarios">Choose a scenario</a>
-          <a class="btn btn-ghost" href="#rope">Try the tug-of-war</a>
-        </div>
+        <div class="hero-actions"><a class="btn btn-primary" href="#scenarios">Choose a scenario</a><a class="btn btn-ghost" href="#rope">Try the tug-of-war</a></div>
       </div>
       <div class="hero-card">
         <div class="status-row"><span class="dot green"></span><span>LIVE PRACTICE</span></div>
-        <p class="mini-label">THE MOMENT</p>
-        <h2>Jordan is pacing and yelling.</h2>
-        <blockquote>“You people never listen to me!”</blockquote>
-        <div class="meter-wrap">
-          <div class="meter-label"><span>Distress</span><span>Rising</span></div>
-          <div class="meter"><span style="width:68%"></span></div>
-        </div>
+        <p class="mini-label">THE MOMENT</p><h2>Jordan is pacing and yelling.</h2><blockquote>“You people never listen to me!”</blockquote>
+        <div class="meter-wrap"><div class="meter-label"><span>Distress</span><span>Rising</span></div><div class="meter"><span style="width:68%"></span></div></div>
         <p class="tiny">What you say next changes the interaction.</p>
       </div>
     </section>
 
     <section id="scenarios" class="section-shell section-block">
-      <div class="section-heading">
-        <p class="eyebrow">CHOOSE YOUR PRACTICE</p>
-        <h2>Diagnosis + real-life scenario.</h2>
-        <p>Diagnosis gives you context, not the answer. Read the person, the behavior, the environment, and the moment.</p>
-      </div>
+      <div class="section-heading"><p class="eyebrow">CHOOSE YOUR PRACTICE</p><h2>Diagnosis + real-life scenario.</h2><p>Diagnosis gives you context, not the answer. Read the person, the behavior, the environment, and the moment.</p></div>
       <div class="scenario-grid diagnosis-scenarios">
-        <button class="scenario-card" data-scenario="schizophrenia">
-          <span class="scenario-tag">SCHIZOPHRENIA</span><span class="icon">🧠</span>
-          <strong>“You poisoned my food.”</strong><small>The person is suspicious of dinner and refuses to eat.</small>
-        </button>
-        <button class="scenario-card" data-scenario="bpd">
-          <span class="scenario-tag">BPD</span><span class="icon">💥</span>
-          <strong>“I knew you’d leave too.”</strong><small>You said you would come back. An emergency delayed you.</small>
-        </button>
-        <button class="scenario-card" data-scenario="id">
-          <span class="scenario-tag">INTELLECTUAL DISABILITY</span><span class="icon">🔁</span>
-          <strong>The routine suddenly changed.</strong><small>The person keeps asking the same question and is getting louder.</small>
-        </button>
-        <button class="scenario-card" data-scenario="autism">
-          <span class="scenario-tag">AUTISM + ID</span><span class="icon">🌪️</span>
-          <strong>The room is too much.</strong><small>Noise, people, and a transition are stacking up fast.</small>
-        </button>
-        <button class="scenario-card" data-scenario="trauma">
-          <span class="scenario-tag">TRAUMA HISTORY</span><span class="icon">🚪</span>
-          <strong>“Get out of my way.”</strong><small>A staff member is standing between the person and the doorway.</small>
-        </button>
-        <button class="scenario-card" data-scenario="smi">
-          <span class="scenario-tag">SMI</span><span class="icon">💊</span>
-          <strong>“I’m not taking it.”</strong><small>Medication time becomes an argument about control.</small>
-        </button>
-        <button class="scenario-card" data-scenario="psychosis">
-          <span class="scenario-tag">PSYCHOSIS</span><span class="icon">👁️</span>
-          <strong>“They’re watching me.”</strong><small>The person is scanning the room and responding to something you cannot see.</small>
-        </button>
-        <button class="scenario-card" data-scenario="dual">
-          <span class="scenario-tag">DUAL DIAGNOSIS</span><span class="icon">🧩</span>
-          <strong>“NO. Stop asking me!”</strong><small>Processing difficulty, frustration, and mental-health symptoms collide.</small>
-        </button>
+        <button class="scenario-card" data-scenario="schizophrenia"><span class="scenario-tag">SCHIZOPHRENIA</span><span class="icon">🧠</span><strong>“You poisoned my food.”</strong><small>The person is suspicious of dinner and refuses to eat.</small></button>
+        <button class="scenario-card" data-scenario="bpd"><span class="scenario-tag">BPD</span><span class="icon">💥</span><strong>“I knew you’d leave too.”</strong><small>You said you would come back. An emergency delayed you.</small></button>
+        <button class="scenario-card" data-scenario="id"><span class="scenario-tag">INTELLECTUAL DISABILITY</span><span class="icon">🔁</span><strong>The routine suddenly changed.</strong><small>The person keeps asking the same question and is getting louder.</small></button>
+        <button class="scenario-card" data-scenario="autism"><span class="scenario-tag">AUTISM + ID</span><span class="icon">🌪️</span><strong>The room is too much.</strong><small>Noise, people, and a transition are stacking up fast.</small></button>
+        <button class="scenario-card" data-scenario="trauma"><span class="scenario-tag">TRAUMA HISTORY</span><span class="icon">🚪</span><strong>“Get out of my way.”</strong><small>A staff member is standing between the person and the doorway.</small></button>
+        <button class="scenario-card" data-scenario="smi"><span class="scenario-tag">SMI</span><span class="icon">💊</span><strong>“I’m not taking it.”</strong><small>Medication time becomes an argument about control.</small></button>
+        <button class="scenario-card" data-scenario="psychosis"><span class="scenario-tag">PSYCHOSIS</span><span class="icon">👁️</span><strong>“They’re watching me.”</strong><small>The person is scanning the room and responding to something you cannot see.</small></button>
+        <button class="scenario-card" data-scenario="dual"><span class="scenario-tag">DUAL DIAGNOSIS</span><span class="icon">🧩</span><strong>“NO. Stop asking me!”</strong><small>Processing difficulty, frustration, and mental-health symptoms collide.</small></button>
       </div>
     </section>
 
     <section id="rope" class="section-shell section-block">
-      <div class="section-heading">
-        <p class="eyebrow">RATIONAL DETACHMENT</p>
-        <h2>The Tug-of-War</h2>
-        <p>The rope changes as the interaction changes. Your goal is not to win. Your goal is to stay on your side of the rope.</p>
-      </div>
-
+      <div class="section-heading"><p class="eyebrow">RATIONAL DETACHMENT</p><h2>The Tug-of-War</h2><p>The rope changes as the interaction changes. Your goal is not to win. Your goal is to stay on your side of the rope.</p></div>
       <div class="rope-lab">
         <div class="rope-top">
           <div class="side staff-side"><span class="side-label">YOUR SIDE</span><h3>Thinking brain online.</h3><p>Grounded. Objective. Deliberate.</p></div>
           <div class="center-copy"><span>THE CENTER MARK</span><strong>Notice your grip.</strong><small>Are you responding or reacting?</small></div>
           <div class="side person-side"><span class="side-label">THEIR DISTRESS</span><h3>Alarm mode.</h3><p>Their distress can pull on yours.</p></div>
         </div>
-
-        <div class="rope-track" aria-label="Rational detachment tug of war meter">
-          <div class="rope-line"></div>
-          <div id="knot" class="knot" style="left:50%"></div>
-          <div class="center-marker"></div>
-        </div>
+        <div class="rope-track" aria-label="Rational detachment tug of war meter"><div class="rope-line"></div><div id="knot" class="knot" style="left:50%"></div><div class="center-marker"></div></div>
         <div class="rope-labels"><span>GROUNDED + OBJECTIVE</span><span>REACTING + PULLED IN</span></div>
-
         <div class="conversation-stage">
-          <div class="conversation-person">
-            <span class="mini-label">JORDAN</span>
-            <p class="stage-direction" id="stageDirection">Jordan throws a plastic cup onto the floor and keeps pacing.</p>
-            <blockquote id="ropeQuote">“You people never listen to me!”</blockquote>
-          </div>
-          <div class="interaction-status" id="interactionStatus">
-            <span class="status-pill">ROUND 1</span>
-            <strong>What do you say?</strong>
-          </div>
+          <div class="conversation-person"><span class="mini-label">JORDAN</span><p class="stage-direction" id="stageDirection">Jordan throws a plastic cup onto the floor and keeps pacing.</p><blockquote id="ropeQuote">“You people never listen to me!”</blockquote></div>
+          <div class="interaction-status" id="interactionStatus"><span class="status-pill">ROUND 1</span><strong>What do you say?</strong></div>
         </div>
-
         <div class="choice-stack wide-choices" id="choiceStack"></div>
-
-        <div class="inline-coaching" id="inlineCoaching" hidden>
-          <span class="mini-label">NOTICE YOUR SIDE</span>
-          <p id="coachingText"></p>
-        </div>
-
-        <div class="grounding-tools">
-          <span class="tool-label">Need to reset your side?</span>
-          <button class="tool-chip" data-reset="-8">↓ Lower your voice</button>
-          <button class="tool-chip" data-reset="-8">↔ Give more space</button>
-          <button class="tool-chip" data-reset="-6">✂ Use fewer words</button>
-          <button class="tool-chip" data-reset="-10">⏸ Pause</button>
-        </div>
+        <div class="inline-coaching" id="inlineCoaching" hidden><span class="mini-label">NOTICE YOUR SIDE</span><p id="coachingText"></p></div>
+        <div class="grounding-tools"><span class="tool-label">Need to reset your side?</span><button class="tool-chip" data-reset="-8">↓ Lower your voice</button><button class="tool-chip" data-reset="-8">↔ Give more space</button><button class="tool-chip" data-reset="-6">✂ Use fewer words</button><button class="tool-chip" data-reset="-10">⏸ Pause</button></div>
         <p class="rope-rule"><strong>LET GO OF THE ROPE ≠ LET GO OF THE BOUNDARY.</strong> You can stop pulling without abandoning safety, limits, or expectations.</p>
       </div>
     </section>
 
     <section id="challenge" class="section-shell section-block challenge">
-      <div class="section-heading">
-        <p class="eyebrow">CHALLENGE MODE</p>
-        <h2>Now take the diagnosis away.</h2>
-        <p>Because on a real shift, the most important skill is still reading the person in front of you.</p>
-      </div>
-      <div class="challenge-card">
-        <div>
-          <span class="mini-label">WHAT ARE YOU NOTICING?</span>
-          <h3>Sam keeps looking toward the ceiling, whispering, and scanning the hallway.</h3>
-          <p>Sam says: “They know I’m here.”</p>
-        </div>
-        <div class="notice-grid">
-          <button>What do I actually know?</button>
-          <button>What am I assuming?</button>
-          <button>What needs action right now?</button>
-        </div>
-      </div>
+      <div class="section-heading"><p class="eyebrow">CHALLENGE MODE</p><h2>Now take the diagnosis away.</h2><p>Because on a real shift, the most important skill is still reading the person in front of you.</p></div>
+      <div class="challenge-card"><div><span class="mini-label">WHAT ARE YOU NOTICING?</span><h3>Sam keeps looking toward the ceiling, whispering, and scanning the hallway.</h3><p>Sam says: “They know I’m here.”</p></div><div class="notice-grid"><button>What do I actually know?</button><button>What am I assuming?</button><button>What needs action right now?</button></div></div>
     </section>
   </main>
 
-  <footer>
-    <p><strong>The Regulation Room</strong> · Original scenario practice for staff skill-building.</p>
-    <p class="tiny">Educational practice only. Follow your organization’s approved policies, individual plans, clinical direction, and certified crisis-prevention training.</p>
-  </footer>
-
+  <footer><p><strong>The Regulation Room</strong> · Original scenario practice for staff skill-building.</p><p class="tiny">Educational practice only. Follow your organization’s approved policies, individual plans, clinical direction, and certified crisis-prevention training.</p></footer>
   <script src="script.js"></script>
 </body>
 </html>
