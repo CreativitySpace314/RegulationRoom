@@ -19,3 +19,47 @@ function renderNav(){strip.innerHTML=topics.map((t,i)=>`<button class="topic-btn
 function render(){const t=topics[current];renderNav();stage.innerHTML=`<div class="stage-kicker">${t.kicker}</div><h3>${t.title}</h3><p class="stage-intro">${t.intro}</p>${t.render()}<div class="nav-row"><button id="prevBtn" ${current===0?'disabled':''}>← previous</button><button class="next" id="nextBtn">${current===topics.length-1?'start over':'next →'}</button></div>`;wire();const active=strip.querySelector('.active');if(active)active.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});}
 function wire(){document.querySelectorAll('[data-delusion]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-delusion]').forEach(x=>x.classList.remove('active'));b.classList.add('active');const d=delusions[b.dataset.delusion];document.getElementById('delusionReveal').innerHTML=`<h4>${d[0]}</h4><blockquote>${d[2]}</blockquote><p>${d[3]}</p>`});document.querySelectorAll('[data-sense]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-sense]').forEach(x=>x.classList.remove('active'));b.classList.add('active');const s=senses[b.dataset.sense];document.getElementById('senseReveal').innerHTML=`<h4>${s[0]}</h4><p>${s[1]}</p><p><strong>Ask:</strong> ${s[2]}</p>`});document.querySelectorAll('[data-label]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-label]').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById('labelReveal').innerHTML=`<h4>What else might be happening?</h4><p>${labels[b.dataset.label]}</p>`});document.querySelectorAll('[data-response]').forEach(b=>b.onclick=()=>{const r=responses[b.dataset.response];document.getElementById('reaction').innerHTML=`<b>What your response added</b>${r[1]}`});document.querySelectorAll('.baseline-box input').forEach(c=>c.onchange=()=>{const v=[...document.querySelectorAll('.baseline-box input:checked')].map(x=>x.value),meaning=v.filter(x=>x!=='shirt');document.getElementById('baselineResult').textContent=meaning.length>=3&&v.includes('voice')?'You are seeing a cluster of meaningful changes. Document what changed and follow the person’s individualized clinical/safety process.':meaning.length?'One change is information. A cluster of changes may make follow-up more important.':v.length?'That detail alone may simply be preference.':'Select what stands out.'});document.getElementById('prevBtn').onclick=()=>{if(current>0){current--;render();window.scrollTo({top:document.querySelector('.experience').offsetTop-80,behavior:'smooth'})}};document.getElementById('nextBtn').onclick=()=>{current=current===topics.length-1?0:current+1;render();window.scrollTo({top:document.querySelector('.experience').offsetTop-80,behavior:'smooth'})};}
 render();
+
+// Optional 2-minute competing-input exercise. Neutral speech only; not a hallucination simulation.
+const startAudio=document.getElementById('startAudio');
+const stopAudio=document.getElementById('stopAudio');
+const audioTimer=document.getElementById('audioTimer');
+const audioStatus=document.getElementById('audioStatus');
+const afterAudio=document.getElementById('afterAudio');
+const hideInstruction=document.getElementById('hideInstruction');
+const memoryInstruction=document.getElementById('memoryInstruction');
+const revealInstruction=document.getElementById('revealInstruction');
+const resetAudio=document.getElementById('resetAudio');
+const recallReveal=document.getElementById('recallReveal');
+const recallInput=document.getElementById('recallInput');
+const neutralPhrases=[
+  'Did you sign the form?',
+  'Someone is at the front desk.',
+  'The appointment moved to three.',
+  'Can you grab the folder?',
+  'Lunch is in ten minutes.',
+  'I left it on the counter.',
+  'The phone rang again.',
+  'Do you know where the keys are?',
+  'We need to leave soon.',
+  'Someone is waiting by the door.'
+];
+let secondsLeft=120;
+let timerId=null;
+let phraseId=null;
+let roomAudioCtx=null;
+let roomNoise=null;
+let roomGain=null;
+let exerciseRunning=false;
+function setTimer(){const m=Math.floor(secondsLeft/60),s=secondsLeft%60;audioTimer.textContent=`${m}:${String(s).padStart(2,'0')}`;}
+function speakNeutral(){if(!exerciseRunning||!('speechSynthesis' in window))return;window.speechSynthesis.cancel();const phrase=neutralPhrases[Math.floor(Math.random()*neutralPhrases.length)];const utter=new SpeechSynthesisUtterance(phrase);utter.rate=.92+Math.random()*.16;utter.pitch=.92+Math.random()*.12;utter.volume=.42;const voices=window.speechSynthesis.getVoices();if(voices.length)utter.voice=voices[Math.floor(Math.random()*voices.length)];window.speechSynthesis.speak(utter);phraseId=setTimeout(speakNeutral,3800+Math.random()*3000);}
+function startRoomNoise(){try{roomAudioCtx=roomAudioCtx||new(window.AudioContext||window.webkitAudioContext)();if(roomAudioCtx.state==='suspended')roomAudioCtx.resume();const buffer=roomAudioCtx.createBuffer(1,roomAudioCtx.sampleRate*2,roomAudioCtx.sampleRate),data=buffer.getChannelData(0);for(let i=0;i<data.length;i++)data[i]=(Math.random()*2-1)*.12;roomNoise=roomAudioCtx.createBufferSource();roomNoise.buffer=buffer;roomNoise.loop=true;const filter=roomAudioCtx.createBiquadFilter();filter.type='lowpass';filter.frequency.value=650;roomGain=roomAudioCtx.createGain();roomGain.gain.value=.025;roomNoise.connect(filter).connect(roomGain).connect(roomAudioCtx.destination);roomNoise.start();}catch(e){}}
+function stopSounds(){if(phraseId){clearTimeout(phraseId);phraseId=null}if('speechSynthesis' in window)window.speechSynthesis.cancel();if(roomNoise){try{roomNoise.stop()}catch(e){}roomNoise=null}}
+function finishExercise(stopped=false){exerciseRunning=false;if(timerId){clearInterval(timerId);timerId=null}stopSounds();startAudio.disabled=false;stopAudio.disabled=true;afterAudio.hidden=false;audioStatus.textContent=stopped?'Stopped early. You can still debrief what you noticed.':'Two minutes complete. What stayed with you?';}
+startAudio.addEventListener('click',()=>{if(exerciseRunning)return;secondsLeft=120;setTimer();exerciseRunning=true;afterAudio.hidden=true;recallReveal.hidden=true;recallInput.value='';memoryInstruction.style.visibility='visible';hideInstruction.textContent='hide instruction';startAudio.disabled=true;stopAudio.disabled=false;audioStatus.textContent='Competing input is playing. Keep the volume comfortable.';startRoomNoise();setTimeout(speakNeutral,900);timerId=setInterval(()=>{secondsLeft--;setTimer();if(secondsLeft<=0)finishExercise(false)},1000);});
+stopAudio.addEventListener('click',()=>finishExercise(true));
+hideInstruction.addEventListener('click',()=>{const hidden=memoryInstruction.style.visibility==='hidden';memoryInstruction.style.visibility=hidden?'visible':'hidden';hideInstruction.textContent=hidden?'hide instruction':'show instruction';});
+revealInstruction.addEventListener('click',()=>{recallReveal.hidden=false;});
+resetAudio.addEventListener('click',()=>{finishExercise(true);secondsLeft=120;setTimer();afterAudio.hidden=true;memoryInstruction.style.visibility='visible';hideInstruction.textContent='hide instruction';audioStatus.textContent='Audio is off.';});
+window.addEventListener('pagehide',stopSounds);
+setTimer();
