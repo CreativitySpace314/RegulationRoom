@@ -1,72 +1,7 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>The Regulation Room</title>
-<meta name="description" content="Interactive de-escalation and regulation practice for DSPs.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=8">
-</head>
-<body>
-<header class="topbar">
-<a class="brand" href="#home"><span class="brand-kicker">THE</span><span class="brand-main">REGULATION ROOM</span></a>
-<nav class="nav"><a href="#diagnoses">Learn + Practice</a><a href="#builder">Build My Own</a><a href="#rope">Tug-of-War</a></nav>
-</header>
-<main>
-<section id="home" class="hero section-shell">
-<div class="hero-copy"><p class="eyebrow">INTERACTIVE DSP PRACTICE</p><h1>Read the person.<br><span>Change your approach.</span></h1><p class="hero-text">Learn what may be underneath the behavior, then practice realistic interactions where the person responds to what you choose.</p><div class="hero-actions"><a class="btn btn-primary" href="#diagnoses">Choose a diagnosis</a><a class="btn btn-secondary" href="#builder">Build my own scenario</a></div></div>
-<div class="hero-card"><p class="mini-label">TRY THE MOMENT</p><h2>“Leave me alone.”</h2><p>The words are only one clue. Is this fear? overload? rejection? confusion? a need for space?</p><div class="hero-prompt">Your job is not to win the moment. It is to read it.</div></div>
-</section>
-<section id="diagnoses" class="section-shell section-block">
-<div class="section-heading"><p class="eyebrow">LEARN IT → THEN PRACTICE IT</p><h2>Choose a support profile.</h2><p>Open a quick learning hub, then choose a scenario for that profile.</p></div>
-<div class="diagnosis-picker">
-<button class="diagnosis-pick" data-dx="schizophrenia"><span>🧠</span><strong>Schizophrenia</strong><small>Psychosis, suspiciousness, altered perception</small></button>
-<button class="diagnosis-pick" data-dx="bpd"><span>💗</span><strong>BPD</strong><small>Intense emotion, rejection sensitivity</small></button>
-<button class="diagnosis-pick" data-dx="id"><span>🧩</span><strong>Intellectual Disability</strong><small>Processing, communication, routine</small></button>
-<button class="diagnosis-pick" data-dx="autism"><span>🎧</span><strong>Autism + ID</strong><small>Sensory load, transitions, predictability</small></button>
-<button class="diagnosis-pick" data-dx="trauma"><span>🌿</span><strong>Trauma History</strong><small>Control, proximity, threat cues</small></button>
-<button class="diagnosis-pick" data-dx="smi"><span>💬</span><strong>SMI / Complex Needs</strong><small>Symptoms, stress, daily demands</small></button>
-<button class="diagnosis-pick" data-dx="dual"><span>🔀</span><strong>Dual Diagnosis</strong><small>Cognitive + mental-health needs</small></button>
-</div>
-<div id="diagnosisPanel" class="diagnosis-panel" hidden>
-<div class="dx-head"><div><p class="eyebrow">QUICK LEARNING HUB</p><h3 id="dxTitle"></h3><p id="dxIntro"></p></div><button id="closeDx" class="close-dx" aria-label="Close">×</button></div>
-<div class="dx-learning-grid"><article><span class="learn-icon">👀</span><h4>How it may show up</h4><div id="dxShow"></div></article><article><span class="learn-icon">🤝</span><h4>What may help</h4><div id="dxHelp"></div></article><article><span class="learn-icon">🪢</span><h4>What may add pressure</h4><div id="dxAvoid"></div></article></div>
-<div class="dx-scenarios"><p class="mini-label">PICK A PRACTICE SCENARIO</p><div id="dxScenarioChoices" class="scenario-choice-row"></div></div>
-<p class="dx-disclaimer">Use the person’s individual plan, preferences, baseline, communication style, and current presentation first.</p>
-</div>
-</section>
-<section id="builder" class="section-shell section-block builder-section">
-<div class="section-heading"><p class="eyebrow">BUILD MY PRACTICE</p><h2>Make it feel like your shift.</h2><p>Keep it general — choose the bubbles that fit. No names needed.</p></div>
-<div class="builder-card">
-<div class="builder-step"><span>1</span><div><h3>What’s happening?</h3><div class="bubble-group" data-group="behavior"><button>Suicidality</button><button>Yelling at staff</button><button>Medication refusal</button><button>Paranoia</button><button>Hearing voices</button><button>Repeated questions</button><button>Wants to leave</button><button>Shutdown</button><button>Peer conflict</button><button>Property destruction</button><button>Sensory overload</button></div></div></div>
-<div class="builder-step"><span>2</span><div><h3>What context matters?</h3><div class="bubble-group" data-group="profile"><button>Trauma history</button><button>Schizophrenia</button><button>BPD</button><button>Intellectual disability</button><button>Autism</button><button>SMI</button><button>Dual diagnosis</button><button>No diagnosis shown</button></div></div></div>
-<div class="builder-step"><span>3</span><div><h3>What is staff trying to do?</h3><div class="bubble-group" data-group="goal"><button>Maintain a boundary</button><button>Complete a safety check</button><button>Offer medication</button><button>Support a transition</button><button>Reduce conflict</button><button>Support an ADL</button><button>Prepare for an appointment</button></div></div></div>
-<button id="buildScenario" class="btn btn-primary builder-button">Create my practice scenario →</button>
-<div id="builderMessage" class="builder-message" aria-live="polite"></div>
-<div id="customScenario" class="custom-scenario" hidden></div>
-</div>
-</section>
-<section id="rope" class="section-shell section-block">
-<div class="section-heading"><p class="eyebrow" id="practiceLabel">RATIONAL DETACHMENT</p><h2 id="practiceTitle">An actual tug-of-war.</h2><p id="scenarioNote">Choose a scenario above or build your own.</p></div>
-<div class="rope-lab">
-<div class="tug-scene" id="tugScene" aria-label="Tug-of-war visualization">
-<div class="grip-side staff-avatar" id="staffAvatar"><div class="forearm staff-forearm"></div><div class="grip-hand staff-hand"><span class="thumb"></span><span class="fingers"></span></div><strong>STAFF</strong><small>Your regulation</small></div>
-<div class="tug-field"><div class="rope-visual"><div class="rope-segment"></div><div id="knot" class="rope-ribbon" style="left:50%"></div></div><div class="center-flag"><span>YOUR THINKING BRAIN</span></div><div class="tug-zones"><span>GROUNDED</span><span>PULLED IN</span></div></div>
-<div class="grip-side client-avatar" id="clientAvatar"><div class="forearm client-forearm"></div><div class="grip-hand client-hand"><span class="thumb"></span><span class="fingers"></span></div><strong>PERSON</strong><small>Their distress</small></div>
-</div>
-<div class="tug-message"><strong id="tugMessage">The interaction changes when either side pulls.</strong><span>Letting go of the rope does not mean letting go of the boundary.</span></div>
-<div class="conversation-stage"><div class="conversation-person"><span class="mini-label">PERSON</span><p class="stage-direction" id="stageDirection"></p><blockquote id="ropeQuote"></blockquote></div><div class="interaction-status" id="interactionStatus"></div></div>
-<div class="choice-stack wide-choices" id="choiceStack"></div>
-<div class="inline-coaching" id="inlineCoaching" hidden><span class="mini-label">NOTICE WHAT CHANGED</span><p id="coachingText"></p></div>
-<div class="grounding-tools"><span class="tool-label">Change your side:</span><button class="tool-chip" data-reset="-8">↓ Lower voice</button><button class="tool-chip" data-reset="-8">↔ Give space</button><button class="tool-chip" data-reset="-6">✂ Fewer words</button><button class="tool-chip" data-reset="-10">⏸ Pause</button></div>
-<p class="rope-rule"><strong>LET GO OF THE ROPE ≠ LET GO OF THE BOUNDARY.</strong></p>
-</div>
-</section>
-</main>
-<footer><p><strong>The Regulation Room</strong> · Interactive skill practice for DSPs.</p><p class="tiny">Educational practice only. Follow approved policies, individual plans, clinical direction, and certified crisis-prevention training.</p></footer>
-<script src="script.js?v=8"></script>
-</body>
-</html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>The Regulation Room</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css?v=10"></head><body><header class="topbar"><a class="brand" href="#home"><span>THE</span><strong>REGULATION ROOM</strong></a><nav><a href="#diagnoses">Learn + Practice</a><a href="#builder">Build My Own</a><a href="#rope">Tug-of-War</a></nav></header><main>
+<section id="home" class="hero shell"><div><p class="eyebrow">INTERACTIVE DSP PRACTICE</p><h1>Read the moment.<br><em>Change your approach.</em></h1><p class="lead">Learn what may be underneath behavior, then practice what happens next when you respond.</p><div class="actions"><a href="#diagnoses" class="btn primary">Explore support profiles</a><a href="#builder" class="btn secondary">Build a scenario</a></div></div><aside><span>THE QUESTION</span><h2>“Leave me alone.”</h2><p>Fear? Overload? Rejection? Confusion? A need for space?</p><b>Same words. Different context.</b></aside></section>
+<section id="diagnoses" class="shell section"><div class="heading"><p class="eyebrow">LEARN → NOTICE → PRACTICE</p><h2>Choose a support profile.</h2><p>Click a card. It opens the education and scenarios underneath.</p></div><div class="dx-grid">
+<button class="dx-card" data-dx="schizophrenia"><span>🧠</span><b>Schizophrenia</b><small>Psychosis · suspiciousness · altered perception</small></button><button class="dx-card" data-dx="bpd"><span>💗</span><b>BPD</b><small>Intense emotion · rejection sensitivity</small></button><button class="dx-card" data-dx="id"><span>🧩</span><b>Intellectual Disability</b><small>Processing · communication · routine</small></button><button class="dx-card" data-dx="autism"><span>🎧</span><b>Autism + ID</b><small>Sensory load · transitions · predictability</small></button><button class="dx-card" data-dx="trauma"><span>🌿</span><b>Trauma History</b><small>Control · proximity · threat cues</small></button><button class="dx-card" data-dx="smi"><span>💬</span><b>SMI / Complex Needs</b><small>Symptoms · stress · daily demands</small></button><button class="dx-card" data-dx="dual"><span>🔀</span><b>Dual Diagnosis</b><small>Cognitive + mental-health needs</small></button></div>
+<div id="dxPanel" class="dx-panel" hidden><div class="dx-title"><div><p class="eyebrow">QUICK LEARNING HUB</p><h3 id="dxTitle"></h3><p id="dxIntro"></p></div><button id="dxClose">×</button></div><div class="learn-tabs"><button data-tab="show" class="active">👀 How it may show up</button><button data-tab="help">🤝 What may help</button><button data-tab="pressure">🪢 What may add pressure</button></div><div id="learnContent" class="learn-content"></div><div class="scenario-area"><p class="eyebrow">NOW PRACTICE IT</p><div id="dxScenarios" class="scenario-buttons"></div></div><p class="fine">These are possibilities, not assumptions. The person’s individual plan, baseline, communication style and preferences come first.</p></div></section>
+<section id="builder" class="shell section"><div class="heading"><p class="eyebrow">BUILD MY OWN</p><h2>Make a practice moment.</h2><p>Pick one from each row. No typing required.</p></div><div class="builder"><div class="build-row"><i>1</i><div><h3>What’s happening?</h3><div class="bubbles" data-group="behavior"><button>Suicidality</button><button>Yelling at staff</button><button>Medication refusal</button><button>Paranoia</button><button>Hearing voices</button><button>Repeated questions</button><button>Wants to leave</button><button>Shutdown</button><button>Peer conflict</button><button>Property destruction</button><button>Sensory overload</button></div></div></div><div class="build-row"><i>2</i><div><h3>What context matters?</h3><div class="bubbles" data-group="profile"><button>Trauma history</button><button>Schizophrenia</button><button>BPD</button><button>Intellectual disability</button><button>Autism</button><button>SMI</button><button>Dual diagnosis</button><button>No diagnosis shown</button></div></div></div><div class="build-row"><i>3</i><div><h3>What is staff trying to do?</h3><div class="bubbles" data-group="goal"><button>Maintain a boundary</button><button>Complete a safety check</button><button>Offer medication</button><button>Support a transition</button><button>Reduce conflict</button><button>Support an ADL</button><button>Prepare for an appointment</button></div></div></div><button id="buildBtn" class="btn primary">Build this scenario →</button><p id="buildError" class="error"></p><div id="builtScenario" class="built" hidden></div></div></section>
+<section id="rope" class="shell section"><div class="heading"><p class="eyebrow" id="practiceLabel">RATIONAL DETACHMENT</p><h2 id="practiceTitle">The tug-of-war.</h2><p id="scenarioNote">Choose a scenario above or build your own.</p></div><div class="rope-card"><div class="tug-stage"><div class="human staff-human" id="staffHuman"><div class="head"></div><div class="torso"></div><div class="leg one"></div><div class="leg two"></div><div class="arm"></div><span>STAFF</span></div><div class="rope-zone"><div class="rope"></div><div class="marker" id="marker"></div><div class="midline"><b>THINKING BRAIN</b></div><div class="zone-labels"><b>GROUNDED</b><b>PULLED IN</b></div></div><div class="human person-human" id="personHuman"><div class="head"></div><div class="torso"></div><div class="leg one"></div><div class="leg two"></div><div class="arm"></div><span>PERSON</span></div></div><div id="tugMessage" class="tug-copy">Your response changes your side of the rope.</div><div class="conversation"><div><p class="eyebrow" id="personLabel">PERSON</p><p id="stageDirection"></p><blockquote id="ropeQuote"></blockquote></div><div id="roundStatus"></div></div><div id="choices" class="choices"></div><div id="coach" class="coach" hidden><b>NOTICE WHAT CHANGED</b><p id="coachText"></p></div><p class="rope-rule">LET GO OF THE ROPE ≠ LET GO OF THE BOUNDARY.</p></div></section></main><footer>The Regulation Room · Interactive skill practice for DSPs.</footer><script src="script.js?v=10"></script></body></html>
