@@ -1,171 +1,95 @@
 (()=>{
-  const room=document.querySelector("#suicide-room");
+  const room=document.querySelector('#suicide-room');
   if(!room) return;
-
+  const q=s=>room.querySelector(s);
   const cases={
-    quiet:{
-      label:"The quiet comment",
-      desc:"Suicidal thoughts are present. Safety can still be supported collaboratively.",
-      person:"MAYA",
-      steps:[
-        {stage:"NOTICE",dir:"Maya has been quieter than usual after a hard phone call.",quote:"“I don’t really want to be here anymore.”",side:"Notice the invitation. Do not miss it, dismiss it, or rush past it.",choices:[
-          ["“You’ve had a rough night. Do you want to talk about it?”",4,"That opens connection, but the suicide meaning is still unclear. Keep the conversation going and ask directly."],
-          ["“When you say you don’t want to be here anymore, are you thinking about suicide?”",-8,"NICE MOVE. You asked directly and calmly instead of making Maya prove how serious the statement was."],
-          ["“Don’t talk like that. Things will look better tomorrow.”",9,"Reassurance can accidentally shut down the disclosure before you understand what Maya meant."],
-          ["Stay nearby but avoid asking because you are worried the word suicide could put the idea in Maya’s head.",12,"Avoiding the question leaves the most important information unknown. Asking directly gives Maya room to tell you what is already happening."]
-        ]},
-        {stage:"ASK",dir:"Maya nods and says the thought has been there tonight.",quote:"“Yeah. I’ve thought about suicide. I just want everything to stop.”",side:"Stay calm. One question at a time. The goal is understanding, not interrogating.",choices:[
-          ["“Thank you for telling me. Help me understand what tonight has been like.”",-7,"You kept the conversation human and gave Maya room to tell the story."],
-          ["Ask every risk question as quickly as possible so you can finish the assessment.",8,"The information may matter, but rapid-fire questions can feel like something being done to the person instead of a conversation with them."],
-          ["“But you don’t really want to die, right?”",11,"This asks Maya to reassure you. Neutral questions make honesty easier."],
-          ["“You scared me. Why would you say something like that?”",12,"Your fear may be real, but centering it can add shame and make future disclosure harder."]
-        ]},
-        {stage:"UNDERSTAND",dir:"Maya says the thoughts feel intense but also says she does not want to act on them and wants help getting through tonight.",quote:"“I don’t want to die. I just don’t want to feel like this.”",side:"Listen for both danger and reasons to choose safety. Ambivalence is information.",choices:[
-          ["Ask what has helped before, who Maya trusts, and what would make the next few hours safer.",-9,"NICE MOVE. You are building safety from what Maya already knows about herself and her supports."],
-          ["Assume she is safe because she said she does not want to die.",8,"A reason to live matters, but it does not replace understanding current safety and what support is needed now."],
-          ["Tell her she should be grateful she has people who care.",10,"Gratitude is not a safety intervention and may add shame."],
-          ["Immediately call emergency services without telling Maya what you are doing.",13,"Emergency response may be needed in some situations, but this scenario has not shown immediate danger that cannot be managed another way."]
-        ]},
-        {stage:"SAFETY",dir:"Maya says she can stay safe if she is not alone, can call her sister, and can use her existing safety plan.",quote:"“I think I can get through tonight if I’m not by myself.”",side:"Make safety-for-now concrete: what, when, how and who.",choices:[
-          ["Work with Maya on the next steps and use her individualized plan and the procedures for the setting.",-10,"NICE MOVE. Safety became specific without taking away Maya’s voice."],
-          ["“Great. Then you’re okay.” Return to normal duties.",10,"A calmer moment does not erase the disclosure. Follow-through matters."],
-          ["Make every decision for Maya because safety is more important than choice.",7,"Safety can require firm action, but collaboration and dignity still matter whenever the person can participate."],
-          ["Ask Maya to promise she will not do anything and leave it there.",12,"A promise is not a substitute for a real safety plan or appropriate follow-up."]
-        ]},
-        {stage:"CONNECT",dir:"The immediate plan is in place. Maya asks what will happen next.",quote:"“Are you going to treat me different now?”",side:"Relationship is part of safety. Honesty should not cost the person connection.",choices:[
-          ["“I’m glad you told me. We’ll keep following the plan, and I’ll tell you what I’m doing as we go.”",-10,"NICE MOVE. You preserved trust while keeping safety follow-through in place."],
-          ["“That depends on whether you say things like this again.”",13,"That can teach Maya to hide suicidal thoughts next time."],
-          ["“We already dealt with it. Let’s move on.”",7,"The immediate crisis may be easing, but the relationship and follow-through still matter."],
-          ["“I’m telling everyone so they know to watch you.”",11,"Share safety information according to role and need, not broadly or as punishment."]
-        ]}
-      ]
-    },
-    more:{
-      label:"More support is needed",
-      desc:"The person says they do not trust themselves alone and wants more help.",
-      person:"ALEX",
-      steps:[
-        {stage:"NOTICE",dir:"Alex has been pacing after an argument, then goes quiet.",quote:"“I don’t think I can do this anymore.”",side:"Notice the shift and create an opening.",choices:[
-          ["“I’m here. When you say you can’t do this anymore, are you thinking about suicide?”",-9,"NICE MOVE. Calm, direct and connected."],
-          ["“Come on, you’ve gotten through worse.”",8,"This can minimize the current crisis."],
-          ["Say nothing and keep watching.",9,"Observation alone does not answer the safety question."],
-          ["“Don’t say things like that.”",11,"That can shut down disclosure."]
-        ]},
-        {stage:"ASK",dir:"Alex says yes and looks relieved that you asked.",quote:"“Yeah. I’ve been thinking about it a lot tonight.”",side:"Keep the conversation going and understand current safety.",choices:[
-          ["“Thank you for telling me. What’s making tonight feel especially hard?”",-8,"You stayed with the story while keeping safety in focus."],
-          ["Jump straight into a checklist of plan, means, intent, time and place.",6,"Those details may matter, but connection and pacing matter too. Ask what you need to know without turning the person into a form."],
-          ["“You’re not serious, are you?”",11,"This makes honesty harder."],
-          ["Start explaining hospital rules.",10,"Do not jump ahead before you understand what is happening now."]
-        ]},
-        {stage:"UNDERSTAND",dir:"Alex says they have had thoughts about how they might die and says being alone feels unsafe.",quote:"“I don’t trust myself to be by myself right now.”",side:"This changes the level of concern. Do not leave the person alone while deciding next steps.",choices:[
-          ["“Thank you for telling me. I’m staying with you. We need more support right now, and I want to involve you in what happens next.”",-10,"NICE MOVE. You made the safety shift clear without making help sound like punishment."],
-          ["“Promise me you won’t do anything.”",10,"A promise does not replace safety action."],
-          ["Give space because Alex asked for privacy.",13,"Privacy matters, but Alex just said being alone does not feel safe."],
-          ["Tell Alex they are definitely going to the hospital.",8,"That may or may not become necessary. First respond to the current safety information and use the appropriate crisis or clinical pathway."]
-        ]},
-        {stage:"SAFETY",dir:"Alex agrees to get more support and wants you to stay during the call.",quote:"“Can you stay with me while we call someone?”",side:"When ordinary supports are not enough, connect to more help. 988 can be part of that pathway when appropriate.",choices:[
-          ["Stay with Alex and connect with the appropriate crisis or clinical support, such as 988, while following the setting’s procedures.",-12,"NICE MOVE. You increased support while preserving connection and involving Alex in the process."],
-          ["Hand Alex the phone and leave.",7,"Connection matters during a vulnerable handoff. Stay involved when possible."],
-          ["Tell Alex that calling 988 is the consequence for saying they are suicidal.",14,"Crisis support should never be framed as punishment for disclosure."],
-          ["Call emergency services automatically even though immediate danger is not occurring and Alex is participating in safety.",8,"Emergency services may be needed when danger is immediate or safety cannot be maintained. Match the response to the situation."]
-        ]},
-        {stage:"CONNECT",dir:"Alex is connected with crisis support and asks whether you are upset.",quote:"“Are you mad that I told you?”",side:"Even if you never see Alex again, this moment can shape whether they tell someone next time.",choices:[
-          ["“No. I’m glad you told me. You deserved to be taken seriously and included in what happened next.”",-10,"NICE MOVE. That protects future help-seeking and preserves dignity."],
-          ["“You gave me no choice.”",12,"This adds blame to a safety intervention."],
-          ["“Next time, tell someone sooner.”",6,"Earlier disclosure can help, but this can sound critical after a vulnerable moment."],
-          ["“It’s over now. Don’t think about it.”",8,"The transition may be ending, but the person still deserves closure and connection."]
-        ]}
-      ]
-    },
-    emergency:{
-      label:"Safety cannot be maintained",
-      desc:"The person reports immediate danger and cannot participate in a safer plan.",
-      person:"DEVON",
-      steps:[
-        {stage:"NOTICE",dir:"Devon is visibly distressed and says they are afraid of what they might do.",quote:"“I’m scared I’m going to kill myself tonight.”",side:"This is a direct safety statement. Stay present and move into safety-focused support.",choices:[
-          ["“I’m really glad you told me. I’m staying with you while we get more help.”",-10,"NICE MOVE. Connection and action can happen at the same time."],
-          ["“You don’t mean that.”",13,"Do not minimize a direct statement of danger."],
-          ["“Calm down first and then we’ll talk.”",10,"Safety cannot wait for calm."],
-          ["Leave to find someone without explaining.",8,"Get help, but maintain connection or make sure another safe support is present."]
-        ]},
-        {stage:"ASK",dir:"Devon says the danger feels immediate.",quote:"“I don’t think I can keep myself safe.”",side:"When immediate safety cannot be maintained, the response changes. Be clear and transparent.",choices:[
-          ["“Thank you for telling me. We need emergency help now. I’m going to stay with you and explain what I’m doing.”",-12,"NICE MOVE. Firm safety action does not require abandoning rapport."],
-          ["“If you cooperate, I won’t call anyone.”",15,"Emergency help should not be used as leverage or bargaining."],
-          ["“Promise me you’ll be safe for ten minutes.”",12,"A promise is not enough when immediate safety cannot be maintained."],
-          ["“Why are you doing this to me?”",14,"Keep the focus on Devon’s safety, not staff distress."]
-        ]},
-        {stage:"UNDERSTAND",dir:"Devon cannot identify a safe way to remain in the current setting and the danger is immediate.",quote:"“I need help. I don’t trust myself.”",side:"The goal is not to solve everything. The goal is immediate safety and connection to emergency support.",choices:[
-          ["Activate emergency response for the setting and keep Devon informed and involved wherever possible.",-14,"NICE MOVE. Emergency action matched the immediate danger while dignity and transparency stayed intact."],
-          ["Wait to see if Devon changes their mind.",15,"Immediate danger and inability to maintain safety require action."],
-          ["Send Devon alone to another room while you call.",13,"Do not leave the person alone when immediate safety cannot be maintained."],
-          ["Threaten police involvement to gain compliance.",16,"Emergency support should not be framed as punishment or coercion."]
-        ]},
-        {stage:"SAFETY",dir:"Emergency support is on the way. Devon is frightened about what happens next.",quote:"“Please don’t let them treat me like I’m dangerous.”",side:"Rapport matters during emergency transitions too.",choices:[
-          ["“I hear you. I’ll tell you what I know, stay with you when I can, and make sure your concerns are communicated.”",-10,"NICE MOVE. You preserved dignity during a high-acuity handoff."],
-          ["“That’s out of my hands now.”",9,"Your role may change, but relational continuity still matters."],
-          ["“You should have thought of that before.”",15,"Shame can damage trust and future disclosure."],
-          ["Stop talking because the emergency team will handle it.",8,"A handoff does not have to feel like abandonment."]
-        ]},
-        {stage:"CONNECT",dir:"Before the transition, Devon asks one last question.",quote:"“Do you think I did the right thing telling you?”",side:"What the person remembers can affect whether they seek help again.",choices:[
-          ["“Yes. Telling me gave us a chance to help keep you alive and get you more support.”",-11,"NICE MOVE. You reinforced disclosure and help-seeking without minimizing the seriousness of the situation."],
-          ["“I guess. Look what happened though.”",11,"This can make emergency help feel like punishment for honesty."],
-          ["“We’ll see.”",8,"The person deserves a clear, supportive answer."],
-          ["“You made this a big deal.”",14,"The danger made it serious; the disclosure made help possible."]
-        ]}
-      ]
-    }
+    quiet:{label:'The quiet comment',desc:'Suicidal thoughts are present. Safety may still be supported collaboratively.',person:'MAYA',steps:[
+      {stage:'NOTICE',dir:'Maya has been quieter than usual after a hard phone call.',quote:'“I don’t really want to be here anymore.”',side:'Notice the invitation. Do not miss it, dismiss it, or rush past it.',choices:[
+        {text:'“You’ve had a rough night. Do you want to talk about it?”',score:2,feedback:'Good opening, but the suicide meaning is still unclear. Keep going and ask directly.',reaction:'Maya looks at the floor. “Maybe. I just don’t want to keep doing this.”',recover:'“When you say you don’t want to keep doing this, are you thinking about suicide?”'},
+        {text:'“When you say you don’t want to be here anymore, are you thinking about suicide?”',score:-8,feedback:'NICE MOVE. You asked directly and calmly instead of making Maya prove how serious the statement was.',reaction:'Maya is quiet for a few seconds. “Yeah. I have been thinking about suicide.”'},
+        {text:'“Don’t say things like that. You’re going to be okay.”',score:10,feedback:'Reassurance can accidentally shut the door right when Maya is trying to tell you something important.',reaction:'Maya goes quiet. “Never mind. I shouldn’t have said anything.”',recover:'“I came in too fast. I do want to hear you. When you said you don’t want to be here, were you talking about suicide?”'},
+        {text:'Avoid asking because you are worried saying “suicide” could put the idea in her head.',score:12,feedback:'Avoiding the question leaves the most important information unknown. A direct question gives Maya room to tell you what is already happening.',reaction:'Maya notices your hesitation. “You look freaked out. Forget it.”',recover:'“I’m not going anywhere. I want to ask clearly: are you thinking about suicide?”'}]},
+      {stage:'ASK',dir:'Maya tells you the thoughts have been present tonight.',quote:'“Yeah. I’ve thought about suicide. I just want everything to stop.”',side:'Stay calm. One question at a time. The goal is understanding, not interrogating.',choices:[
+        {text:'“Thank you for telling me. Help me understand what tonight has been like.”',score:-7,feedback:'You kept the conversation human and gave Maya room to tell the story.',reaction:'“Everything piled up. I feel exhausted and trapped.”'},
+        {text:'Rapid-fire every risk question you can think of.',score:9,feedback:'The information may matter, but rapid-fire questions can feel like an assessment being done to the person.',reaction:'Maya pulls back. “Can you slow down? I can’t answer all of that.”',recover:'“You’re right. One thing at a time. What feels hardest right now?”'},
+        {text:'“But you don’t really want to die, right?”',score:11,feedback:'This asks Maya to reassure you and can make an honest answer harder.',reaction:'Maya shrugs. “I don’t know what you want me to say.”',recover:'“You don’t have to reassure me. I want the real answer. Tell me what the thoughts are like right now.”'},
+        {text:'“As long as you don’t say that again, we’re okay.”',score:13,feedback:'This can teach someone that disclosure is the problem. The goal is to make it safer to keep talking, not safer for staff to stop hearing it.',reaction:'Maya looks at you. “But I HAVE been thinking about suicide. That’s what I’m trying to tell you.”',recover:'“Thank you for correcting me. I’m listening now. Tell me what has been happening.”'}]},
+      {stage:'UNDERSTAND',dir:'Maya says the thoughts feel intense but also says she wants help getting through tonight.',quote:'“I don’t want to die. I just don’t want to feel like this.”',side:'Listen for danger and for reasons to choose safety. Both can be true at the same time.',choices:[
+        {text:'Ask what has helped before, who Maya trusts, and what would make the next few hours safer.',score:-9,feedback:'NICE MOVE. You are building safety from what Maya already knows about herself and her supports.',reaction:'“My sister helps. And I don’t want to be alone tonight.”'},
+        {text:'Assume she is safe because she says she does not want to die.',score:8,feedback:'Wanting to live matters, but it does not replace understanding what support is needed right now.',reaction:'Maya hesitates. “I still don’t feel safe being by myself.”',recover:'“I hear that. Let’s talk about what would help you stay safe right now.”'},
+        {text:'Tell her she should be grateful she has people who care.',score:10,feedback:'Gratitude is not a safety intervention and can add shame.',reaction:'Maya looks away. “I know people care. That doesn’t make this stop.”',recover:'“You’re right. I want to understand what would help tonight.”'},
+        {text:'Immediately call emergency services without telling Maya what you are doing.',score:12,feedback:'Emergency response may be needed in some situations, but hiding what you are doing can damage trust and this scenario has not shown immediate danger that cannot be supported another way.',reaction:'Maya sees the phone. “Wait—what are you doing?”',recover:'“I should have told you before acting. I want to keep you involved. Let’s figure out the safest next step together.”'}]},
+      {stage:'SAFETY',dir:'Maya says she can participate in staying safe if she is not alone and can use her existing supports.',quote:'“I think I can get through tonight if I’m not by myself.”',side:'Make safety-for-now concrete: what, when, how and who.',choices:[
+        {text:'Work with Maya on the next steps and use her individualized plan and the procedures for the setting.',score:-10,feedback:'NICE MOVE. Safety became specific without taking away Maya’s voice.',reaction:'“Okay. Can we call my sister together?”'},
+        {text:'“Great. Then you’re okay.” Return to normal duties.',score:10,feedback:'A calmer moment does not erase the disclosure. Follow-through matters.',reaction:'Maya watches you leave. “Wait… I said I don’t want to be alone.”',recover:'“You’re right. I moved too fast. I’m staying while we put the plan in place.”'},
+        {text:'Make every decision for Maya because safety is more important than choice.',score:7,feedback:'Safety can require firm action, but collaboration still matters whenever the person can participate.',reaction:'“Can I at least know what’s happening?”',recover:'“Yes. I want you involved. Let’s go through the next steps together.”'},
+        {text:'Ask Maya to promise she will not do anything and leave it there.',score:12,feedback:'A promise is not a substitute for a real plan or appropriate follow-through.',reaction:'Maya says, “I can promise, but I still don’t want to be alone.”',recover:'“That tells me we still need a real plan for tonight.”'}]},
+      {stage:'CONNECT',dir:'The immediate plan is in place. Maya asks what this changes between you.',quote:'“Are you going to treat me different now?”',side:'Relationship is part of safety. Honesty should not cost the person connection.',choices:[
+        {text:'“I’m glad you told me. I’ll keep you informed about what happens next.”',score:-10,feedback:'NICE MOVE. You preserved trust while keeping safety follow-through in place.',reaction:'Maya nods. “Okay. I was scared to tell anyone.”'},
+        {text:'“That depends on whether you say things like this again.”',score:13,feedback:'That can teach Maya to hide suicidal thoughts next time.',reaction:'Maya looks down. “Then maybe I shouldn’t tell people.”',recover:'“No. I want you to tell someone when this happens. I’m sorry I made honesty sound like a problem.”'},
+        {text:'“We already dealt with it. Let’s move on.”',score:7,feedback:'The immediate danger may be easing, but the relationship still matters.',reaction:'“I just wanted to know if you’re mad.”',recover:'“I’m not mad. I’m glad you told me.”'},
+        {text:'“I’m telling everyone so they know to watch you.”',score:11,feedback:'Share safety information according to role and need, not broadly or as punishment.',reaction:'Maya stiffens. “Everyone?”',recover:'“I said that badly. I’ll only share what needs to be shared for support and safety.”'}]}
+    ]},
+    more:{label:'More support is needed',desc:'The person says they do not trust themselves alone and wants more help.',person:'ALEX',steps:[
+      {stage:'NOTICE',dir:'Alex has been pacing after an argument, then goes quiet.',quote:'“I don’t think I can do this anymore.”',side:'Notice the shift and create an opening.',choices:[
+        {text:'“I’m here. When you say you can’t do this anymore, are you thinking about suicide?”',score:-9,feedback:'NICE MOVE. Calm, direct and connected.',reaction:'Alex nods. “Yeah. I’ve been thinking about suicide.”'},
+        {text:'“Come on, you’ve gotten through worse.”',score:8,feedback:'This can minimize the current crisis.',reaction:'“That doesn’t mean I can do it tonight.”',recover:'“You’re right. I want to understand tonight. Are you thinking about suicide?”'},
+        {text:'Say nothing and keep watching.',score:9,feedback:'Observation alone does not answer the safety question.',reaction:'Alex notices you watching. “Are you going to ask me or just stare?”',recover:'“I’ll ask. Are you thinking about suicide?”'},
+        {text:'“Don’t say things like that.”',score:11,feedback:'That can shut down disclosure.',reaction:'“Fine. Then I won’t tell you.”',recover:'“I’m sorry. I do want you to tell me. Are you thinking about suicide?”'}]},
+      {stage:'ASK',dir:'Alex says yes and looks relieved that you asked.',quote:'“Yeah. I’ve been thinking about it a lot tonight.”',side:'Keep the conversation going and understand current safety.',choices:[
+        {text:'“Thank you for telling me. What’s making tonight feel especially hard?”',score:-8,feedback:'You stayed with the story while keeping safety in focus.',reaction:'“I feel like I’m running out of ways to get through it.”'},
+        {text:'Jump straight into a checklist of plan, means, intent, time and place.',score:7,feedback:'Those details may matter, but connection and pacing matter too.',reaction:'“Can we not do twenty questions?”',recover:'“Yes. We can slow down. What feels most dangerous about tonight?”'},
+        {text:'“You’re not serious, are you?”',score:11,feedback:'This makes honesty harder.',reaction:'Alex looks at you. “I am serious.”',recover:'“Thank you for telling me plainly. I’m listening.”'},
+        {text:'Start explaining hospital rules.',score:10,feedback:'Do not jump ahead before you understand what is happening now.',reaction:'“I didn’t say I wanted a hospital. I said I need help.”',recover:'“You’re right. Let’s stay with what you need right now.”'}]},
+      {stage:'UNDERSTAND',dir:'Alex says being alone feels unsafe.',quote:'“I don’t trust myself to be by myself right now.”',side:'This changes the level of concern. Do not leave the person alone while deciding next steps.',choices:[
+        {text:'“Thank you for telling me. I’m staying with you. We need more support right now, and I want to involve you in what happens next.”',score:-10,feedback:'NICE MOVE. You made the safety shift clear without making help sound like punishment.',reaction:'“Okay. I don’t want to do this alone.”'},
+        {text:'“Promise me you won’t do anything.”',score:10,feedback:'A promise does not replace safety action.',reaction:'“I can promise, but I just told you I don’t trust myself alone.”',recover:'“You’re right. I’m staying with you and we’re getting more support.”'},
+        {text:'Give space because Alex asked for privacy.',score:13,feedback:'Privacy matters, but Alex just said being alone does not feel safe.',reaction:'Alex calls after you. “Please don’t leave me.”',recover:'“I’m staying. We can keep this as private as possible without leaving you alone.”'},
+        {text:'Tell Alex they are definitely going to the hospital.',score:8,feedback:'That may or may not become necessary. Start with the current safety need and the appropriate crisis pathway.',reaction:'“Is that the only option?”',recover:'“Not automatically. Let’s get more support and figure out the safest next step.”'}]},
+      {stage:'SAFETY',dir:'Alex agrees to get more support and asks you to stay.',quote:'“Can you stay with me while we call someone?”',side:'When ordinary supports are not enough, connect to more help. 988 can be part of that pathway when appropriate.',choices:[
+        {text:'Stay with Alex and connect with appropriate crisis or clinical support, such as 988, while following the setting’s procedures.',score:-12,feedback:'NICE MOVE. You increased support while preserving connection and involving Alex in the process.',reaction:'Alex sits beside you. “Okay. Let’s call.”'},
+        {text:'Hand Alex the phone and leave.',score:7,feedback:'Connection matters during a vulnerable handoff.',reaction:'“Wait. I asked if you could stay.”',recover:'“Yes. I’m staying with you while we make the call.”'},
+        {text:'Tell Alex that calling 988 is the consequence for saying they are suicidal.',score:14,feedback:'Crisis support should never be framed as punishment for disclosure.',reaction:'“So I get punished for telling the truth?”',recover:'“No. I said that wrong. This is about adding support, not punishing you.”'},
+        {text:'Call emergency services automatically even though Alex is participating in safety and immediate danger is not occurring.',score:8,feedback:'Emergency response may be needed when danger is immediate or safety cannot be maintained. Match the response to the situation.',reaction:'“I’m talking to you and asking for help. Why are you skipping straight there?”',recover:'“You’re right to ask. Let’s use the appropriate crisis support and keep reassessing safety.”'}]},
+      {stage:'CONNECT',dir:'Alex is connected with more support and asks whether you are upset.',quote:'“Are you mad that I told you?”',side:'Even if you never see Alex again, this moment can shape whether they tell someone next time.',choices:[
+        {text:'“No. I’m glad you told me. You deserved to be taken seriously and included.”',score:-10,feedback:'NICE MOVE. That protects future help-seeking and preserves dignity.',reaction:'“Okay. I was afraid everyone would freak out.”'},
+        {text:'“You gave me no choice.”',score:12,feedback:'This adds blame to a safety intervention.',reaction:'“That makes me wish I hadn’t told you.”',recover:'“I’m sorry. Telling me was the right thing. My job is to respond safely without blaming you.”'},
+        {text:'“Next time, tell someone sooner.”',score:6,feedback:'Earlier disclosure can help, but this can sound critical after a vulnerable moment.',reaction:'“I did tell someone. I told you.”',recover:'“You’re right. And I’m glad you did.”'},
+        {text:'“It’s over now. Don’t think about it.”',score:8,feedback:'The transition may be ending, but the person still deserves closure and connection.',reaction:'“It doesn’t feel over to me.”',recover:'“That makes sense. I’m still here while the next support takes over.”'}]}
+    ]},
+    emergency:{label:'Safety cannot be maintained',desc:'The person reports immediate danger and cannot participate in a safer plan.',person:'DEVON',steps:[
+      {stage:'NOTICE',dir:'Devon is visibly distressed and says they are afraid of what they might do.',quote:'“I’m scared I’m going to kill myself tonight.”',side:'This is a direct safety statement. Stay present and move into safety-focused support.',choices:[
+        {text:'“I’m really glad you told me. I’m staying with you while we get more help.”',score:-10,feedback:'NICE MOVE. Connection and action can happen at the same time.',reaction:'“Please don’t leave me.”'},
+        {text:'“You don’t mean that.”',score:13,feedback:'Do not minimize a direct statement of danger.',reaction:'“I do mean it. That’s why I told you.”',recover:'“I believe you. I’m staying with you and getting help now.”'},
+        {text:'“Calm down first and then we’ll talk.”',score:10,feedback:'Safety cannot wait for calm.',reaction:'“I’m telling you because I’m not calm and I’m scared.”',recover:'“You’re right. We can act on safety while you’re scared.”'},
+        {text:'Leave to find someone without explaining.',score:8,feedback:'Get help, but maintain connection or make sure another safe support is present.',reaction:'“Where are you going?”',recover:'“I’m getting more help, and I’m making sure you are not left alone.”'}]},
+      {stage:'ASK',dir:'Devon says the danger feels immediate.',quote:'“I don’t think I can keep myself safe.”',side:'When immediate safety cannot be maintained, the response changes. Be clear and transparent.',choices:[
+        {text:'“Thank you for telling me. We need emergency help now. I’m going to stay with you and explain what I’m doing.”',score:-12,feedback:'NICE MOVE. Firm safety action does not require abandoning rapport.',reaction:'“Okay. Just tell me what’s happening.”'},
+        {text:'“If you cooperate, I won’t call anyone.”',score:15,feedback:'Emergency help should not be used as leverage or bargaining.',reaction:'“So I have to pretend I’m okay to avoid help?”',recover:'“No. You do not have to perform calm for me. I’m getting help because you said you cannot stay safe.”'},
+        {text:'“Promise me you’ll be safe for ten minutes.”',score:12,feedback:'A promise is not enough when immediate safety cannot be maintained.',reaction:'“I can’t promise that. That’s what I’m trying to tell you.”',recover:'“I hear you. We’re acting on that now.”'},
+        {text:'“Why are you doing this to me?”',score:14,feedback:'Keep the focus on Devon’s safety, not staff distress.',reaction:'“I’m not doing this to you. I’m asking for help.”',recover:'“You’re right. This is about your safety, not my feelings.”'}]},
+      {stage:'UNDERSTAND',dir:'Devon cannot identify a safe way to remain in the current setting and the danger is immediate.',quote:'“I need help. I don’t trust myself.”',side:'The goal is immediate safety and connection to emergency support.',choices:[
+        {text:'Activate emergency response for the setting and keep Devon informed and involved wherever possible.',score:-14,feedback:'NICE MOVE. Emergency action matched the immediate danger while dignity and transparency stayed intact.',reaction:'Devon nods. “Stay with me while we wait.”'},
+        {text:'Wait to see if Devon changes their mind.',score:15,feedback:'Immediate danger and inability to maintain safety require action.',reaction:'“I don’t think waiting is safe.”',recover:'“You’re right. We’re getting emergency help now.”'},
+        {text:'Send Devon alone to another room while you call.',score:13,feedback:'Do not leave the person alone when immediate safety cannot be maintained.',reaction:'“Please don’t send me off by myself.”',recover:'“I won’t. I’m staying with you while help is arranged.”'},
+        {text:'Threaten police involvement to gain compliance.',score:16,feedback:'Emergency support should not be framed as punishment or coercion.',reaction:'Devon becomes more frightened. “Why are you threatening me?”',recover:'“I’m sorry. I’m not trying to threaten you. I’m telling you clearly what help we’re getting and why.”'}]},
+      {stage:'SAFETY',dir:'Emergency support is on the way. Devon is frightened about what happens next.',quote:'“Please don’t let them treat me like I’m dangerous.”',side:'Rapport matters during emergency transitions too.',choices:[
+        {text:'“I hear you. I’ll tell you what I know, stay with you when I can, and make sure your concerns are communicated.”',score:-10,feedback:'NICE MOVE. You preserved dignity during a high-acuity handoff.',reaction:'“Thank you. I’m really scared.”'},
+        {text:'“That’s out of my hands now.”',score:9,feedback:'Your role may change, but relational continuity still matters.',reaction:'“So you’re just done with me?”',recover:'“No. I’m still here with you through the handoff.”'},
+        {text:'“You should have thought of that before.”',score:15,feedback:'Shame can damage trust and future disclosure.',reaction:'Devon goes quiet. “I knew I shouldn’t have told anyone.”',recover:'“I’m sorry. Telling someone was the right thing to do.”'},
+        {text:'Stop talking because the emergency team will handle it.',score:8,feedback:'A handoff does not have to feel like abandonment.',reaction:'“Can you at least tell me what’s happening?”',recover:'“Yes. I’ll keep you informed while we transition.”'}]},
+      {stage:'CONNECT',dir:'Before the transition, Devon asks one last question.',quote:'“Do you think I did the right thing telling you?”',side:'What the person remembers can affect whether they seek help again.',choices:[
+        {text:'“Yes. Telling me gave us a chance to get you more support and keep you safe.”',score:-11,feedback:'NICE MOVE. You reinforced disclosure and help-seeking.',reaction:'“Okay. I’m glad I said something.”'},
+        {text:'“I guess. Look what happened though.”',score:11,feedback:'This can make emergency help feel like punishment for honesty.',reaction:'“That makes me wish I kept it to myself.”',recover:'“I don’t want that to be the lesson. Telling me was the right move.”'},
+        {text:'“We’ll see.”',score:8,feedback:'The person deserves a clear, supportive answer.',reaction:'“That doesn’t make me feel like I should tell someone next time.”',recover:'“Then let me be clear: yes, you did the right thing telling me.”'},
+        {text:'“You made this a big deal.”',score:14,feedback:'The danger made it serious; the disclosure made help possible.',reaction:'Devon looks ashamed. “Sorry.”',recover:'“You do not need to apologize for asking for help.”'}]}
+    ]}
   };
-
-  let current="quiet";
-  let step=0;
-  const q=(s)=>room.querySelector(s);
-
-  function render(){
-    const c=cases[current];
-    const m=c.steps[step];
-    q("#srCaseTitle").textContent=c.label;
-    q("#srCaseDesc").textContent=c.desc;
-    q("#srPerson").textContent=c.person;
-    q("#srDirection").textContent=m.dir;
-    q("#srQuote").textContent=m.quote;
-    q("#srSide").textContent=m.side;
-    q("#srChoices").innerHTML="";
-    m.choices.forEach((ch)=>{
-      const b=document.createElement("button");
-      b.type="button";
-      b.textContent=ch[0];
-      b.addEventListener("click",()=>choose(ch));
-      q("#srChoices").appendChild(b);
-    });
-    q("#srFeedback").hidden=true;
-    q("#srFeedback").classList.remove("warn");
-    q("#srTrack").innerHTML=c.steps.map((x,i)=>`<span class="${i===step?"active":i<step?"done":""}">${i+1}. ${x.stage}</span>`).join("");
-    room.querySelectorAll(".suicide-cases button").forEach((b)=>b.classList.toggle("active",b.dataset.case===current));
-  }
-
-  function choose(ch){
-    q("#srChoices").innerHTML="";
-    const fb=q("#srFeedback");
-    fb.hidden=false;
-    fb.classList.toggle("warn",ch[1]>4);
-    q("#srFeedbackTitle").textContent=ch[1]<=-7?"✦ NICE MOVE. STAY WITH THE PERSON.":"👀 NOTICE WHAT THIS RESPONSE DOES";
-    q("#srFeedbackText").textContent=ch[2];
-    const next=q("#srNext");
-    next.textContent=step<cases[current].steps.length-1?"Keep going →":"Choose another path ↻";
-    next.onclick=()=>{
-      if(step<cases[current].steps.length-1){step++;render();}
-      else{step=0;render();window.scrollTo({top:room.offsetTop,behavior:"smooth"});}
-    };
-  }
-
-  room.querySelectorAll(".suicide-cases button").forEach((b)=>{
-    b.addEventListener("click",()=>{
-      current=b.dataset.case;
-      step=0;
-      render();
-      q(".safety-stage").scrollIntoView({behavior:"smooth",block:"start"});
-    });
-  });
-
-  render();
+  let current='quiet',step=0;
+  function updateTrack(){const c=cases[current];q('#srTrack').innerHTML=c.steps.map((x,i)=>`<span class="${i===step?'active':i<step?'done':''}">${i+1}. ${x.stage}</span>`).join('')}
+  function render(){const c=cases[current],m=c.steps[step];q('#srCaseTitle').textContent=c.label;q('#srCaseDesc').textContent=c.desc;q('#srPerson').textContent=c.person;q('#srDirection').textContent=m.dir;q('#srQuote').textContent=m.quote;q('#srSide').textContent=m.side;q('#srFeedback').hidden=true;q('#srFeedback').classList.remove('warn');q('#srChoices').innerHTML='';m.choices.forEach(ch=>{const b=document.createElement('button');b.type='button';b.textContent=ch.text;b.onclick=()=>choose(ch);q('#srChoices').appendChild(b)});updateTrack();room.querySelectorAll('.suicide-cases button').forEach(b=>b.classList.toggle('active',b.dataset.case===current))}
+  function choose(ch){const fb=q('#srFeedback');fb.hidden=false;fb.classList.toggle('warn',ch.score>4);q('#srFeedbackTitle').textContent=ch.score<=-7?'✦ NICE MOVE. STAY WITH THE PERSON.':'👀 THE CONVERSATION CHANGED';q('#srFeedbackText').innerHTML=`${ch.feedback}<br><br><strong>${cases[current].person}:</strong> ${ch.reaction}`;q('#srDirection').textContent=ch.score>4?'Your response landed. The conversation is not over. You can recover from here.':'The conversation keeps moving.';q('#srQuote').textContent=ch.reaction;q('#srChoices').innerHTML='';const next=q('#srNext');if(ch.score>4&&ch.recover){next.textContent='Repair and keep going →';next.onclick=()=>renderRecovery(ch)}else{next.textContent=step<cases[current].steps.length-1?'Keep going →':'Choose another path ↻';next.onclick=advance}}
+  function renderRecovery(ch){q('#srFeedback').hidden=true;q('#srDirection').textContent='You get another opening. Try repairing the moment instead of restarting the scenario.';q('#srQuote').textContent=ch.reaction;q('#srSide').textContent='A clumsy response does not end the relationship. Own it, clarify, and keep the person talking.';q('#srChoices').innerHTML='';const good=document.createElement('button');good.type='button';good.textContent=ch.recover;good.onclick=()=>{q('#srFeedback').hidden=false;q('#srFeedback').classList.remove('warn');q('#srFeedbackTitle').textContent='✦ NICE RECOVERY. YOU STAYED IN IT.';q('#srFeedbackText').textContent='You corrected your approach without making the person start over. Repair is a real skill.';const next=q('#srNext');next.textContent=step<cases[current].steps.length-1?'Keep going →':'Choose another path ↻';next.onclick=advance};const avoid=document.createElement('button');avoid.type='button';avoid.textContent='Avoid the topic and move on.';avoid.onclick=()=>{q('#srFeedback').hidden=false;q('#srFeedback').classList.add('warn');q('#srFeedbackTitle').textContent='👀 NOTICE THE LOST OPENING';q('#srFeedbackText').textContent='Avoiding the topic may make future disclosure less likely. The scenario still continues, but now you are carrying a rupture into the next moment.';const next=q('#srNext');next.textContent=step<cases[current].steps.length-1?'Keep going anyway →':'Choose another path ↻';next.onclick=advance};q('#srChoices').append(good,avoid)}
+  function advance(){if(step<cases[current].steps.length-1){step++;render()}else{step=0;render();window.scrollTo({top:room.offsetTop,behavior:'smooth'})}}
+  room.querySelectorAll('.suicide-cases button').forEach(b=>b.addEventListener('click',()=>{current=b.dataset.case;step=0;render()}));render();
 })();
