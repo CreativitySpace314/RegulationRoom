@@ -2,203 +2,202 @@
   const $=s=>document.querySelector(s);
   const cases=[
     {
-      title:'The Missing 12 Minutes',
-      setup:'6:42 PM · Kitchen. Keira has just returned home from a crowded community outing and sits quietly at the table. Staff checks in to see whether she wants company or space.',
+      title:'The Missing 10 Minutes',
+      setup:'7:10 PM · Living room. Ava becomes verbally escalated toward a housemate after they enter the shared space.',
       timeline:[
-        ['6:42 PM','Keira sits at the kitchen table after returning home from a crowded outing.'],
-        ['6:44 PM','Staff checks in and asks whether Keira wants company or space.'],
-        ['6:45 PM','Keira pushes the chair back and says, “Please stop asking me questions. I need a minute.”'],
-        ['6:46 PM','Staff lowers their voice, acknowledges the request for space, and moves to another area.'],
-        ['6:51 PM','Keira says from the hallway, “I’m not mad at you. I’m just overwhelmed.”'],
-        ['6:58 PM','Keira returns to the kitchen and asks staff to sit with her.']
+        ['7:10 PM','Ava raises her voice toward a housemate in the living room.'],
+        ['7:11 PM','Ava states, “Get away from me. I don’t want you near me.”'],
+        ['7:12 PM','Staff uses a calm tone and supports separation without arguing about what happened.'],
+        ['7:15 PM','Ava moves to the hallway and continues pacing.'],
+        ['7:19 PM','Ava stops yelling and asks for space.'],
+        ['7:22 PM','Ava returns to the living room after the other person has moved to another area.']
       ],
       items:[
-        ['Keira pushed the chair back and walked toward the hallway.','observed','note'],
-        ['“Please stop asking me questions. I need a minute.”','quote','note'],
-        ['Staff lowered their voice, acknowledged Keira’s request for space, and moved to another area.','staff','note'],
-        ['Keira remained in the hallway and later stated, “I’m not mad at you. I’m just overwhelmed.”','response','note'],
-        ['At 6:58 PM, Keira returned to the kitchen and asked staff to sit with her.','outcome','note'],
-        ['Keira had been sitting quietly at the kitchen table before staff checked in.','observed','omit'],
-        ['The store had been crowded earlier in the evening.','observed','omit'],
-        ['Keira was disrespectful to staff.','bad','trash'],
-        ['Keira wanted attention.','bad','trash'],
-        ['Staff handled it appropriately.','bad','trash'],
-        ['Keira calmed down.','bad','trash']
-      ]
-    },
-    {
-      title:'The Quote That Changes It',
-      setup:'5:28 PM · Entryway. Marisol has just returned from a busy community event and remains near the front door instead of settling into the house.',
-      timeline:[
-        ['5:28 PM','Marisol comes inside, leaves her coat on, and remains near the entryway.'],
-        ['5:29 PM','She picks up her keys again and looks toward the porch.'],
-        ['5:30 PM','She states, “I need some air. I can’t think in here right now.”'],
-        ['5:31 PM','Staff asks whether she wants privacy on the porch or company nearby.'],
-        ['5:33 PM','Marisol chooses the porch and asks staff to stay inside.'],
-        ['5:46 PM','Marisol comes back inside and asks for water.']
-      ],
-      items:[
-        ['Marisol remained near the entryway, picked up her keys, and looked toward the porch.','observed','note'],
-        ['“I need some air. I can’t think in here right now.”','quote','note'],
-        ['Staff asked whether Marisol wanted privacy on the porch or company nearby.','staff','note'],
-        ['Marisol chose to sit on the porch and asked staff to remain inside.','response','note'],
-        ['At 5:46 PM, Marisol returned inside and asked for water.','outcome','note'],
-        ['Marisol had been out in the community for about two hours.','observed','omit'],
-        ['The weather was warm and clear.','observed','omit'],
-        ['Marisol was trying to elope.','bad','trash'],
-        ['Marisol was being dramatic after the outing.','bad','trash'],
-        ['Staff prevented Marisol from leaving.','bad','trash']
-      ]
-    },
-    {
-      title:'Where Did Staff Go?',
-      setup:'7:10 PM · Living room. Nia asks about tomorrow’s appointment several times while checking the clock.',
-      timeline:[
-        ['7:10 PM','Nia asks whether the appointment is still scheduled.'],
-        ['7:18 PM','Nia asks again and checks the wall clock.'],
-        ['7:24 PM','Staff shows Nia the written appointment time on the household calendar.'],
-        ['7:28 PM','Nia reads the written time and sits on the couch.'],
-        ['7:35 PM','Nia asks one more question, then refers back to the calendar.'],
-        ['8:05 PM','The written appointment time remains visible on the calendar.']
-      ],
-      items:[
-        ['Nia asked about the appointment three times between 7:10 PM and 7:24 PM while repeatedly checking the clock.','observed','note'],
-        ['“Did anyone change it? I don’t want to miss it.”','quote','note'],
-        ['Staff showed Nia the written appointment time on the household calendar.','staff','note'],
-        ['Nia read the written time, sat on the couch, and referred back to it when she asked again.','response','note'],
-        ['The written appointment time remained available for Nia to reference later.','outcome','note'],
-        ['Nia had asked about the appointment earlier in the afternoon.','observed','omit'],
+        ['At 7:10 PM, Ava raised her voice toward a housemate in the living room.','observed','note'],
+        ['“Get away from me. I don’t want you near me.”','quote','note'],
+        ['Staff maintained a calm tone and supported separation of the two individuals.','staff','note'],
+        ['Ava moved to the hallway, paced for several minutes, and then asked for space.','response','note'],
+        ['By 7:22 PM, Ava had stopped yelling and returned to the living room without further escalation.','outcome','note'],
         ['The television was on during the interaction.','observed','omit'],
-        ['Staff provided emotional support.','bad','trash'],
-        ['Nia was obsessive about the appointment.','bad','trash'],
-        ['Nia finally understood.','bad','trash']
+        ['Ava had been sitting on the couch before the housemate entered.','observed','omit'],
+        ['Ava was being disrespectful.','bad','trash'],
+        ['Ava wanted to start drama with the housemate.','bad','trash'],
+        ['Staff handled the situation appropriately.','bad','trash']
       ]
     },
     {
-      title:'The Timeline Tangle',
-      setup:'8:16 PM · Kitchen. Mateo and a housemate are arguing about a shared item. Several details were documented out of order.',
+      title:'What Did Staff Actually Do?',
+      setup:'9:15 PM · Hallway. Jalen shoves staff with open hands while saying, “Get out of my way.” The draft note later says only, “Staff redirected Jalen.”',
       timeline:[
-        ['8:16 PM','Mateo and a housemate are speaking loudly near the kitchen table.'],
-        ['8:17 PM','Mateo throws a plastic cup toward the floor and says, “I’m done talking about this.”'],
-        ['8:18 PM','Staff asks both people to use separate spaces for now.'],
-        ['8:19 PM','Mateo walks to his bedroom and closes the door.'],
-        ['8:37 PM','Mateo returns to the kitchen and speaks with staff.'],
-        ['8:42 PM','No further argument occurs.']
+        ['9:15 PM','Jalen shoves staff with open hands in the hallway.'],
+        ['9:15 PM','Jalen states, “Get out of my way.”'],
+        ['9:16 PM','Staff disengages immediately and increases distance without physical response.'],
+        ['9:18 PM','Jalen walks to his room and closes the door.'],
+        ['9:26 PM','Staff checks in from the doorway after Jalen’s voice and pacing have decreased.'],
+        ['9:30 PM','Jalen speaks with staff about what could help earlier next time.']
       ],
       items:[
-        ['At 8:17 PM, Mateo threw a plastic cup toward the floor during a verbal disagreement.','observed','note'],
-        ['“I’m done talking about this.”','quote','note'],
-        ['Staff asked both people to use separate spaces and paused the conversation.','staff','note'],
-        ['Mateo walked to his bedroom and closed the door.','response','note'],
-        ['At 8:37 PM, Mateo returned to the kitchen and spoke with staff without resuming the argument.','outcome','note'],
-        ['The cup was blue.','observed','omit'],
-        ['The other person had used the item earlier that day.','observed','omit'],
-        ['Mateo caused the whole problem.','bad','trash'],
-        ['The housemate provoked Mateo.','bad','trash'],
-        ['Staff fixed the situation.','bad','trash']
+        ['At 9:15 PM, Jalen shoved staff with open hands in the hallway.','observed','note'],
+        ['“Get out of my way.”','quote','note'],
+        ['Staff disengaged immediately and increased distance without physical response.','staff','note'],
+        ['Jalen walked to his room, closed the door, and remained there for several minutes.','response','note'],
+        ['At approximately 9:30 PM, Jalen re-engaged in conversation with staff about earlier coping options.','outcome','note'],
+        ['Staff had been completing shift paperwork before the incident.','observed','omit'],
+        ['The hallway light was on.','observed','omit'],
+        ['Jalen attacked staff.','bad','trash'],
+        ['Jalen was out of control.','bad','trash'],
+        ['Staff successfully de-escalated Jalen.','bad','trash']
       ]
     },
     {
-      title:'Too Much Information',
-      setup:'6:32 PM · Bedroom. Elena drops her glasses forcefully onto the floor during an upsetting conversation, and one lens breaks.',
+      title:'The Fall Note',
+      setup:'7:40 PM · Hallway. Sienna slips and falls to the floor while walking toward the kitchen.',
       timeline:[
-        ['6:30 PM','Elena is talking with staff in her bedroom.'],
-        ['6:32 PM','Elena drops her glasses forcefully onto the floor. One lens breaks.'],
-        ['6:33 PM','Staff asks Elena to stay clear of the broken pieces while the area is made safe.'],
-        ['6:35 PM','Elena remains away from the broken glass.'],
-        ['6:51 PM','Elena tells staff she can set her glasses on the dresser when she feels overwhelmed.'],
-        ['7:00 PM','Incoming staff is told the glasses are unusable and replacement follow-up is needed.']
+        ['7:40 PM','Sienna slips in the hallway and falls to the floor.'],
+        ['7:41 PM','Sienna states, “I’m okay. I just lost my balance.”'],
+        ['7:42 PM','Staff visually checks for injury and asks about pain.'],
+        ['7:44 PM','Sienna denies pain and no injury is observed.'],
+        ['7:47 PM','Sienna stands and walks to the kitchen without assistance.'],
+        ['8:00 PM','Sienna continues normal activity with no new complaint.']
       ],
       items:[
-        ['Elena dropped her glasses forcefully onto the bedroom floor and one lens broke.','observed','note'],
-        ['“Just leave them there. I don’t want to talk right now.”','quote','note'],
-        ['Staff asked Elena to stay clear of the broken pieces and removed them once the area was safe.','staff','note'],
-        ['Elena remained away from the broken pieces while staff cleared the area.','response','note'],
-        ['Elena later identified placing her glasses on the dresser when overwhelmed; incoming staff was told replacement follow-up was needed.','outcome','note'],
-        ['Elena ate pasta at 5:45 PM.','observed','omit'],
-        ['A comedy show was playing in the living room.','observed','omit'],
-        ['Elena had talked about laundry earlier.','observed','omit'],
-        ['Elena does not respect her belongings.','bad','trash'],
-        ['Elena broke the glasses for attention.','bad','trash']
+        ['At 7:40 PM, Sienna slipped in the hallway and fell to the floor.','observed','note'],
+        ['“I’m okay. I just lost my balance.”','quote','note'],
+        ['Staff visually assessed for injury and asked Sienna about pain.','staff','note'],
+        ['Sienna denied pain, and no injury was reported or observed.','response','note'],
+        ['Sienna stood, walked to the kitchen without assistance, and had no new complaint by 8:00 PM.','outcome','note'],
+        ['Sienna had socks on at the time.','observed','omit'],
+        ['Dinner was being prepared in the kitchen.','observed','omit'],
+        ['Sienna was clumsy.','bad','trash'],
+        ['Sienna fell because she was not paying attention.','bad','trash'],
+        ['No big deal.','bad','trash']
       ]
     },
     {
-      title:'The Note That Ends Too Soon',
-      setup:'9:10 AM · Bedroom. Theo says he does not want to shower before breakfast and asks staff to check back later.',
+      title:'Property Damage',
+      setup:'4:19 PM · Bedroom. Rowan throws their glasses onto the floor during emotional escalation, and the glasses break.',
       timeline:[
-        ['9:10 AM','Staff asks Theo whether he wants support with his morning routine.'],
-        ['9:11 AM','Theo says, “Not now. Ask me after breakfast.”'],
-        ['9:12 AM','Staff acknowledges the request and leaves the room.'],
-        ['9:35 AM','Theo gets up and eats breakfast.'],
-        ['9:48 AM','Theo tells staff he is ready to revisit the shower.'],
-        ['10:05 AM','Theo showers after one reminder.']
+        ['4:19 PM','Rowan raises their voice while pacing in the bedroom.'],
+        ['4:19 PM','Rowan throws their glasses onto the floor and states, “I don’t care anymore.”'],
+        ['4:20 PM','Staff provides space and does not continue the argument.'],
+        ['4:28 PM','Rowan’s voice lowers and pacing slows.'],
+        ['4:31 PM','Staff re-engages with Rowan about what happened.'],
+        ['4:35 PM','Rowan states, “Next time I’ll put them down instead.”']
       ],
       items:[
-        ['At 9:11 AM, Theo remained in bed and declined showering before breakfast.','observed','note'],
-        ['“Not now. Ask me after breakfast.”','quote','note'],
-        ['Staff acknowledged the request and told Theo they would check back after breakfast.','staff','note'],
-        ['After breakfast, Theo told staff he was ready to revisit the shower.','response','note'],
-        ['At 10:05 AM, Theo showered after one reminder.','outcome','note'],
-        ['Theo ate cereal for breakfast.','observed','omit'],
-        ['Theo stayed in bed until 9:30 AM.','observed','omit'],
-        ['Theo was lazy.','bad','trash'],
-        ['Theo was noncompliant with hygiene.','bad','trash'],
-        ['Staff gave up when Theo refused.','bad','trash']
+        ['At 4:19 PM, Rowan threw their glasses onto the bedroom floor, causing them to break.','observed','note'],
+        ['“I don’t care anymore.”','quote','note'],
+        ['Staff provided space and re-engaged once Rowan’s escalation had decreased.','staff','note'],
+        ['Rowan’s voice lowered, pacing slowed, and they later spoke with staff about the incident.','response','note'],
+        ['Rowan stated, “Next time I’ll put them down instead,” identifying a possible prevention strategy.','outcome','note'],
+        ['Rowan had worn the glasses all day.','observed','omit'],
+        ['A laundry basket was beside the bed.','observed','omit'],
+        ['Rowan does not respect their belongings.','bad','trash'],
+        ['Rowan broke the glasses for attention.','bad','trash'],
+        ['Rowan learned their lesson.','bad','trash']
       ]
     },
     {
-      title:'The Safety Handoff',
-      setup:'9:22 PM · Living room. Bri has just opened an upsetting letter from a family member, becomes tearful, and asks staff to stay nearby.',
+      title:'Whose Item Is It?',
+      setup:'6:10 PM · Living room. Malik takes a personal item belonging to a housemate and brings it to his bedroom.',
       timeline:[
-        ['9:22 PM','Bri finishes reading the letter and remains seated near staff.'],
-        ['9:23 PM','Bri states, “I don’t want to be alone right now.”'],
-        ['9:24 PM','Staff remains present and follows Bri’s individualized safety process.'],
-        ['9:29 PM','Bri answers the required safety questions and asks staff to keep sitting nearby.'],
-        ['9:41 PM','Bri remains engaged with staff.'],
-        ['10:00 PM','Incoming staff receives the exact statement, safety-check outcome, and current support approach.']
+        ['6:10 PM','Malik picks up a housemate’s personal item from the living room.'],
+        ['6:11 PM','Malik brings the item to his bedroom.'],
+        ['6:13 PM','Staff checks in and asks Malik about the item.'],
+        ['6:14 PM','Malik states, “I just wanted it for a bit.”'],
+        ['6:16 PM','Staff discusses personal boundaries and asks what Malik wants to do next.'],
+        ['6:18 PM','Malik returns the item to the housemate without further issue.']
       ],
       items:[
-        ['Bri was tearful after reading the letter and remained seated near staff.','observed','note'],
-        ['“I don’t want to be alone right now.”','quote','note'],
-        ['Staff remained with Bri, completed the required safety check, and followed Bri’s individualized safety process.','staff','note'],
-        ['Bri answered the safety questions and asked staff to continue sitting nearby.','response','note'],
-        ['Incoming staff received Bri’s exact statement, safety-check outcome, and current support approach.','outcome','note'],
-        ['The letter had arrived earlier that day.','observed','omit'],
-        ['Bri drank water during the conversation.','observed','omit'],
-        ['Bri was suicidal.','bad','trash'],
-        ['Bri was safe because she calmed down.','bad','trash'],
-        ['Bri was attention-seeking.','bad','trash']
+        ['At approximately 6:10 PM, Malik took a personal item belonging to a housemate from the living room and brought it to his bedroom.','observed','note'],
+        ['“I just wanted it for a bit.”','quote','note'],
+        ['Staff remained calm and discussed expectations around personal belongings and boundaries.','staff','note'],
+        ['Malik listened to staff and returned the item without further escalation.','response','note'],
+        ['By 6:18 PM, the item had been returned and no further conflict occurred.','outcome','note'],
+        ['The item had been left on a chair.','observed','omit'],
+        ['Malik had been in the living room earlier that afternoon.','observed','omit'],
+        ['Malik stole the item.','bad','trash'],
+        ['Malik knew better.','bad','trash'],
+        ['Malik was trying to upset the housemate.','bad','trash']
+      ]
+    },
+    {
+      title:'The Medical Detail That Matters',
+      setup:'4:50 PM · Living room. Priya experiences a brief seizure while seated.',
+      timeline:[
+        ['4:50 PM','Priya has a seizure while seated in the living room.'],
+        ['4:50 PM','The episode lasts approximately 30 seconds.'],
+        ['4:51 PM','Staff clears the immediate area and monitors without physical intervention.'],
+        ['4:53 PM','Priya is responsive and states, “I’m okay, just tired.”'],
+        ['4:58 PM','Priya remains seated and continues responding to staff.'],
+        ['5:00 PM','Required notification is completed according to the setting’s process.']
+      ],
+      items:[
+        ['At approximately 4:50 PM, Priya experienced a seizure lasting about 30 seconds while seated in the living room.','observed','note'],
+        ['“I’m okay, just tired.”','quote','note'],
+        ['Staff ensured the surrounding area was safe and monitored Priya without physical intervention.','staff','note'],
+        ['Priya was responsive after the episode and reported feeling tired.','response','note'],
+        ['Required notification was completed, and Priya continued responding to staff afterward.','outcome','note'],
+        ['Priya had been watching television beforehand.','observed','omit'],
+        ['A blanket was on the couch.','observed','omit'],
+        ['Priya had a bad seizure.','bad','trash'],
+        ['Priya was fine after.','bad','trash'],
+        ['Staff did everything correctly.','bad','trash']
+      ]
+    },
+    {
+      title:'The Safety Note',
+      setup:'10:30 PM · Living room. Tessa scratches her forearm while visibly distressed and states, “I just want it to stop.”',
+      timeline:[
+        ['10:30 PM','Tessa scratches her forearm while sitting in the living room.'],
+        ['10:30 PM','Tessa states, “I just want it to stop.”'],
+        ['10:31 PM','Staff remains present and follows Tessa’s individualized safety process.'],
+        ['10:34 PM','Staff completes the required safety questions.'],
+        ['10:36 PM','Tessa states, “No, I’m not trying to kill myself.”'],
+        ['10:45 PM','Tessa accepts support and identifies coping options she wants to try.']
+      ],
+      items:[
+        ['At approximately 10:30 PM, Tessa scratched her forearm while expressing emotional distress.','observed','note'],
+        ['“I just want it to stop.”','quote','note'],
+        ['Staff remained present, followed Tessa’s individualized safety process, and completed the required safety questions.','staff','note'],
+        ['Tessa answered the safety questions and stated, “No, I’m not trying to kill myself.”','response','note'],
+        ['Tessa accepted support and identified coping options she wanted to use; required notification was completed.','outcome','note'],
+        ['Tessa had been in the living room for most of the evening.','observed','omit'],
+        ['Tessa was wearing a sweatshirt.','observed','omit'],
+        ['Tessa was attention-seeking.','bad','trash'],
+        ['Tessa was suicidal.','bad','trash'],
+        ['Tessa was safe because she calmed down.','bad','trash']
       ]
     },
     {
       title:'Overnight Gaps',
-      setup:'6:50 AM · Shift change. Incoming staff reads only: “Owen was up a lot overnight.”',
+      setup:'6:50 AM · Shift change. Incoming staff reads only: “Noah was up a lot overnight.”',
       timeline:[
-        ['1:40 AM','Owen wakes and paces for about five minutes.'],
+        ['1:40 AM','Noah wakes and paces for about five minutes.'],
         ['1:44 AM','Staff completes a brief check-in and keeps the environment low-stimulation.'],
-        ['1:47 AM','Owen declines additional support and returns to bed.'],
-        ['4:15 AM','Owen wakes and paces again for about five minutes.'],
-        ['4:22 AM','Owen returns to bed independently.'],
-        ['6:50 AM','Owen is asleep at shift change. The waking pattern was more frequent than usual.']
+        ['1:47 AM','Noah declines additional support and returns to bed.'],
+        ['4:15 AM','Noah wakes and paces again for about five minutes.'],
+        ['4:22 AM','Noah returns to bed independently.'],
+        ['6:50 AM','Noah is asleep at shift change; the waking pattern was more frequent than usual.']
       ],
       items:[
-        ['Owen woke at 1:40 AM and 4:15 AM and paced for about five minutes each time.','observed','note'],
+        ['Noah woke at 1:40 AM and 4:15 AM and paced for about five minutes each time.','observed','note'],
         ['“My mind won’t shut off, but I’m okay.”','quote','note'],
-        ['Staff completed brief check-ins and reduced stimulation per Owen’s usual overnight plan.','staff','note'],
-        ['Owen declined additional support both times and returned to bed independently.','response','note'],
-        ['Owen was asleep at shift change; incoming staff was told the waking pattern was more frequent than usual.','outcome','note'],
-        ['Owen used the bathroom at 3:05 AM.','observed','omit'],
+        ['Staff completed brief check-ins and reduced stimulation per Noah’s usual overnight plan.','staff','note'],
+        ['Noah declined additional support both times and returned to bed independently.','response','note'],
+        ['Noah was asleep at shift change; incoming staff was told the waking pattern was more frequent than usual.','outcome','note'],
+        ['Noah used the bathroom at 3:05 AM.','observed','omit'],
         ['The hallway light was on.','observed','omit'],
-        ['Owen was weird all night.','bad','trash'],
-        ['Owen kept staff awake unnecessarily.','bad','trash'],
-        ['Nothing important happened because Owen went back to bed.','bad','trash']
+        ['Noah was weird all night.','bad','trash'],
+        ['Noah kept staff awake unnecessarily.','bad','trash'],
+        ['Nothing important happened because Noah went back to bed.','bad','trash']
       ]
     }
   ];
 
   const labels={observed:'WHAT HAPPENED',quote:'PERSON’S WORDS',staff:'STAFF ACTION',response:'PERSON’S RESPONSE',outcome:'FOLLOW-THROUGH'};
   const slotIds={observed:'slotObserved',quote:'slotQuote',staff:'slotStaff',response:'slotResponse',outcome:'slotOutcome'};
-  const prompts={observed:'Drop an observable detail here.',quote:'Use an exact quote when it matters.',staff:'What did staff actually do?',response:'What happened after staff responded?',outcome:'What changed, continued, or needs handed off?'};
+  const prompts={observed:'Add an observable detail here.',quote:'Use an exact quote when it matters.',staff:'What did staff actually do?',response:'What happened after staff responded?',outcome:'What changed, continued, or needs handed off?'};
   let current=0;
   let placements={};
 
@@ -225,13 +224,13 @@
 
   function renderTimeline(){
     const box=$('#timeline');
-    box.innerHTML=cases[current].timeline.map((t,i)=>`<article class="time-card ${i===2?'quote':''}"><b>${t[0]}</b><p>${t[1]}</p></article>`).join('');
+    box.innerHTML=cases[current].timeline.map(t=>`<article class="time-card"><b>${t[0]}</b><p>${t[1]}</p></article>`).join('');
   }
 
   function renderEvidence(){
     const tray=$('#evidenceTray');
     const items=shuffle(cases[current].items.map((it,i)=>({it,i})));
-    tray.innerHTML=items.map(({it,i})=>`<article class="evidence-card" draggable="true" data-card="${i}" tabindex="0"><p>${it[0]}</p><small>Tap for options · drag on desktop</small><div class="tap-actions"><button type="button" data-action="observed">+ happened</button><button type="button" data-action="quote">+ words</button><button type="button" data-action="staff">+ staff</button><button type="button" data-action="response">+ response</button><button type="button" data-action="outcome">+ follow-through</button><button type="button" data-action="trash">🗑 trash</button><button type="button" data-action="omit">📎 leave out</button></div></article>`).join('');
+    tray.innerHTML=items.map(({it,i})=>`<article class="evidence-card" draggable="true" data-card="${i}" tabindex="0"><p>${it[0]}</p><small>Choose where this belongs.</small><div class="tap-actions"><button type="button" data-action="observed">+ happened</button><button type="button" data-action="quote">+ words</button><button type="button" data-action="staff">+ staff</button><button type="button" data-action="response">+ response</button><button type="button" data-action="outcome">+ follow-through</button><button type="button" data-action="trash">🗑 trash</button><button type="button" data-action="omit">📎 leave out</button></div></article>`).join('');
     tray.querySelectorAll('.evidence-card').forEach(card=>{
       const id=Number(card.dataset.card);
       card.addEventListener('dragstart',e=>{
@@ -386,10 +385,10 @@
       panel.addEventListener('click',e=>{if(e.target===panel) close();});
       document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!panel.hidden) close();});
 
-      const topics=['timeline gaps','vague staff response','judgment words','too much detail','refusal follow-through','safety handoff','overnight pattern','random'];
+      const topics=['verbal escalation','physical aggression','fall / injury','property damage','unusual occurrence','medical event','safety note','overnight pattern','random'];
       $('#topicBubbles').innerHTML=topics.map(t=>`<button type="button">${t}</button>`).join('');
       $('#topicBubbles').querySelectorAll('button').forEach((b,i)=>b.addEventListener('click',()=>{
-        const map=[0,2,3,4,5,6,7,Math.floor(Math.random()*cases.length)];
+        const map=[0,1,2,3,4,5,6,7,Math.floor(Math.random()*cases.length)];
         current=map[i];
         reset(false);
         close();
