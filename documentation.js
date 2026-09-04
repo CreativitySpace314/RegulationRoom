@@ -3,9 +3,9 @@
   const cases=[
     {
       title:'The Missing 12 Minutes',
-      setup:'6:42 PM · Kitchen. Keira has just ended a difficult phone call with a family member. Staff checks in to see whether she wants company or space.',
+      setup:'6:42 PM · Kitchen. Keira has just returned home from a crowded community outing and sits quietly at the table. Staff checks in to see whether she wants company or space.',
       timeline:[
-        ['6:42 PM','Keira sits at the kitchen table after the call.'],
+        ['6:42 PM','Keira sits at the kitchen table after returning home from a crowded outing.'],
         ['6:44 PM','Staff checks in and asks whether Keira wants company or space.'],
         ['6:45 PM','Keira pushes the chair back and says, “Please stop asking me questions. I need a minute.”'],
         ['6:46 PM','Staff lowers their voice, acknowledges the request for space, and moves to another area.'],
@@ -19,7 +19,7 @@
         ['Keira remained in the hallway and later stated, “I’m not mad at you. I’m just overwhelmed.”','response','note'],
         ['At 6:58 PM, Keira returned to the kitchen and asked staff to sit with her.','outcome','note'],
         ['Keira had been sitting quietly at the kitchen table before staff checked in.','observed','omit'],
-        ['A family member had called Keira earlier that evening.','observed','omit'],
+        ['The store had been crowded earlier in the evening.','observed','omit'],
         ['Keira was disrespectful to staff.','bad','trash'],
         ['Keira wanted attention.','bad','trash'],
         ['Staff handled it appropriately.','bad','trash'],
@@ -28,25 +28,25 @@
     },
     {
       title:'The Quote That Changes It',
-      setup:'5:28 PM · Entryway. Marisol ends a tense phone call, puts on her shoes, and stands near the front door.',
+      setup:'5:28 PM · Entryway. Marisol has just returned from a busy community event and remains near the front door instead of settling into the house.',
       timeline:[
-        ['5:28 PM','Marisol ends the phone call and walks toward the entryway.'],
-        ['5:29 PM','She puts on her shoes and picks up her keys.'],
+        ['5:28 PM','Marisol comes inside, leaves her coat on, and remains near the entryway.'],
+        ['5:29 PM','She picks up her keys again and looks toward the porch.'],
         ['5:30 PM','She states, “I need some air. I can’t think in here right now.”'],
         ['5:31 PM','Staff asks whether she wants privacy on the porch or company nearby.'],
         ['5:33 PM','Marisol chooses the porch and asks staff to stay inside.'],
         ['5:46 PM','Marisol comes back inside and asks for water.']
       ],
       items:[
-        ['Marisol put on her shoes, picked up her keys, and stood near the front door.','observed','note'],
+        ['Marisol remained near the entryway, picked up her keys, and looked toward the porch.','observed','note'],
         ['“I need some air. I can’t think in here right now.”','quote','note'],
         ['Staff asked whether Marisol wanted privacy on the porch or company nearby.','staff','note'],
         ['Marisol chose to sit on the porch and asked staff to remain inside.','response','note'],
         ['At 5:46 PM, Marisol returned inside and asked for water.','outcome','note'],
-        ['Marisol had been on the phone for 17 minutes.','observed','omit'],
+        ['Marisol had been out in the community for about two hours.','observed','omit'],
         ['The weather was warm and clear.','observed','omit'],
         ['Marisol was trying to elope.','bad','trash'],
-        ['Marisol was being dramatic after the phone call.','bad','trash'],
+        ['Marisol was being dramatic after the outing.','bad','trash'],
         ['Staff prevented Marisol from leaving.','bad','trash']
       ]
     },
@@ -56,17 +56,17 @@
       timeline:[
         ['7:10 PM','Nia asks whether the appointment is still scheduled.'],
         ['7:18 PM','Nia asks again and checks the wall clock.'],
-        ['7:24 PM','Staff shows Nia the written appointment time beside her phone.'],
+        ['7:24 PM','Staff shows Nia the written appointment time on the household calendar.'],
         ['7:28 PM','Nia reads the written time and sits on the couch.'],
-        ['7:35 PM','Nia asks one more question, then refers back to the written time.'],
-        ['8:05 PM','The written schedule remains beside Nia’s phone.']
+        ['7:35 PM','Nia asks one more question, then refers back to the calendar.'],
+        ['8:05 PM','The written appointment time remains visible on the calendar.']
       ],
       items:[
         ['Nia asked about the appointment three times between 7:10 PM and 7:24 PM while repeatedly checking the clock.','observed','note'],
-        ['“Did anyone call and change it? I don’t want to miss it.”','quote','note'],
-        ['Staff showed Nia the written appointment time and placed it beside her phone.','staff','note'],
+        ['“Did anyone change it? I don’t want to miss it.”','quote','note'],
+        ['Staff showed Nia the written appointment time on the household calendar.','staff','note'],
         ['Nia read the written time, sat on the couch, and referred back to it when she asked again.','response','note'],
-        ['The written appointment time remained beside Nia’s phone for later reference.','outcome','note'],
+        ['The written appointment time remained available for Nia to reference later.','outcome','note'],
         ['Nia had asked about the appointment earlier in the afternoon.','observed','omit'],
         ['The television was on during the interaction.','observed','omit'],
         ['Staff provided emotional support.','bad','trash'],
@@ -148,9 +148,9 @@
     },
     {
       title:'The Safety Handoff',
-      setup:'9:22 PM · Living room. Bri is tearful after a phone call and asks staff to stay nearby.',
+      setup:'9:22 PM · Living room. Bri has just opened an upsetting letter from a family member, becomes tearful, and asks staff to stay nearby.',
       timeline:[
-        ['9:22 PM','Bri ends the call and remains seated near staff.'],
+        ['9:22 PM','Bri finishes reading the letter and remains seated near staff.'],
         ['9:23 PM','Bri states, “I don’t want to be alone right now.”'],
         ['9:24 PM','Staff remains present and follows Bri’s individualized safety process.'],
         ['9:29 PM','Bri answers the required safety questions and asks staff to keep sitting nearby.'],
@@ -158,12 +158,12 @@
         ['10:00 PM','Incoming staff receives the exact statement, safety-check outcome, and current support approach.']
       ],
       items:[
-        ['Bri was tearful after the phone call and remained seated near staff.','observed','note'],
+        ['Bri was tearful after reading the letter and remained seated near staff.','observed','note'],
         ['“I don’t want to be alone right now.”','quote','note'],
         ['Staff remained with Bri, completed the required safety check, and followed Bri’s individualized safety process.','staff','note'],
         ['Bri answered the safety questions and asked staff to continue sitting nearby.','response','note'],
         ['Incoming staff received Bri’s exact statement, safety-check outcome, and current support approach.','outcome','note'],
-        ['Bri had spoken with the same person earlier that week.','observed','omit'],
+        ['The letter had arrived earlier that day.','observed','omit'],
         ['Bri drank water during the conversation.','observed','omit'],
         ['Bri was suicidal.','bad','trash'],
         ['Bri was safe because she calmed down.','bad','trash'],
