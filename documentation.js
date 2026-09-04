@@ -14,17 +14,7 @@
   const labels={observed:'WHAT HAPPENED',quote:'PERSON’S WORDS',staff:'STAFF ACTION',response:'PERSON’S RESPONSE',outcome:'FOLLOW-THROUGH'};
   const slotIds={observed:'slotObserved',quote:'slotQuote',staff:'slotStaff',response:'slotResponse',outcome:'slotOutcome'};
   const prompts={observed:'Add an observable detail here.',quote:'Use an exact quote when it matters.',staff:'What did staff actually do?',response:'What happened after staff responded?',outcome:'What changed, continued, or needs handed off?'};
-  const challenges=[
-    {label:'missing timestamps',cases:[0,2,7]},
-    {label:'vague staff action',cases:[1,3,5]},
-    {label:'judgment vs. behavior',cases:[0,1,3,4]},
-    {label:'missing person response',cases:[0,3,5,6]},
-    {label:'note ends too soon',cases:[3,6,7]},
-    {label:'too much irrelevant detail',cases:[2,4,5]},
-    {label:'safety wording',cases:[6]},
-    {label:'random challenge',cases:[0,1,2,3,4,5,6,7]}
-  ];
-
+  const challengeLenses=['missing timestamps','vague staff action','judgment vs. behavior','missing person response','note ends too soon','too much irrelevant detail','safety wording'];
   let current=0,sceneIndex=0,sceneComplete=false,placements={},activeChallenge=null;
   const shuffle=a=>{const x=[...a];for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]]}return x};
   const escape=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
@@ -64,9 +54,16 @@
 
   function renderCases(){
     const list=$('#caseList');
-    list.innerHTML=cases.map((c,i)=>`<button class="case-btn ${i===current&&!activeChallenge?'active':''}" data-case="${i}"><span class="num">${String(i+1).padStart(2,'0')}</span><b>${c.title}</b></button>`).join('')+`<button class="case-btn generator-btn ${activeChallenge?'active':''}" id="caseGenerator"><span class="num">🎯</span><b>Challenge Me</b></button>`;
+    list.innerHTML=cases.map((c,i)=>`<button class="case-btn ${i===current&&!activeChallenge?'active':''}" data-case="${i}"><span class="num">${String(i+1).padStart(2,'0')}</span><b>${c.title}</b></button>`).join('')+`<button class="case-btn generator-btn ${activeChallenge?'active':''}" id="caseGenerator"><span class="num">🎲</span><b>Surprise Me</b></button>`;
     list.querySelectorAll('[data-case]').forEach(b=>b.addEventListener('click',()=>{activeChallenge=null;current=Number(b.dataset.case);resetCase();renderCase()}));
-    $('#caseGenerator').addEventListener('click',()=>{$('#generatorPanel').hidden=false});
+    $('#caseGenerator').addEventListener('click',()=>{
+      activeChallenge=challengeLenses[Math.floor(Math.random()*challengeLenses.length)];
+      let next=Math.floor(Math.random()*cases.length);
+      if(cases.length>1&&next===current)next=(next+1)%cases.length;
+      current=next;
+      resetCase();
+      renderCase();
+    });
   }
 
   function renderScene(){
@@ -80,11 +77,7 @@
   function nextScene(){
     const c=cases[current];
     if(sceneIndex<c.timeline.length-1){sceneIndex++;renderScene();return}
-    sceneComplete=true;
-    $('#workspace').hidden=false;
-    $('#nextMoment').hidden=true;
-    renderEvidence();renderSlots();updateCounts();
-    $('#workspace').scrollIntoView({behavior:'smooth',block:'start'});
+    sceneComplete=true;$('#workspace').hidden=false;$('#nextMoment').hidden=true;renderEvidence();renderSlots();updateCounts();$('#workspace').scrollIntoView({behavior:'smooth',block:'start'});
   }
 
   function renderEvidence(){
@@ -103,8 +96,7 @@
   function setupDrops(){document.querySelectorAll('[data-drop]').forEach(zone=>{zone.addEventListener('dragover',e=>{e.preventDefault();zone.classList.add('dragover')});zone.addEventListener('dragleave',()=>zone.classList.remove('dragover'));zone.addEventListener('drop',e=>{e.preventDefault();zone.classList.remove('dragover');const id=Number(e.dataTransfer.getData('text/plain'));if(Number.isInteger(id))place(id,zone.dataset.drop)})})}
 
   function place(id,target){
-    placements[id]=target;$('#draftOutput').hidden=true;
-    const item=cases[current].items[id],expected=item[2];
+    placements[id]=target;$('#draftOutput').hidden=true;const item=cases[current].items[id],expected=item[2];
     if(target==='trash'){const [tag,why]=trashLesson(item[0]);$('#caseFeedback').innerHTML=expected==='trash'?`<b>🗑️ ${tag}</b><br>${why}`:`<b>🧐 HOLD UP.</b><br>This may be a useful fact. You can keep it here for now, but the reviewer will ask you to defend that choice.`}
     else if(target==='omit'){const [tag,why]=omitLesson(item[0]);$('#caseFeedback').innerHTML=expected==='omit'?`<b>📎 ${tag}</b><br>${why}`:`<b>🧐 DOES THE NOTE STILL MAKE SENSE?</b><br>You left out a detail that may help reconstruct the event.`}
     else{const [tag,why]=noteLesson(target);$('#caseFeedback').innerHTML=`<b>✍️ ${tag}</b><br>${why}`}
@@ -141,15 +133,13 @@
   }
 
   function review(){
-    const c=cases[current],issues=[];
-    c.items.forEach((it,i)=>{const issue=makeIssue(it,i,placements[i]);if(issue)issues.push(issue)});
-    issues.sort((a,b)=>challengePriority(a)-challengePriority(b));
+    const c=cases[current],issues=[];c.items.forEach((it,i)=>{const issue=makeIssue(it,i,placements[i]);if(issue)issues.push(issue)});issues.sort((a,b)=>challengePriority(a)-challengePriority(b));
     const order=['observed','quote','staff','response','outcome'];
     const text=order.flatMap(kind=>Object.entries(placements).filter(([,p])=>p===kind).map(([i])=>c.items[Number(i)][0])).join(' ');
     $('#draftText').textContent=text||'No documentation has been built yet.';$('#draftOutput').hidden=false;
     if(!text)$('#reviewText').innerHTML='<b>🔎 REVIEWER WOULD QUESTION:</b><div class="coach-empty">There is nothing to review yet. Build enough of the record that another person could reconstruct the moment.</div>';
     else if(!issues.length)$('#reviewText').innerHTML='<b>✅ REVIEWER CHECK:</b><div class="coach-success"><strong>THIS ONE HOLDS UP.</strong><span>Observable event ✓</span><span>Staff action ✓</span><span>Person response ✓</span><span>Follow-through ✓</span><small>You documented the moment without turning assumptions into facts.</small></div>';
-    else $('#reviewText').innerHTML='<b>🔎 REVIEWER WOULD QUESTION:</b>'+(activeChallenge?`<p class="review-intro">🎯 Challenge focus: <strong>${escape(activeChallenge)}</strong></p>`:'<p class="review-intro">Not just <em>what</em> is off — here is <em>why</em> it matters.</p>')+issues.slice(0,6).map(issue=>`<article class="coach-card"><span class="coach-tag">${escape(issue.tag)}</span><q>${escape(issue.line)}</q><div class="coach-why"><strong>WHY?</strong>${escape(issue.why)}</div><div class="coach-try"><strong>TRY THIS:</strong>${escape(issue.tryInstead)}</div><button type="button" class="coach-fix" data-fix="${escape(issue.fix)}" data-i="${issue.i}">FIX THIS ↗</button></article>`).join('')+(issues.length>6?`<p class="more-issues">+ ${issues.length-6} more item${issues.length-6===1?'':'s'} to revisit.</p>`:'');
+    else $('#reviewText').innerHTML='<b>🔎 REVIEWER WOULD QUESTION:</b>'+(activeChallenge?`<p class="review-intro">🕵️ Hidden case lens revealed: <strong>${escape(activeChallenge)}</strong></p>`:'<p class="review-intro">Not just <em>what</em> is off — here is <em>why</em> it matters.</p>')+issues.slice(0,6).map(issue=>`<article class="coach-card"><span class="coach-tag">${escape(issue.tag)}</span><q>${escape(issue.line)}</q><div class="coach-why"><strong>WHY?</strong>${escape(issue.why)}</div><div class="coach-try"><strong>TRY THIS:</strong>${escape(issue.tryInstead)}</div><button type="button" class="coach-fix" data-fix="${escape(issue.fix)}" data-i="${issue.i}">FIX THIS ↗</button></article>`).join('')+(issues.length>6?`<p class="more-issues">+ ${issues.length-6} more item${issues.length-6===1?'':'s'} to revisit.</p>`:'');
     $('#reviewText').querySelectorAll('.coach-fix').forEach(btn=>btn.addEventListener('click',()=>{place(Number(btn.dataset.i),btn.dataset.fix);review()}));
     $('#caseFeedback').innerHTML=issues.length?`<b>🔎 CASE COACH:</b><br>${issues.length} thing${issues.length===1?'':'s'} worth revisiting. Use the red-pen cards below to repair the note.`:'<b>✅ CASE COACH:</b><br>Your record tells the story without making the reader guess.';
     $('#draftOutput').scrollIntoView({behavior:'smooth',block:'nearest'});
@@ -157,7 +147,7 @@
 
   function resetRecord(){placements={};$('#draftOutput').hidden=true;$('#reviewText').innerHTML='';$('#draftText').textContent='';$('#caseFeedback').innerHTML='<b>YOUR TURN.</b><br>Build the record, then send it to review.';renderSlots();updateCounts();renderEvidence()}
   function resetCase(){sceneIndex=0;sceneComplete=false;placements={};$('#workspace').hidden=true;$('#draftOutput').hidden=true;$('#reviewText').innerHTML='';$('#draftText').textContent='';$('#nextMoment').hidden=false;$('#nextMoment').disabled=false}
-  function renderCase(){const c=cases[current];$('#caseBadge').textContent=activeChallenge?`CHALLENGE · ${activeChallenge.toUpperCase()}`:`CASE FILE ${String(current+1).padStart(2,'0')}`;$('#caseTitle').textContent=c.title;$('#caseSetup').textContent=c.setup;renderCases();renderScene()}
+  function renderCase(){const c=cases[current];$('#caseBadge').textContent=activeChallenge?'SURPRISE CASE · LENS HIDDEN':`CASE FILE ${String(current+1).padStart(2,'0')}`;$('#caseTitle').textContent=c.title;$('#caseSetup').textContent=c.setup;renderCases();renderScene()}
 
   function init(){
     renderCase();setupDrops();
@@ -165,10 +155,6 @@
     $('#restartScene').addEventListener('click',()=>{resetCase();renderScene()});
     $('#resetCase').addEventListener('click',resetRecord);
     $('#reviewCase').addEventListener('click',review);
-    const panel=$('#generatorPanel'),close=()=>panel.hidden=true;
-    $('#closeGenerator').addEventListener('click',close);panel.addEventListener('click',e=>{if(e.target===panel)close()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!panel.hidden)close()});
-    $('#topicBubbles').innerHTML=challenges.map(c=>`<button type="button">${c.label}</button>`).join('');
-    $('#topicBubbles').querySelectorAll('button').forEach((b,i)=>b.addEventListener('click',()=>{const ch=challenges[i];activeChallenge=ch.label;current=ch.cases[Math.floor(Math.random()*ch.cases.length)];resetCase();close();renderCase()}));
   }
   init();
 })();
