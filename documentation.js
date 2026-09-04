@@ -15,6 +15,48 @@
   const prompts={observed:'Add an observable detail here.',quote:'Use an exact quote when it matters.',staff:'What did staff actually do?',response:'What happened after staff responded?',outcome:'What changed, continued, or needs handed off?'};
   let current=0,sceneIndex=0,sceneComplete=false,placements={};
   const shuffle=a=>{const x=[...a];for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]]}return x};
+  const escape=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+
+  function trashLesson(text){
+    const t=text.toLowerCase();
+    if(t.includes('disrespectful'))return['LABEL ≠ BEHAVIOR','“Disrespectful” is a label. Two staff may mean completely different things by it.','Replace the label with the raised voice, movement, or exact words you observed.'];
+    if(t.includes('start drama')||t.includes('for attention')||t.includes('trying to upset'))return['MOTIVE ≠ FACT','This tells the reader why you think the person acted, but intent was not directly observable.','Document the behavior and quote. If the person explains their reason, document their words.'];
+    if(t.includes('handled')||t.includes('successfully de-escalated')||t.includes('everything correctly'))return['EVALUATION ≠ INTERVENTION','This grades staff performance but hides the actual intervention. Another reader cannot tell what staff did.','Name the action: increased distance, remained present, checked for injury, offered space, or followed the individualized plan.'];
+    if(t.includes('attacked'))return['LOADED WORD','“Attacked” adds interpretation and can make the event sound broader than what was observed.','Describe the physical action: shoved with open hands, threw an item, struck, kicked, etc.'];
+    if(t.includes('out of control')||t.includes('weird'))return['TOO VAGUE','This describes your impression, not the observable behavior. It gives the next reader nothing concrete to picture.','Use what you saw or heard: pacing, shouting, repeated waking, speech changes, distance, or exact actions.'];
+    if(t.includes('clumsy'))return['CHARACTER JUDGMENT','A fall is an event; “clumsy” turns it into a trait about the person.','Document the fall, location, client report, assessment, and what happened afterward.'];
+    if(t.includes('not paying attention'))return['CAUSE WITHOUT EVIDENCE','You may not know why the fall happened. This turns a guess into a cause.','Document what was observed and anything the person reported about the cause.'];
+    if(t.includes('no big deal'))return['MINIMIZES THE EVENT','This removes the information a reviewer needs to understand risk and outcome.','Document the assessment: pain reported or denied, injury observed or not observed, mobility, and follow-up.'];
+    if(t.includes('does not respect'))return['CHARACTER STATEMENT','This makes a global statement about the person instead of documenting one event.','Describe what happened to the item and the person’s words or later problem-solving.'];
+    if(t.includes('learned their lesson')||t.includes('knew better'))return['MIND-READING','We cannot document what someone learned, knew, or understood unless they demonstrate or state it.','Document what the person actually said, chose, returned, or identified for next time.'];
+    if(t.includes('stole'))return['LEGAL/INTENT LABEL','“Stole” may imply intent that was not established in the scene.','Describe that the person took another person’s item without permission and what happened next.'];
+    if(t.includes('bad seizure'))return['VAGUE SEVERITY','“Bad” does not tell a reviewer what was observed or how long it lasted.','Use observable medical details: duration, position, responsiveness, client report, staff action, and required notifications.'];
+    if(t.includes('fine after'))return['“FINE” HIDES DATA','“Fine” compresses several important observations into one vague word.','Say whether the person was responsive, what they reported, what staff observed, and what follow-up occurred.'];
+    if(t.includes('attention-seeking'))return['MOTIVE ≠ FACT','This labels the purpose of a behavior without evidence and can bias the next staff response.','Document the behavior, exact statement, staff safety response, and person’s response.'];
+    if(t.includes('was suicidal'))return['CONCLUSION TOO SOON','One statement or self-harm behavior does not automatically establish the full level of suicide risk.','Preserve the exact statement and document the required safety questions, responses, and individualized safety process.'];
+    if(t.includes('safe because')||t.includes('calmed down'))return['CALM ≠ SAFE','A quieter appearance does not by itself establish safety or resolve risk.','Document the safety assessment/process, the person’s answers, current support needs, and handoff.'];
+    if(t.includes('kept staff awake'))return['STAFF-CENTERED JUDGMENT','This frames the person as a burden and assumes the waking was unnecessary.','Document the waking times, behavior, staff check-ins, person response, and change from baseline.'];
+    if(t.includes('nothing important happened'))return['DISMISSES CHANGE','A person returning to bed does not erase a meaningful change from their usual pattern.','Document the pattern and why it mattered for the next shift.'];
+    return['NOT A FACT YET','This wording adds judgment, motive, or a conclusion that was not directly established.','Replace it with what you saw, heard, did, or what the person directly reported.'];
+  }
+
+  function omitLesson(text){
+    const t=text.toLowerCase();
+    if(t.includes('television')||t.includes('blanket')||t.includes('laundry basket')||t.includes('hallway light')||t.includes('dinner'))return['TRUE ≠ RELEVANT','This may be completely accurate, but it does not explain the incident, staff response, outcome, or handoff.','Leave it out unless it directly affected the event.'];
+    if(t.includes('socks'))return['CONTEXT NEEDS A REASON','Socks could matter in some falls, but this case gives no evidence that footwear contributed.','Include it only when it helps explain the event or is required by the incident process.'];
+    if(t.includes('before')||t.includes('earlier'))return['BACKGROUND CAN BECOME CLUTTER','A true detail from earlier in the shift is not automatically useful to this event.','Keep background only when it changes how the reader understands what happened.'];
+    return['TRUE, BUT DOES IT HELP?','Documentation is not a transcript of the entire shift. Extra facts can bury the important facts.','Keep details that explain the event, intervention, response, outcome, or necessary follow-up.'];
+  }
+
+  function noteLesson(kind){
+    return {
+      observed:['ANCHOR THE EVENT','A specific time, place, and observable action lets someone who was not there picture what actually happened.'],
+      quote:['USE THE PERSON’S WORDS','An exact quote can preserve meaning that labels like “upset,” “aggressive,” or “suicidal” may distort.'],
+      staff:['SHOW THE INTERVENTION','“Supported,” “redirected,” or “de-escalated” are incomplete unless the note says what staff actually did.'],
+      response:['INTERVENTION → RESPONSE','The note should show what happened after staff acted. That is how the next reader knows whether support was accepted, declined, or changed anything.'],
+      outcome:['CLOSE THE LOOP','Do not end the note at the peak of the incident. Include what changed, continued, was reported, or still needs follow-up.']
+    }[kind]||['USEFUL DETAIL','This detail helps reconstruct the event.'];
+  }
 
   function renderCases(){
     const list=$('#caseList');
@@ -41,7 +83,7 @@
 
   function renderEvidence(){
     const tray=$('#evidenceTray');
-    tray.innerHTML=shuffle(cases[current].items.map((it,i)=>({it,i}))).map(({it,i})=>`<article class="evidence-card" draggable="true" data-card="${i}" tabindex="0"><p>${it[0]}</p><small>Choose where this belongs.</small><div class="tap-actions"><button type="button" data-action="observed">+ happened</button><button type="button" data-action="quote">+ words</button><button type="button" data-action="staff">+ staff</button><button type="button" data-action="response">+ response</button><button type="button" data-action="outcome">+ follow-through</button><button type="button" data-action="trash">🗑 trash</button><button type="button" data-action="omit">📎 leave out</button></div></article>`).join('');
+    tray.innerHTML=shuffle(cases[current].items.map((it,i)=>({it,i}))).map(({it,i})=>`<article class="evidence-card" draggable="true" data-card="${i}" tabindex="0"><p>${it[0]}</p><small>Where does this belong?</small><div class="tap-actions"><button type="button" data-action="observed">+ happened</button><button type="button" data-action="quote">+ words</button><button type="button" data-action="staff">+ staff</button><button type="button" data-action="response">+ response</button><button type="button" data-action="outcome">+ follow-through</button><button type="button" data-action="trash">🗑 not documentation</button><button type="button" data-action="omit">📎 leave out</button></div></article>`).join('');
     tray.querySelectorAll('.evidence-card').forEach(card=>{
       const id=Number(card.dataset.card);
       card.addEventListener('dragstart',e=>{card.classList.add('dragging');e.dataTransfer.setData('text/plain',String(id));e.dataTransfer.effectAllowed='move'});
@@ -53,24 +95,56 @@
   }
 
   function setupDrops(){document.querySelectorAll('[data-drop]').forEach(zone=>{zone.addEventListener('dragover',e=>{e.preventDefault();zone.classList.add('dragover')});zone.addEventListener('dragleave',()=>zone.classList.remove('dragover'));zone.addEventListener('drop',e=>{e.preventDefault();zone.classList.remove('dragover');const id=Number(e.dataTransfer.getData('text/plain'));if(Number.isInteger(id))place(id,zone.dataset.drop)})})}
-  function place(id,target){placements[id]=target;$('#draftOutput').hidden=true;const expected=cases[current].items[id][2];if(target==='trash')$('#caseFeedback').textContent=expected==='trash'?'🗑️ Sent to NOT DOCUMENTATION.':'🧐 You sent a potentially useful fact to the trash. Review will challenge that.';else if(target==='omit')$('#caseFeedback').textContent=expected==='omit'?'📎 Left out. True does not always mean useful.':'🧐 You left something out that may matter.';else $('#caseFeedback').textContent=`✍️ Added to ${labels[target]}.`;renderSlots();paintCards();updateCounts()}
+
+  function place(id,target){
+    placements[id]=target;$('#draftOutput').hidden=true;
+    const item=cases[current].items[id],expected=item[2];
+    if(target==='trash'){
+      const [tag,why]=trashLesson(item[0]);
+      $('#caseFeedback').innerHTML=expected==='trash'?`<b>🗑️ ${tag}</b><br>${why}`:`<b>🧐 HOLD UP.</b><br>This may be a useful fact. You can keep it here for now, but the reviewer will ask you to defend that choice.`;
+    }else if(target==='omit'){
+      const [tag,why]=omitLesson(item[0]);
+      $('#caseFeedback').innerHTML=expected==='omit'?`<b>📎 ${tag}</b><br>${why}`:`<b>🧐 DOES THE NOTE STILL MAKE SENSE?</b><br>You left out a detail that may help reconstruct the event.`;
+    }else{
+      const [tag,why]=noteLesson(target);
+      $('#caseFeedback').innerHTML=`<b>✍️ ${tag}</b><br>${why}`;
+    }
+    renderSlots();paintCards();updateCounts();
+  }
+
   function renderSlots(){Object.entries(slotIds).forEach(([kind,id])=>{const el=$('#'+id),vals=Object.entries(placements).filter(([,p])=>p===kind).map(([i])=>cases[current].items[Number(i)][0]),wrap=el.closest('.note-slot');if(vals.length){el.innerHTML=vals.map(v=>`<div class="slot-piece">${v}</div>`).join('');wrap.classList.add('filled')}else{el.textContent=prompts[kind];wrap.classList.remove('filled')}})}
   function paintCards(){document.querySelectorAll('.evidence-card').forEach(card=>{card.classList.remove('used','trashed','omitted');const p=placements[Number(card.dataset.card)];if(p&&p!=='trash'&&p!=='omit')card.classList.add('used');if(p==='trash')card.classList.add('trashed');if(p==='omit')card.classList.add('omitted')})}
   function updateCounts(){const vals=Object.values(placements);$('#trashCount').textContent=vals.filter(x=>x==='trash').length;$('#omitCount').textContent=vals.filter(x=>x==='omit').length}
 
+  function makeIssue(it,i,actual){
+    const expected=it[2];
+    if(expected==='note'){
+      if(!actual){const [tag,why]=noteLesson(it[1]);return{tag:'MISSING PIECE',line:it[0],why,tryInstead:`Add this under ${labels[it[1]]}.`,fix:it[1],i}}
+      if(actual==='trash'||actual==='omit'){const [tag,why]=noteLesson(it[1]);return{tag:'YOU DROPPED A USEFUL DETAIL',line:it[0],why,tryInstead:`Move it to ${labels[it[1]]}.`,fix:it[1],i}}
+      if(actual!==it[1]){const [tag,why]=noteLesson(it[1]);return{tag:'RIGHT DETAIL · WRONG HOME',line:it[0],why,tryInstead:`Move this from ${labels[actual]} to ${labels[it[1]]}.`,fix:it[1],i}}
+    }
+    if(expected==='trash'&&actual&&actual!=='trash'){const [tag,why,alt]=trashLesson(it[0]);return{tag,line:it[0],why,tryInstead:alt,fix:'trash',i}}
+    if(expected==='omit'&&actual&&actual!=='omit'){const [tag,why,alt]=omitLesson(it[0]);return{tag,line:it[0],why,tryInstead:alt,fix:'omit',i}}
+    return null;
+  }
+
   function review(){
-    const c=cases[current],problems=[];
-    c.items.forEach((it,i)=>{const expected=it[2],actual=placements[i];if(expected==='note'){if(!actual)problems.push(`Missing a useful detail: “${it[0]}”`);else if(actual==='trash'||actual==='omit')problems.push(`You ${actual==='trash'?'trashed':'left out'} a detail that likely belongs in the note.`);else if(actual!==it[1])problems.push(`“${it[0]}” may belong under ${labels[it[1]]}, not ${labels[actual]}.`)}if(expected==='trash'&&actual&&actual!=='trash')problems.push(`“${it[0]}” is judgment, motive, or an unsupported conclusion.`);if(expected==='omit'&&actual&&actual!=='omit')problems.push(`“${it[0]}” is true, but probably does not help explain this moment.`)});
+    const c=cases[current],issues=[];
+    c.items.forEach((it,i)=>{const issue=makeIssue(it,i,placements[i]);if(issue)issues.push(issue)});
     const order=['observed','quote','staff','response','outcome'];
     const text=order.flatMap(kind=>Object.entries(placements).filter(([,p])=>p===kind).map(([i])=>c.items[Number(i)][0])).join(' ');
     $('#draftText').textContent=text||'No documentation has been built yet.';$('#draftOutput').hidden=false;
-    if(!text)$('#reviewText').innerHTML='<b>🔎 REVIEWER WOULD QUESTION:</b><br>There is nothing to review yet.';
-    else if(!problems.length)$('#reviewText').innerHTML='<b>✅ REVIEWER CHECK:</b><br>This record keeps the observable facts, staff action, person response, and follow-through without adding assumptions.';
-    else $('#reviewText').innerHTML='<b>🔎 REVIEWER WOULD QUESTION:</b><br>'+problems.slice(0,5).map(x=>'• '+x).join('<br>')+(problems.length>5?'<br>• …and a few more.':'');
-    $('#caseFeedback').textContent=`🔎 Review found ${problems.length} thing${problems.length===1?'':'s'} worth another look.`;$('#draftOutput').scrollIntoView({behavior:'smooth',block:'nearest'});
+    if(!text){$('#reviewText').innerHTML='<b>🔎 REVIEWER WOULD QUESTION:</b><div class="coach-empty">There is nothing to review yet. Build enough of the record that another person could reconstruct the moment.</div>'}
+    else if(!issues.length){$('#reviewText').innerHTML='<b>✅ REVIEWER CHECK:</b><div class="coach-success"><strong>THIS ONE HOLDS UP.</strong><span>Observable event ✓</span><span>Staff action ✓</span><span>Person response ✓</span><span>Follow-through ✓</span><small>You documented the moment without turning assumptions into facts.</small></div>'}
+    else{
+      $('#reviewText').innerHTML='<b>🔎 REVIEWER WOULD QUESTION:</b><p class="review-intro">Not just <em>what</em> is off — here is <em>why</em> it matters.</p>'+issues.slice(0,6).map(issue=>`<article class="coach-card"><span class="coach-tag">${escape(issue.tag)}</span><q>${escape(issue.line)}</q><div class="coach-why"><strong>WHY?</strong>${escape(issue.why)}</div><div class="coach-try"><strong>TRY THIS:</strong>${escape(issue.tryInstead)}</div><button type="button" class="coach-fix" data-fix="${escape(issue.fix)}" data-i="${issue.i}">FIX THIS ↗</button></article>`).join('')+(issues.length>6?`<p class="more-issues">+ ${issues.length-6} more item${issues.length-6===1?'':'s'} to revisit.</p>`:'');
+      $('#reviewText').querySelectorAll('.coach-fix').forEach(btn=>btn.addEventListener('click',()=>{place(Number(btn.dataset.i),btn.dataset.fix);review()}));
+    }
+    $('#caseFeedback').innerHTML=issues.length?`<b>🔎 CASE COACH:</b><br>${issues.length} thing${issues.length===1?'':'s'} worth revisiting. Use the red-pen cards below to repair the note.`:'<b>✅ CASE COACH:</b><br>Your record tells the story without making the reader guess.';
+    $('#draftOutput').scrollIntoView({behavior:'smooth',block:'nearest'});
   }
 
-  function resetRecord(){placements={};$('#draftOutput').hidden=true;$('#reviewText').innerHTML='';$('#draftText').textContent='';$('#caseFeedback').textContent='Build the record, then send it to review.';renderSlots();updateCounts();renderEvidence()}
+  function resetRecord(){placements={};$('#draftOutput').hidden=true;$('#reviewText').innerHTML='';$('#draftText').textContent='';$('#caseFeedback').innerHTML='<b>YOUR TURN.</b><br>Build the record, then send it to review.';renderSlots();updateCounts();renderEvidence()}
   function resetCase(){sceneIndex=0;sceneComplete=false;placements={};$('#workspace').hidden=true;$('#draftOutput').hidden=true;$('#reviewText').innerHTML='';$('#draftText').textContent='';$('#nextMoment').disabled=false;$('#sceneRecap').open=false}
   function renderCase(){const c=cases[current];$('#caseBadge').textContent=`CASE FILE ${String(current+1).padStart(2,'0')}`;$('#caseTitle').textContent=c.title;$('#caseSetup').textContent=c.setup;renderCases();renderScene()}
 
