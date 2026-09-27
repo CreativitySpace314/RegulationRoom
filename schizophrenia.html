@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Patrick+Hand&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css?v=15">
-<link rel="stylesheet" href="schizophrenia.css?v=7">
+<link rel="stylesheet" href="schizophrenia.css?v=11">
 <link rel="stylesheet" href="schizophrenia-polish.css?v=1">
 </head>
 <body>
@@ -54,16 +54,20 @@
 <div class="simulation-workspace">
 <div class="video-side">
 <div class="youtube-wrap">
-<iframe id="simulationVideo" src="https://www.youtube.com/embed/NyUqhbPD2tc?start=33&rel=0" title="Auditory hallucination simulation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe id="simulationVideo" src="https://www.youtube.com/embed/NyUqhbPD2tc?start=33&rel=0&controls=1&enablejsapi=1&playsinline=1" title="Auditory hallucination simulation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
-<div class="video-note"><b>PRESS PLAY.</b> Keep the video playing while you move through the tasks. The website will not control or restart the video for you.</div>
+<div class="player-actions">
+<button id="pauseVideo" type="button">Ⅱ pause video</button>
+<button id="resumeVideo" type="button">▶ resume video</button>
+</div>
+<div class="video-note"><b>PRESS PLAY.</b> Work through the activities while the simulation plays. Need to pause? Pause it. That is part of what you may notice about the amount of competing input—not a failure.</div>
 </div>
 
 <div class="task-side">
 <div class="task-progress" id="taskProgress"></div>
 <p class="marker-label" id="taskKicker">TASK 1</p>
-<h3 id="taskTitle">Read this and remember it.</h3>
-<p id="taskCopy">Do the task while the simulation continues playing.</p>
+<h3 id="taskTitle">Complete the task in front of you.</h3>
+<p id="taskCopy">Use the information on screen while the simulation continues.</p>
 <div id="taskBody" class="task-body"></div>
 <div id="taskFeedback" class="task-feedback" hidden></div>
 <button id="taskNext" class="experience-launch">next task →</button>
@@ -128,6 +132,6 @@
 
 <footer>The Regulation Room · Interactive skill practice for people who support people.</footer>
 <script src="schizophrenia.js?v=4"></script>
-<script src="schizophrenia-audio.js?v=13"></script>
+<script src="schizophrenia-audio.js?v=14"></script>
 </body>
 </html>
