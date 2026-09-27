@@ -36,81 +36,61 @@
 </section>
 
 <section class="immersion-intro" id="audioLab">
-<p class="stage-kicker">OPTIONAL · IMMERSIVE ATTENTION EXPERIENCE</p>
-<h2>Can you still think <em>while something else keeps competing for your attention?</em></h2>
-<p class="intro-copy">This is not a schizophrenia simulator. It is a designed attention exercise using recorded voices, uncertainty, ordinary tasks and changing sensory load. The goal is not to say “now I know what schizophrenia feels like.” The goal is to notice what happens to attention, memory, trust and communication when ordinary tasks have to compete with intrusive input.</p>
+<p class="stage-kicker">OPTIONAL · AUDITORY HALLUCINATION EXPERIENCE</p>
+<h2>Keep the simulation playing. <em>Try to do ordinary things at the same time.</em></h2>
+<p class="intro-copy">This is not a “this is what schizophrenia feels like” exercise. People experience schizophrenia and psychosis differently, and not everyone hears voices. This activity uses externally produced simulations to help you notice what competing auditory experiences can do to attention, memory and communication.</p>
 
 <div class="before-grid">
-<article><b>🎧 Headphones recommended</b><span>Use a comfortable volume. You can mute or stop at any time.</span></article>
-<article><b>↗ You stay in control</b><span>Skip it entirely, lower the volume, mute the voices or stop the experience whenever you want.</span></article>
-<article><b>⚠️ Know yourself</b><span>If simulated voices, paranoia-themed content or sensory distortion could be distressing, skip this activity.</span></article>
+<article><b>🎧 Headphones recommended</b><span>Use a comfortable volume. You control the video and can pause or stop at any time.</span></article>
+<article><b>↗ You stay in control</b><span>Skip the activity if it is not a good fit for you today. Stopping is always okay.</span></article>
+<article><b>⚠️ Know yourself</b><span>If simulated voices, threatening language or paranoia-themed content could be distressing, skip this experience.</span></article>
 </div>
 
-<div class="start-card">
-<div>
-<span class="marker-label">ONE ORDINARY MORNING</span>
-<h3>Nothing dramatic is about to happen.</h3>
-<p>You have somewhere to be. You need to remember a few things, read information, make decisions and leave on time.</p>
-</div>
-<div class="start-actions">
-<button id="launchExperience" class="experience-launch">🎧 enter the experience</button>
-<button id="skipExperience" class="experience-skip">I’ll skip this</button>
-</div>
-</div>
-</section>
-
-<section class="immersive-shell" id="immersiveShell" hidden aria-live="polite">
-<div class="immersive-topbar">
-<div><span>THE REGULATION ROOM</span><b>ONE ORDINARY MORNING</b></div>
-<div class="experience-controls">
-<button id="muteVoices" type="button">🔊 voices on</button>
-<label for="voiceVolume"><span>volume</span><input id="voiceVolume" type="range" min="0" max="100" value="78"><output id="voiceVolumeValue">78%</output></label>
-<button id="stopAudio" type="button">■ stop experience</button>
-</div>
+<div class="video-picker">
+<button class="video-choice active" data-video="one"><b>EXPERIENCE 1</b><span>Auditory hallucination simulation</span></button>
+<button class="video-choice" data-video="two"><b>EXPERIENCE 2</b><span>Training video · starts at 10:19</span></button>
 </div>
 
-<div class="experience-progress" id="morningTrack" aria-label="experience progress"></div>
+<div class="simulation-workspace">
+<div class="video-side">
+<div class="youtube-wrap">
+<iframe id="simulationVideo" src="https://www.youtube.com/embed/NyUqhbPD2tc?rel=0" title="Auditory hallucination simulation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+<div class="video-note"><b>PRESS PLAY.</b> Keep the video playing while you move through the tasks. The website will not control or restart the video for you.</div>
+</div>
 
-<div class="immersive-world" id="scenePanel">
-<div class="ambient-layer" aria-hidden="true"><span class="shadow-one"></span><span class="shadow-two"></span><span class="false-alert" id="falseAlert">1 new message</span></div>
-<div class="world-card">
-<p class="scene-place" id="scenePlace"></p>
-<div class="scene-count" id="sceneCount"></div>
-<h3 id="sceneTitle"></h3>
-<p class="scene-copy" id="sceneCopy"></p>
-<div class="scene-task" id="sceneTask"></div>
-<div class="scene-feedback" id="sceneFeedback" hidden></div>
-<div class="scene-actions">
-<button id="sceneNext" class="audio-primary">continue →</button>
+<div class="task-side">
+<div class="task-progress" id="taskProgress"></div>
+<p class="marker-label" id="taskKicker">TASK 1</p>
+<h3 id="taskTitle">Read this and remember it.</h3>
+<p id="taskCopy">Do the task while the simulation continues playing.</p>
+<div id="taskBody" class="task-body"></div>
+<div id="taskFeedback" class="task-feedback" hidden></div>
+<button id="taskNext" class="experience-launch">next task →</button>
+<button id="finishExperience" class="experience-skip" hidden>stop tasks + reflect →</button>
 </div>
-<p class="audio-status" id="audioStatus"></p>
-</div>
-<div class="cognitive-load">
-<span>competing input</span>
-<div class="meter-track"><i id="voiceMeter"></i></div>
-</div>
-<div class="timer-mini"><span>elapsed</span><strong id="audioTimer">0:00</strong></div>
 </div>
 </section>
 
 <section class="silence-screen" id="silenceScreen" hidden>
 <div class="silence-word">...</div>
-<p>Notice the quiet.</p>
+<p>Pause the video.</p>
+<strong>Notice the quiet before you continue.</strong>
 <button id="continueDebrief">continue when you’re ready →</button>
 </section>
 
 <section class="after-audio" id="afterAudio" hidden>
 <p class="stage-kicker">AFTER THE NOISE</p>
-<h2>What changed when the competing input stopped?</h2>
-<p>Select anything you noticed. There is no score.</p>
+<h2>What did you notice while you were trying to function?</h2>
+<p>Select anything that fit. There is no score and there is no “right” reaction.</p>
 <div class="reflection-grid">
 <button data-reflect="reread">I reread things</button>
-<button data-reflect="memory">I forgot instructions</button>
+<button data-reflect="memory">I forgot information</button>
 <button data-reflect="irritated">I got irritated</button>
 <button data-reflect="rushed">I rushed to finish</button>
-<button data-reflect="suspicious">I became more suspicious</button>
-<button data-reflect="voices">I followed the voices</button>
-<button data-reflect="stopped">I wanted to stop the task</button>
+<button data-reflect="distracted">I kept losing my place</button>
+<button data-reflect="voices">I followed the voices instead</button>
+<button data-reflect="stopped">I wanted the task to stop</button>
 <button data-reflect="fine">It was fairly easy for me</button>
 </div>
 <div class="reflection-result" id="reflectionResult">Choose what fit your experience.</div>
@@ -118,15 +98,15 @@
 <div class="role-switch">
 <span class="marker-label">NOW SWITCH ROLES.</span>
 <h3>You’re the support person now.</h3>
-<p>You meet the same person after they have been trying to manage that morning.</p>
+<p>Imagine the person has been trying to manage ordinary tasks while competing experiences were pulling at their attention.</p>
 <div class="support-scene">
 <div class="person-line"><span>PERSON SUPPORTED</span><blockquote>“I DON’T KNOW. STOP ASKING ME.”</blockquote></div>
-<div class="support-context">They are looking toward the hallway, rubbing their hands together and have asked twice what time they need to leave.</div>
+<div class="support-context">They have asked twice what time they need to leave, keep looking toward the hallway, and seem to lose track when you give more than one direction.</div>
 <div class="response-list" id="supportResponses">
 <button data-support="repeat">“I already told you twice. Your appointment is at 10:15.”</button>
 <button data-support="write">“There’s a lot happening right now. Want me to write the time down?”</button>
 <button data-support="attention">“You need to pay attention because we’re going to be late.”</button>
-<button data-support="voices">“What are the voices saying?”</button>
+<button data-support="voices">“Tell me exactly what the voices are saying.”</button>
 </div>
 <div class="reaction" id="supportFeedback" hidden></div>
 </div>
@@ -134,22 +114,20 @@
 
 <div class="takeaway">
 <p class="stage-kicker">THE TAKEAWAY</p>
-<h3>You experienced a designed simulation for a few minutes. You did not experience schizophrenia.</h3>
-<p>Schizophrenia and psychosis vary greatly from person to person. Some people hear voices and some do not. Hallucinations may be neutral, supportive, distressing, familiar, unfamiliar, intermittent or persistent.</p>
-<p>The point was to notice what competing experiences can do to <strong>attention, memory, communication and trust</strong>—and how support can reduce or increase the load.</p>
-<div class="support-tools"><span>fewer words</span><span>one step</span><span>more processing time</span><span>transparency</span><span>reduce extra stimulation</span><span>respond to emotion, not argument</span></div>
+<h3>You listened to a simulation. You did not experience schizophrenia.</h3>
+<p>The point is not to leave thinking “now I know what it feels like.” The point is to notice how competing input can affect <strong>attention, working memory, communication, frustration and trust</strong>.</p>
+<div class="support-tools"><span>fewer words</span><span>one step at a time</span><span>processing time</span><span>reduce extra stimulation</span><span>write information down</span><span>respond to emotion without arguing</span></div>
 </div>
-<button id="resetAudio" class="small-action">↻ experience it again</button>
+<button id="resetAudio" class="small-action">↻ do the experience again</button>
 </section>
 
-<section class="skip-note" id="skipNote" hidden>
-<h3>Skipping is completely okay.</h3>
-<p>You can keep exploring the educational sections above. The immersive experience is optional and is not required to understand or support someone well.</p>
+<section class="source-note">
+<p><b>About the videos:</b> The embedded simulations are hosted on YouTube and remain under their original creators’ control. The Regulation Room adds the practice tasks and reflection around them.</p>
 </section>
 </main>
 
 <footer>The Regulation Room · Interactive skill practice for people who support people.</footer>
 <script src="schizophrenia.js?v=4"></script>
-<script src="schizophrenia-audio.js?v=9"></script>
+<script src="schizophrenia-audio.js?v=12"></script>
 </body>
 </html>
