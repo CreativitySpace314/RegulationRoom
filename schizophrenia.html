@@ -8,19 +8,21 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Patrick+Hand&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css?v=15">
-<link rel="stylesheet" href="schizophrenia.css?v=4">
+<link rel="stylesheet" href="schizophrenia.css?v=7">
 <link rel="stylesheet" href="schizophrenia-polish.css?v=1">
 </head>
 <body>
 <header class="topbar"><a class="brand" href="index.html"><span>THE</span><strong>REGULATION ROOM</strong></a><nav><a href="index.html">Home</a><a href="index.html#rooms">Practice Rooms</a><a href="learning.html">Know the Why</a><a href="suicide.html">Suicide Prevention</a></nav></header>
 <main class="shell">
 <a class="back" href="learning.html">← back to Know the Why</a>
+
 <section class="sch-hero">
 <p class="eyebrow">🧠 SCHIZOPHRENIA SPECTRUM · EXPLORE, NOTICE, RESPOND</p>
 <h1>Schizophrenia <em>Spectrum</em></h1>
-<p>Schizophrenia is more than psychosis. Perception, meaning, thinking, motivation, expression, sleep, medication experiences and daily functioning can all shift. This page is built to explore one piece at a time instead of turning a person into a checklist.</p>
+<p>Schizophrenia is more than psychosis. Perception, meaning, thinking, motivation, expression, sleep, medication experiences and daily functioning can all shift. Explore the person—not a checklist.</p>
 <div class="hero-note">A diagnosis is context, not identity. Notice the person first.</div>
 </section>
+
 <section class="experience">
 <div class="experience-head">
 <h2>Explore the spectrum one layer at a time.</h2>
@@ -32,51 +34,122 @@
 <aside class="side-rail" id="sideRail"></aside>
 </div>
 </section>
-<section class="audio-lab empathy-lab" id="audioLab">
-<div class="audio-head empathy-head">
-<p class="stage-kicker">OPTIONAL · EMPATHY EXPERIENCE</p>
-<h2><span>Empathy &gt; Sympathy.</span> Put on your headphones. Listen to understand, not respond.</h2>
-<p>Move through an ordinary morning while recorded voices continue underneath it. Some moments will be quieter. Some will press closer. Keep doing the everyday things while noticing what that asks of your attention.</p>
-<div class="experience-note"><b>Before you start:</b> This is one dramatized empathy exercise. Voice-hearing experiences vary widely from person to person and may be neutral, comforting, critical, frightening, commanding, or something else entirely. If simulated voices could be distressing for you, skip this activity. You control the volume and can mute or stop the voices at any time.</div>
+
+<section class="immersion-intro" id="audioLab">
+<p class="stage-kicker">OPTIONAL · IMMERSIVE ATTENTION EXPERIENCE</p>
+<h2>Can you still think <em>while something else keeps competing for your attention?</em></h2>
+<p class="intro-copy">This is not a schizophrenia simulator. It is a designed attention exercise using recorded voices, uncertainty, ordinary tasks and changing sensory load. The goal is not to say “now I know what schizophrenia feels like.” The goal is to notice what happens to attention, memory, trust and communication when ordinary tasks have to compete with intrusive input.</p>
+
+<div class="before-grid">
+<article><b>🎧 Headphones recommended</b><span>Use a comfortable volume. You can mute or stop at any time.</span></article>
+<article><b>↗ You stay in control</b><span>Skip it entirely, lower the volume, mute the voices or stop the experience whenever you want.</span></article>
+<article><b>⚠️ Know yourself</b><span>If simulated voices, paranoia-themed content or sensory distortion could be distressing, skip this activity.</span></article>
 </div>
-<div class="empathy-card">
-<div class="morning-track" id="morningTrack" aria-label="Morning routine progress">
-<span class="active">wake up</span><span>get ready</span><span>meds + breakfast</span><span>make a list</span><span>door / phone</span><span>leave</span>
+
+<div class="start-card">
+<div>
+<span class="marker-label">ONE ORDINARY MORNING</span>
+<h3>Nothing dramatic is about to happen.</h3>
+<p>You have somewhere to be. You need to remember a few things, read information, make decisions and leave on time.</p>
 </div>
-<div class="audio-tools" aria-label="Voice audio controls">
-<button type="button" id="muteVoices" class="voice-mute">🔊 voices on</button>
-<label class="voice-volume" for="voiceVolume"><span>voice volume</span><input id="voiceVolume" type="range" min="0" max="100" value="90" step="1"><output id="voiceVolumeValue" for="voiceVolume">90%</output></label>
-</div>
-<div class="scene-panel" id="scenePanel" aria-live="polite">
-<div class="scene-count" id="sceneCount">01 / 06</div>
-<p class="scene-place" id="scenePlace">BEDROOM · 7:12 AM</p>
-<h3 id="sceneTitle">You just woke up.</h3>
-<p class="scene-copy" id="sceneCopy">Nothing dramatic. Your phone buzzed. You need to get dressed and start the day.</p>
-<div class="scene-task" id="sceneTask"></div>
-<div class="scene-actions"><button id="sceneNext" class="audio-primary">start the morning →</button><button id="stopAudio" disabled>■ stop voices</button></div>
-<p class="audio-status" id="audioStatus">Headphones recommended. Set the voice volume where you want it, then start.</p>
-</div>
-<div class="voice-meter" aria-hidden="true"><span>whisper</span><div class="meter-track"><i id="voiceMeter"></i></div><span>closer</span></div>
-<div class="timer-mini"><span>experience time</span><strong id="audioTimer">0:00</strong></div>
-<div class="after-audio" id="afterAudio" hidden>
-<p class="stage-kicker">AFTER THE NOISE</p>
-<h3>Nothing you just did was complicated.</h3>
-<div class="reflection-grid">
-<button data-reflect="focus">I lost track of a task</button>
-<button data-reflect="irritated">I got irritated</button>
-<button data-reflect="rushed">I rushed just to finish</button>
-<button data-reflect="voices">I started listening to the voices</button>
-<button data-reflect="fine">I completed it pretty easily</button>
-</div>
-<div class="reflection-result" id="reflectionResult">Tap what you noticed.</div>
-<div class="audio-debrief"><b>This is the empathy piece.</b> The clothes, breakfast, medication reminder, grocery list, phone and door were ordinary. The extra work was filtering, deciding what deserved attention, remembering what you were doing, managing emotion and continuing anyway.<br><br><strong>So when someone seems distracted, slow, suspicious, irritated, stuck, or unable to start:</strong> curiosity is more useful than judgment. Fewer words, one step, time, transparency and a regulated support person may reduce what their brain has to carry.<br><br>This exercise is intentionally limited. It cannot tell you what psychosis “feels like,” and completing it easily does not mean a real person should be able to “just ignore” hallucinations.</div>
-<button id="resetAudio" class="small-action">↻ walk through it again</button>
+<div class="start-actions">
+<button id="launchExperience" class="experience-launch">🎧 enter the experience</button>
+<button id="skipExperience" class="experience-skip">I’ll skip this</button>
 </div>
 </div>
 </section>
+
+<section class="immersive-shell" id="immersiveShell" hidden aria-live="polite">
+<div class="immersive-topbar">
+<div><span>THE REGULATION ROOM</span><b>ONE ORDINARY MORNING</b></div>
+<div class="experience-controls">
+<button id="muteVoices" type="button">🔊 voices on</button>
+<label for="voiceVolume"><span>volume</span><input id="voiceVolume" type="range" min="0" max="100" value="78"><output id="voiceVolumeValue">78%</output></label>
+<button id="stopAudio" type="button">■ stop experience</button>
+</div>
+</div>
+
+<div class="experience-progress" id="morningTrack" aria-label="experience progress"></div>
+
+<div class="immersive-world" id="scenePanel">
+<div class="ambient-layer" aria-hidden="true"><span class="shadow-one"></span><span class="shadow-two"></span><span class="false-alert" id="falseAlert">1 new message</span></div>
+<div class="world-card">
+<p class="scene-place" id="scenePlace"></p>
+<div class="scene-count" id="sceneCount"></div>
+<h3 id="sceneTitle"></h3>
+<p class="scene-copy" id="sceneCopy"></p>
+<div class="scene-task" id="sceneTask"></div>
+<div class="scene-feedback" id="sceneFeedback" hidden></div>
+<div class="scene-actions">
+<button id="sceneNext" class="audio-primary">continue →</button>
+</div>
+<p class="audio-status" id="audioStatus"></p>
+</div>
+<div class="cognitive-load">
+<span>competing input</span>
+<div class="meter-track"><i id="voiceMeter"></i></div>
+</div>
+<div class="timer-mini"><span>elapsed</span><strong id="audioTimer">0:00</strong></div>
+</div>
+</section>
+
+<section class="silence-screen" id="silenceScreen" hidden>
+<div class="silence-word">...</div>
+<p>Notice the quiet.</p>
+<button id="continueDebrief">continue when you’re ready →</button>
+</section>
+
+<section class="after-audio" id="afterAudio" hidden>
+<p class="stage-kicker">AFTER THE NOISE</p>
+<h2>What changed when the competing input stopped?</h2>
+<p>Select anything you noticed. There is no score.</p>
+<div class="reflection-grid">
+<button data-reflect="reread">I reread things</button>
+<button data-reflect="memory">I forgot instructions</button>
+<button data-reflect="irritated">I got irritated</button>
+<button data-reflect="rushed">I rushed to finish</button>
+<button data-reflect="suspicious">I became more suspicious</button>
+<button data-reflect="voices">I followed the voices</button>
+<button data-reflect="stopped">I wanted to stop the task</button>
+<button data-reflect="fine">It was fairly easy for me</button>
+</div>
+<div class="reflection-result" id="reflectionResult">Choose what fit your experience.</div>
+
+<div class="role-switch">
+<span class="marker-label">NOW SWITCH ROLES.</span>
+<h3>You’re the support person now.</h3>
+<p>You meet the same person after they have been trying to manage that morning.</p>
+<div class="support-scene">
+<div class="person-line"><span>PERSON SUPPORTED</span><blockquote>“I DON’T KNOW. STOP ASKING ME.”</blockquote></div>
+<div class="support-context">They are looking toward the hallway, rubbing their hands together and have asked twice what time they need to leave.</div>
+<div class="response-list" id="supportResponses">
+<button data-support="repeat">“I already told you twice. Your appointment is at 10:15.”</button>
+<button data-support="write">“There’s a lot happening right now. Want me to write the time down?”</button>
+<button data-support="attention">“You need to pay attention because we’re going to be late.”</button>
+<button data-support="voices">“What are the voices saying?”</button>
+</div>
+<div class="reaction" id="supportFeedback" hidden></div>
+</div>
+</div>
+
+<div class="takeaway">
+<p class="stage-kicker">THE TAKEAWAY</p>
+<h3>You experienced a designed simulation for a few minutes. You did not experience schizophrenia.</h3>
+<p>Schizophrenia and psychosis vary greatly from person to person. Some people hear voices and some do not. Hallucinations may be neutral, supportive, distressing, familiar, unfamiliar, intermittent or persistent.</p>
+<p>The point was to notice what competing experiences can do to <strong>attention, memory, communication and trust</strong>—and how support can reduce or increase the load.</p>
+<div class="support-tools"><span>fewer words</span><span>one step</span><span>more processing time</span><span>transparency</span><span>reduce extra stimulation</span><span>respond to emotion, not argument</span></div>
+</div>
+<button id="resetAudio" class="small-action">↻ experience it again</button>
+</section>
+
+<section class="skip-note" id="skipNote" hidden>
+<h3>Skipping is completely okay.</h3>
+<p>You can keep exploring the educational sections above. The immersive experience is optional and is not required to understand or support someone well.</p>
+</section>
 </main>
+
 <footer>The Regulation Room · Interactive skill practice for people who support people.</footer>
 <script src="schizophrenia.js?v=4"></script>
-<script src="schizophrenia-audio.js?v=6"></script>
+<script src="schizophrenia-audio.js?v=9"></script>
 </body>
 </html>
