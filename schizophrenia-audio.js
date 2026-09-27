@@ -4,7 +4,7 @@ const video=$('#simulationVideo');
 if(!video)return;
 
 const videos={
- one:'https://www.youtube.com/embed/NyUqhbPD2tc?start=33&rel=0&controls=1&enablejsapi=1&playsinline=1',
+ one:'https://www.youtube.com/embed/NyUqhbPD2tc?start=100&rel=0&controls=1&enablejsapi=1&playsinline=1',
  two:'https://www.youtube.com/embed/HpF3gNifrGY?start=619&rel=0&controls=1&enablejsapi=1&playsinline=1'
 };
 
@@ -70,9 +70,13 @@ function updateNext(){
  if(done){feedback.hidden=false;feedback.textContent='Task complete. You can move on when you’re ready.'}
 }
 function wireTask(){
- body.querySelectorAll('input,select,textarea').forEach(el=>{
+ body.querySelectorAll('input,textarea').forEach(el=>{
+   el.setAttribute('autocomplete','off');
+   el.addEventListener('paste',e=>{e.preventDefault();feedback.hidden=false;feedback.textContent='Type this one in yourself — the point is practicing while the audio competes for your attention.';});
+   el.addEventListener('drop',e=>e.preventDefault());
    el.addEventListener('input',updateNext);el.addEventListener('change',updateNext);
  });
+ body.querySelectorAll('select').forEach(el=>el.addEventListener('change',updateNext));
  body.querySelectorAll('[data-required-multi] button').forEach(btn=>btn.onclick=()=>{btn.classList.toggle('selected');updateNext()});
 }
 function renderTask(){
