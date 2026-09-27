@@ -10,34 +10,34 @@ const videos={
 
 const tasks=[
 {
- title:'Fill out the appointment form.',
- copy:'The information you need is right here. Keep the simulation playing if you can.',
- body:`<div class="task-scene"><h4>APPOINTMENT REMINDER</h4><p><b>Jordan Ellis</b></p><p>Tuesday · 10:15 AM</p><p>Riverside Clinic · Suite 204</p><p>Bring photo ID + insurance card.</p></div><div class="task-form"><label>Appointment time<input type="text" placeholder="enter the time"></label><label>Suite<input type="text" placeholder="enter suite number"></label><label>What do you need to bring?<input type="text" placeholder="enter the items"></label></div>`
+ title:'Complete the appointment form.',
+ copy:'Pull the information from the reminder and fill in every field while the simulation plays.',
+ body:`<div class="task-scene"><h4>APPOINTMENT REMINDER</h4><p><b>Jordan Ellis</b></p><p>Tuesday · 10:15 AM</p><p>Riverside Clinic · Suite 204</p><p>Bring photo ID + insurance card.</p></div><div class="task-form" data-required-form><label>Name<input data-required type="text" placeholder="full name"></label><label>Day<input data-required type="text" placeholder="day"></label><label>Appointment time<input data-required type="text" placeholder="time"></label><label>Location<input data-required type="text" placeholder="clinic name"></label><label>Suite<input data-required type="text" placeholder="suite number"></label><label>Items to bring<input data-required type="text" placeholder="what do you need?"></label></div>`
 },
 {
- title:'Follow the directions in order.',
- copy:'Do each step while the simulation continues. You can look back at the directions.',
- body:`<div class="instruction-strip"><span>1. Type <b>4821</b> in the box.</span><span>2. Select <b>Tuesday</b>.</span><span>3. Check “I have my ID.”</span></div><div class="task-form"><label>Code<input type="text" maxlength="4"></label><label>Day<select><option>Choose…</option><option>Monday</option><option>Tuesday</option><option>Wednesday</option></select></label><label><input type="checkbox" style="width:auto;margin-right:8px">I have my ID.</label></div>`
+ title:'Follow the written directions.',
+ copy:'Complete each instruction in order. Next stays locked until all three are done.',
+ body:`<div class="instruction-strip"><span>1. Enter <b>4821</b>.</span><span>2. Choose <b>Tuesday</b>.</span><span>3. Confirm you have your ID.</span></div><div class="task-form" data-required-form><label>Code<input data-required type="text" maxlength="4" placeholder="4-digit code"></label><label>Day<select data-required><option value="">Choose…</option><option>Monday</option><option>Tuesday</option><option>Wednesday</option></select></label><label><input data-required-check type="checkbox" style="width:auto;margin-right:8px">I have my ID.</label></div>`
 },
 {
- title:'Figure out what this message needs from you.',
- copy:'Someone has sent you an ordinary text. Read it and decide what you actually need to do.',
- body:`<div class="message-bubble"><b>Sam</b>“Hey — the ride will be there at 9:35 instead of 9:50. Please be by the front entrance. You don’t need to call me back unless that won’t work.”</div><div class="task-options"><button data-answer="good">Be at the front entrance by 9:35</button><button data-answer="close">Call Sam at 9:35</button><button data-answer="close">Wait inside until 9:50</button><button data-answer="close">Go to the back entrance at 9:35</button></div>`
+ title:'Respond to the message.',
+ copy:'Read the text and fill out the action form.',
+ body:`<div class="message-bubble"><b>Sam</b>“Hey — the ride will be there at 9:35 instead of 9:50. Please be by the front entrance. You don’t need to call me back unless that won’t work.”</div><div class="task-form" data-required-form><label>New pickup time<input data-required type="text" placeholder="time"></label><label>Where should you wait?<input data-required type="text" placeholder="location"></label><label>Do you need to call Sam back?<select data-required><option value="">Choose…</option><option>No, unless the change will not work</option><option>Yes, always call back</option></select></label></div>`
 },
 {
- title:'Get ready to leave.',
- copy:'Choose the things you actually need based on the appointment reminder—not everything that could be useful.',
- body:`<div class="task-options two-col" data-multi><button data-item="id">Photo ID</button><button data-item="insurance">Insurance card</button><button data-item="book">Book</button><button data-item="charger">Phone charger</button><button data-item="snack">Snack</button><button data-item="mail">Mail</button></div><div class="task-feedback" style="display:block;margin-top:12px">Choose what the appointment specifically asked you to bring.</div>`
+ title:'Pack for the appointment.',
+ copy:'Select the items the reminder specifically told you to bring.',
+ body:`<div class="task-options two-col" data-required-multi data-needed="id,insurance"><button type="button" data-item="id">Photo ID</button><button type="button" data-item="insurance">Insurance card</button><button type="button" data-item="book">Book</button><button type="button" data-item="charger">Phone charger</button><button type="button" data-item="snack">Snack</button><button type="button" data-item="mail">Mail</button></div><div class="task-feedback" style="display:block;margin-top:12px">Choose the items the appointment actually asked for.</div>`
 },
 {
- title:'Someone asks you while you are still trying to leave.',
- copy:'Pick the response that feels closest to what you would actually say in the moment.',
- body:`<div class="person-line"><span>OTHER PERSON</span><blockquote style="font-size:27px">“Hey, before you go — what suite are you supposed to check in at?”</blockquote></div><div class="task-options"><button data-answer="good">Suite 204.</button><button data-answer="close">I think 240?</button><button data-answer="close">I don’t know. Stop asking me.</button><button data-answer="close">Wait, what?</button></div>`
+ title:'Answer while someone is talking to you.',
+ copy:'The simulation keeps playing. Type your answer instead of choosing from a list.',
+ body:`<div class="person-line"><span>OTHER PERSON</span><blockquote style="font-size:27px">“Before we go — what suite are you supposed to check in at?”</blockquote></div><div class="task-form" data-required-form><label>Your answer<input data-required type="text" placeholder="type what you would say"></label></div>`
 },
 {
- title:'Write down what you need to remember.',
- copy:'Use your own words. This is not graded.',
- body:`<div class="task-scene"><h4>BEFORE YOU WALK OUT</h4><p>Write yourself a quick note with the appointment time, where you are going, and what you need to bring.</p></div><div class="task-form"><textarea rows="6" placeholder="write the note you would leave yourself"></textarea></div>`
+ title:'Leave yourself a usable reminder.',
+ copy:'Write a note you could actually use later. Include the appointment time, location and what to bring.',
+ body:`<div class="task-form" data-required-form><label>Reminder note<textarea data-required rows="7" placeholder="write your reminder here"></textarea></label></div>`
 }
 ];
 
@@ -49,28 +49,44 @@ $('#pauseVideo').onclick=()=>yt('pauseVideo');
 $('#resumeVideo').onclick=()=>yt('playVideo');
 
 function renderProgress(){progress.innerHTML=tasks.map((_,i)=>`<span class="${i<current?'done':i===current?'active':''}"></span>`).join('')}
+function requiredComplete(){
+ const fields=[...body.querySelectorAll('[data-required]')];
+ const checks=[...body.querySelectorAll('[data-required-check]')];
+ const multi=body.querySelector('[data-required-multi]');
+ const fieldsOkay=fields.every(el=>String(el.value||'').trim().length>0);
+ const checksOkay=checks.every(el=>el.checked);
+ let multiOkay=true;
+ if(multi){
+   const needed=(multi.dataset.needed||'').split(',').filter(Boolean);
+   const selected=[...multi.querySelectorAll('button.selected')].map(b=>b.dataset.item);
+   multiOkay=needed.every(x=>selected.includes(x));
+ }
+ return fieldsOkay&&checksOkay&&multiOkay;
+}
+function updateNext(){
+ const done=requiredComplete();
+ if(current===tasks.length-1){finish.hidden=false;finish.disabled=!done;next.hidden=true}
+ else{next.hidden=false;next.disabled=!done;finish.hidden=true}
+ if(done){feedback.hidden=false;feedback.textContent='Task complete. You can move on when you’re ready.'}
+}
 function wireTask(){
- body.querySelectorAll('[data-answer]').forEach(btn=>btn.onclick=()=>{
-   body.querySelectorAll('[data-answer]').forEach(x=>x.classList.remove('selected'));
-   btn.classList.add('selected');feedback.hidden=false;
-   feedback.textContent=btn.dataset.answer==='good'
-     ?'You pulled out the needed information while other input was competing for your attention.'
-     :'That detail got mixed up or became harder to access. Keep going—there is no reset.';
+ body.querySelectorAll('input,select,textarea').forEach(el=>{
+   el.addEventListener('input',updateNext);el.addEventListener('change',updateNext);
  });
- body.querySelectorAll('[data-multi] button').forEach(btn=>btn.onclick=()=>btn.classList.toggle('selected'));
+ body.querySelectorAll('[data-required-multi] button').forEach(btn=>btn.onclick=()=>{btn.classList.toggle('selected');updateNext()});
 }
 function renderTask(){
  const t=tasks[current];
  $('#taskKicker').textContent=`ACTIVITY ${current+1} OF ${tasks.length}`;
  title.textContent=t.title;copy.textContent=t.copy;body.innerHTML=t.body;feedback.hidden=true;
- renderProgress();wireTask();next.hidden=current===tasks.length-1;finish.hidden=current!==tasks.length-1;
+ renderProgress();wireTask();updateNext();
 }
 document.querySelectorAll('.video-choice').forEach(btn=>btn.onclick=()=>{
  document.querySelectorAll('.video-choice').forEach(x=>x.classList.remove('active'));btn.classList.add('active');
  video.src=videos[btn.dataset.video];current=0;renderTask();
 });
-next.onclick=()=>{if(current<tasks.length-1){current++;renderTask()}};
-finish.onclick=()=>{yt('pauseVideo');$('#audioLab').hidden=true;$('#silenceScreen').hidden=false;$('#silenceScreen').scrollIntoView({behavior:'smooth',block:'center'})};
+next.onclick=()=>{if(requiredComplete()&&current<tasks.length-1){current++;renderTask()}};
+finish.onclick=()=>{if(!requiredComplete())return;yt('pauseVideo');$('#audioLab').hidden=true;$('#silenceScreen').hidden=false;$('#silenceScreen').scrollIntoView({behavior:'smooth',block:'center'})};
 $('#continueDebrief').onclick=()=>{$('#silenceScreen').hidden=true;$('#afterAudio').hidden=false;$('#afterAudio').scrollIntoView({behavior:'smooth',block:'start'})};
 $('#resetAudio').onclick=()=>{current=0;$('#afterAudio').hidden=true;$('#audioLab').hidden=false;video.src=video.src;renderTask();$('#audioLab').scrollIntoView({behavior:'smooth',block:'start'})};
 
