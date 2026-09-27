@@ -4,7 +4,7 @@ const video=$('#simulationVideo');
 if(!video)return;
 
 const videos={
- one:'https://www.youtube.com/embed/NyUqhbPD2tc?rel=0',
+ one:'https://www.youtube.com/embed/NyUqhbPD2tc?start=33&rel=0',
  two:'https://www.youtube.com/embed/HpF3gNifrGY?start=619&rel=0'
 };
 
